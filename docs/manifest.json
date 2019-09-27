@@ -1,0 +1,378 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Development/datatent/documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Block.Block.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Block.Block.html",
+          "hash": "oM9AccBO0huszmnEAq5fMg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Block.BlockType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Block.BlockType.html",
+          "hash": "OPWHjzzNX/ntjlsa9JjQgQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Block.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Block.html",
+          "hash": "Eah5mHHoXzwCy9rWsU2Z8w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Constants.html",
+          "hash": "FFZY0LjPE/jVhokDuBGuMg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.DatatentSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.DatatentSettings.html",
+          "hash": "sx1xxvL50hOXD/EOwxxyWg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Document.Document.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Document.Document.html",
+          "hash": "xXmdMfI6tobCIukKzmpckg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Document.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Document.html",
+          "hash": "OwycBSylFhqXyIV2DjlcWA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.IO.FileSystemService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.IO.FileSystemService.html",
+          "hash": "J5kkhPMfC2qdxdQPEjxyKQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.IO.SpanExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.IO.SpanExtensions.html",
+          "hash": "fJ+Zzdjtek/nrFcKRwLx3A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.IO.html",
+          "hash": "SW1Rs+dt6/fCJGy2fMgcCQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.BasePage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.BasePage.html",
+          "hash": "0Rpo0UIOSLhVCrTbqGpSDQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.CompressionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.CompressionType.html",
+          "hash": "RNn8wHGp+R3yueuZqNZp3g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.DataPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.DataPage.html",
+          "hash": "zRwOsJr2rQpG3nMgV1Kp+A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.PageReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.PageReader.html",
+          "hash": "yKD2jaH1P4iFakDWEe33lw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.PageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.PageType.html",
+          "hash": "iTFNfQ/T4C5LRdCHT0+pGw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.PageTypeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.PageTypeHelper.html",
+          "hash": "s58PsXsugXzK0usVj/BziA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Pages.html",
+          "hash": "Scp3ETApc3o7n70wGHu6OQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Service.CompressionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Service.CompressionService.html",
+          "hash": "yGj2qsqyWpItHVIhXwdBgw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Service.ICompressionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Service.ICompressionService.html",
+          "hash": "kVjW1O8EWhO+MW/4anyb5Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.Service.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.Service.html",
+          "hash": "PzYHe1nSle8zLqDjDXnHBQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Datatent.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Datatent.Core.html",
+          "hash": "6BdisvHXXyEbAaXLrOJMHw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "BJVzM+VrF8rZcGj4nryCjg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "54LNvDan1jFUGFNdpA1gKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "fxn39WYO7lgu8+hNQj3d9g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "t7iiFrmuYmrKWisdq+lN6Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "0bJvcj9l+aVWDFEPow0pFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "k+/dkjFuwAVS32HduMpmBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 2
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 21,
+          "skipped_file_count": 21
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

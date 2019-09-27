@@ -1,0 +1,1063 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Datatent.Core
+  name: Datatent.Core
+  href: api/Datatent.Core.html
+  commentId: N:Datatent.Core
+  fullName: Datatent.Core
+  nameWithType: Datatent.Core
+- uid: Datatent.Core.Block
+  name: Datatent.Core.Block
+  href: api/Datatent.Core.Block.html
+  commentId: N:Datatent.Core.Block
+  fullName: Datatent.Core.Block
+  nameWithType: Datatent.Core.Block
+- uid: Datatent.Core.Block.Block
+  name: Block
+  href: api/Datatent.Core.Block.Block.html
+  commentId: T:Datatent.Core.Block.Block
+  fullName: Datatent.Core.Block.Block
+  nameWithType: Block
+- uid: Datatent.Core.Block.Block.#ctor(System.Byte[],System.Guid)
+  name: Block(Byte[], Guid)
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block__ctor_System_Byte___System_Guid_
+  commentId: M:Datatent.Core.Block.Block.#ctor(System.Byte[],System.Guid)
+  name.vb: Block(Byte(), Guid)
+  fullName: Datatent.Core.Block.Block.Block(System.Byte[], System.Guid)
+  fullName.vb: Datatent.Core.Block.Block.Block(System.Byte(), System.Guid)
+  nameWithType: Block.Block(Byte[], Guid)
+  nameWithType.vb: Block.Block(Byte(), Guid)
+- uid: Datatent.Core.Block.Block.#ctor*
+  name: Block
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block__ctor_
+  commentId: Overload:Datatent.Core.Block.Block.#ctor
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.Block
+  nameWithType: Block.Block
+- uid: Datatent.Core.Block.Block._buffer
+  name: _buffer
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block__buffer
+  commentId: F:Datatent.Core.Block.Block._buffer
+  fullName: Datatent.Core.Block.Block._buffer
+  nameWithType: Block._buffer
+- uid: Datatent.Core.Block.Block._memory
+  name: _memory
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block__memory
+  commentId: F:Datatent.Core.Block.Block._memory
+  fullName: Datatent.Core.Block.Block._memory
+  nameWithType: Block._memory
+- uid: Datatent.Core.Block.Block.BLOCK_ID
+  name: BLOCK_ID
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_BLOCK_ID
+  commentId: F:Datatent.Core.Block.Block.BLOCK_ID
+  fullName: Datatent.Core.Block.Block.BLOCK_ID
+  nameWithType: Block.BLOCK_ID
+- uid: Datatent.Core.Block.Block.BLOCK_NUMBER_OF_PAGES
+  name: BLOCK_NUMBER_OF_PAGES
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_BLOCK_NUMBER_OF_PAGES
+  commentId: F:Datatent.Core.Block.Block.BLOCK_NUMBER_OF_PAGES
+  fullName: Datatent.Core.Block.Block.BLOCK_NUMBER_OF_PAGES
+  nameWithType: Block.BLOCK_NUMBER_OF_PAGES
+- uid: Datatent.Core.Block.Block.BLOCK_TYPE
+  name: BLOCK_TYPE
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_BLOCK_TYPE
+  commentId: F:Datatent.Core.Block.Block.BLOCK_TYPE
+  fullName: Datatent.Core.Block.Block.BLOCK_TYPE
+  nameWithType: Block.BLOCK_TYPE
+- uid: Datatent.Core.Block.Block.CreateNew(System.Byte[],System.Guid)
+  name: CreateNew(Byte[], Guid)
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_CreateNew_System_Byte___System_Guid_
+  commentId: M:Datatent.Core.Block.Block.CreateNew(System.Byte[],System.Guid)
+  name.vb: CreateNew(Byte(), Guid)
+  fullName: Datatent.Core.Block.Block.CreateNew(System.Byte[], System.Guid)
+  fullName.vb: Datatent.Core.Block.Block.CreateNew(System.Byte(), System.Guid)
+  nameWithType: Block.CreateNew(Byte[], Guid)
+  nameWithType.vb: Block.CreateNew(Byte(), Guid)
+- uid: Datatent.Core.Block.Block.CreateNew*
+  name: CreateNew
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_CreateNew_
+  commentId: Overload:Datatent.Core.Block.Block.CreateNew
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.CreateNew
+  nameWithType: Block.CreateNew
+- uid: Datatent.Core.Block.Block.Dispose
+  name: Dispose()
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Dispose
+  commentId: M:Datatent.Core.Block.Block.Dispose
+  fullName: Datatent.Core.Block.Block.Dispose()
+  nameWithType: Block.Dispose()
+- uid: Datatent.Core.Block.Block.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Dispose_System_Boolean_
+  commentId: M:Datatent.Core.Block.Block.Dispose(System.Boolean)
+  fullName: Datatent.Core.Block.Block.Dispose(System.Boolean)
+  nameWithType: Block.Dispose(Boolean)
+- uid: Datatent.Core.Block.Block.Dispose*
+  name: Dispose
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Dispose_
+  commentId: Overload:Datatent.Core.Block.Block.Dispose
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.Dispose
+  nameWithType: Block.Dispose
+- uid: Datatent.Core.Block.Block.Finalize
+  name: Finalize()
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Finalize
+  commentId: M:Datatent.Core.Block.Block.Finalize
+  fullName: Datatent.Core.Block.Block.Finalize()
+  nameWithType: Block.Finalize()
+- uid: Datatent.Core.Block.Block.Finalize*
+  name: Finalize
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Finalize_
+  commentId: Overload:Datatent.Core.Block.Block.Finalize
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.Finalize
+  nameWithType: Block.Finalize
+- uid: Datatent.Core.Block.Block.Id
+  name: Id
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Id
+  commentId: P:Datatent.Core.Block.Block.Id
+  fullName: Datatent.Core.Block.Block.Id
+  nameWithType: Block.Id
+- uid: Datatent.Core.Block.Block.Id*
+  name: Id
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_Id_
+  commentId: Overload:Datatent.Core.Block.Block.Id
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.Id
+  nameWithType: Block.Id
+- uid: Datatent.Core.Block.Block.ReleaseUnmanagedResources
+  name: ReleaseUnmanagedResources()
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_ReleaseUnmanagedResources
+  commentId: M:Datatent.Core.Block.Block.ReleaseUnmanagedResources
+  fullName: Datatent.Core.Block.Block.ReleaseUnmanagedResources()
+  nameWithType: Block.ReleaseUnmanagedResources()
+- uid: Datatent.Core.Block.Block.ReleaseUnmanagedResources*
+  name: ReleaseUnmanagedResources
+  href: api/Datatent.Core.Block.Block.html#Datatent_Core_Block_Block_ReleaseUnmanagedResources_
+  commentId: Overload:Datatent.Core.Block.Block.ReleaseUnmanagedResources
+  isSpec: "True"
+  fullName: Datatent.Core.Block.Block.ReleaseUnmanagedResources
+  nameWithType: Block.ReleaseUnmanagedResources
+- uid: Datatent.Core.Block.BlockType
+  name: BlockType
+  href: api/Datatent.Core.Block.BlockType.html
+  commentId: T:Datatent.Core.Block.BlockType
+  fullName: Datatent.Core.Block.BlockType
+  nameWithType: BlockType
+- uid: Datatent.Core.Block.BlockType.General
+  name: General
+  href: api/Datatent.Core.Block.BlockType.html#Datatent_Core_Block_BlockType_General
+  commentId: F:Datatent.Core.Block.BlockType.General
+  fullName: Datatent.Core.Block.BlockType.General
+  nameWithType: BlockType.General
+- uid: Datatent.Core.Constants
+  name: Constants
+  href: api/Datatent.Core.Constants.html
+  commentId: T:Datatent.Core.Constants
+  fullName: Datatent.Core.Constants
+  nameWithType: Constants
+- uid: Datatent.Core.Constants.BLOCK_HEADER_SIZE
+  name: BLOCK_HEADER_SIZE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_BLOCK_HEADER_SIZE
+  commentId: F:Datatent.Core.Constants.BLOCK_HEADER_SIZE
+  fullName: Datatent.Core.Constants.BLOCK_HEADER_SIZE
+  nameWithType: Constants.BLOCK_HEADER_SIZE
+- uid: Datatent.Core.Constants.BLOCK_SIZE
+  name: BLOCK_SIZE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_BLOCK_SIZE
+  commentId: F:Datatent.Core.Constants.BLOCK_SIZE
+  fullName: Datatent.Core.Constants.BLOCK_SIZE
+  nameWithType: Constants.BLOCK_SIZE
+- uid: Datatent.Core.Constants.BLOCK_SIZE_INCL_HEADER
+  name: BLOCK_SIZE_INCL_HEADER
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_BLOCK_SIZE_INCL_HEADER
+  commentId: F:Datatent.Core.Constants.BLOCK_SIZE_INCL_HEADER
+  fullName: Datatent.Core.Constants.BLOCK_SIZE_INCL_HEADER
+  nameWithType: Constants.BLOCK_SIZE_INCL_HEADER
+- uid: Datatent.Core.Constants.COMPRESSION_TYPE
+  name: COMPRESSION_TYPE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_COMPRESSION_TYPE
+  commentId: F:Datatent.Core.Constants.COMPRESSION_TYPE
+  fullName: Datatent.Core.Constants.COMPRESSION_TYPE
+  nameWithType: Constants.COMPRESSION_TYPE
+- uid: Datatent.Core.Constants.DOCUMENT_HEADER_SIZE
+  name: DOCUMENT_HEADER_SIZE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_DOCUMENT_HEADER_SIZE
+  commentId: F:Datatent.Core.Constants.DOCUMENT_HEADER_SIZE
+  fullName: Datatent.Core.Constants.DOCUMENT_HEADER_SIZE
+  nameWithType: Constants.DOCUMENT_HEADER_SIZE
+- uid: Datatent.Core.Constants.PAGE_HEADER_SIZE
+  name: PAGE_HEADER_SIZE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_PAGE_HEADER_SIZE
+  commentId: F:Datatent.Core.Constants.PAGE_HEADER_SIZE
+  fullName: Datatent.Core.Constants.PAGE_HEADER_SIZE
+  nameWithType: Constants.PAGE_HEADER_SIZE
+- uid: Datatent.Core.Constants.PAGE_PER_BLOCK
+  name: PAGE_PER_BLOCK
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_PAGE_PER_BLOCK
+  commentId: F:Datatent.Core.Constants.PAGE_PER_BLOCK
+  fullName: Datatent.Core.Constants.PAGE_PER_BLOCK
+  nameWithType: Constants.PAGE_PER_BLOCK
+- uid: Datatent.Core.Constants.PAGE_SIZE
+  name: PAGE_SIZE
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_PAGE_SIZE
+  commentId: F:Datatent.Core.Constants.PAGE_SIZE
+  fullName: Datatent.Core.Constants.PAGE_SIZE
+  nameWithType: Constants.PAGE_SIZE
+- uid: Datatent.Core.Constants.PAGE_SIZE_INCL_HEADER
+  name: PAGE_SIZE_INCL_HEADER
+  href: api/Datatent.Core.Constants.html#Datatent_Core_Constants_PAGE_SIZE_INCL_HEADER
+  commentId: F:Datatent.Core.Constants.PAGE_SIZE_INCL_HEADER
+  fullName: Datatent.Core.Constants.PAGE_SIZE_INCL_HEADER
+  nameWithType: Constants.PAGE_SIZE_INCL_HEADER
+- uid: Datatent.Core.DatatentSettings
+  name: DatatentSettings
+  href: api/Datatent.Core.DatatentSettings.html
+  commentId: T:Datatent.Core.DatatentSettings
+  fullName: Datatent.Core.DatatentSettings
+  nameWithType: DatatentSettings
+- uid: Datatent.Core.Document
+  name: Datatent.Core.Document
+  href: api/Datatent.Core.Document.html
+  commentId: N:Datatent.Core.Document
+  fullName: Datatent.Core.Document
+  nameWithType: Datatent.Core.Document
+- uid: Datatent.Core.Document.Document
+  name: Document
+  href: api/Datatent.Core.Document.Document.html
+  commentId: T:Datatent.Core.Document.Document
+  fullName: Datatent.Core.Document.Document
+  nameWithType: Document
+- uid: Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},Datatent.Core.Service.ICompressionService)
+  name: Document(Memory<Byte>, ICompressionService)
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document__ctor_System_Memory_System_Byte__Datatent_Core_Service_ICompressionService_
+  commentId: M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},Datatent.Core.Service.ICompressionService)
+  name.vb: Document(Memory(Of Byte), ICompressionService)
+  fullName: Datatent.Core.Document.Document.Document(System.Memory<System.Byte>, Datatent.Core.Service.ICompressionService)
+  fullName.vb: Datatent.Core.Document.Document.Document(System.Memory(Of System.Byte), Datatent.Core.Service.ICompressionService)
+  nameWithType: Document.Document(Memory<Byte>, ICompressionService)
+  nameWithType.vb: Document.Document(Memory(Of Byte), ICompressionService)
+- uid: Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},System.Guid,Datatent.Core.Service.ICompressionService)
+  name: Document(Memory<Byte>, Guid, ICompressionService)
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document__ctor_System_Memory_System_Byte__System_Guid_Datatent_Core_Service_ICompressionService_
+  commentId: M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},System.Guid,Datatent.Core.Service.ICompressionService)
+  name.vb: Document(Memory(Of Byte), Guid, ICompressionService)
+  fullName: Datatent.Core.Document.Document.Document(System.Memory<System.Byte>, System.Guid, Datatent.Core.Service.ICompressionService)
+  fullName.vb: Datatent.Core.Document.Document.Document(System.Memory(Of System.Byte), System.Guid, Datatent.Core.Service.ICompressionService)
+  nameWithType: Document.Document(Memory<Byte>, Guid, ICompressionService)
+  nameWithType.vb: Document.Document(Memory(Of Byte), Guid, ICompressionService)
+- uid: Datatent.Core.Document.Document.#ctor*
+  name: Document
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document__ctor_
+  commentId: Overload:Datatent.Core.Document.Document.#ctor
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.Document
+  nameWithType: Document.Document
+- uid: Datatent.Core.Document.Document._compressionService
+  name: _compressionService
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document__compressionService
+  commentId: F:Datatent.Core.Document.Document._compressionService
+  fullName: Datatent.Core.Document.Document._compressionService
+  nameWithType: Document._compressionService
+- uid: Datatent.Core.Document.Document._documentSlice
+  name: _documentSlice
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document__documentSlice
+  commentId: F:Datatent.Core.Document.Document._documentSlice
+  fullName: Datatent.Core.Document.Document._documentSlice
+  nameWithType: Document._documentSlice
+- uid: Datatent.Core.Document.Document.CheckNeededSpace(System.Byte[])
+  name: CheckNeededSpace(Byte[])
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_CheckNeededSpace_System_Byte___
+  commentId: M:Datatent.Core.Document.Document.CheckNeededSpace(System.Byte[])
+  name.vb: CheckNeededSpace(Byte())
+  fullName: Datatent.Core.Document.Document.CheckNeededSpace(System.Byte[])
+  fullName.vb: Datatent.Core.Document.Document.CheckNeededSpace(System.Byte())
+  nameWithType: Document.CheckNeededSpace(Byte[])
+  nameWithType.vb: Document.CheckNeededSpace(Byte())
+- uid: Datatent.Core.Document.Document.CheckNeededSpace*
+  name: CheckNeededSpace
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_CheckNeededSpace_
+  commentId: Overload:Datatent.Core.Document.Document.CheckNeededSpace
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.CheckNeededSpace
+  nameWithType: Document.CheckNeededSpace
+- uid: Datatent.Core.Document.Document.CompressionType
+  name: CompressionType
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_CompressionType
+  commentId: P:Datatent.Core.Document.Document.CompressionType
+  fullName: Datatent.Core.Document.Document.CompressionType
+  nameWithType: Document.CompressionType
+- uid: Datatent.Core.Document.Document.CompressionType*
+  name: CompressionType
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_CompressionType_
+  commentId: Overload:Datatent.Core.Document.Document.CompressionType
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.CompressionType
+  nameWithType: Document.CompressionType
+- uid: Datatent.Core.Document.Document.DOCUMENT_COMPRESSION_TYPE
+  name: DOCUMENT_COMPRESSION_TYPE
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_COMPRESSION_TYPE
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_COMPRESSION_TYPE
+  fullName: Datatent.Core.Document.Document.DOCUMENT_COMPRESSION_TYPE
+  nameWithType: Document.DOCUMENT_COMPRESSION_TYPE
+- uid: Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH
+  name: DOCUMENT_HEADER_LENGTH
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_HEADER_LENGTH
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH
+  fullName: Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH
+  nameWithType: Document.DOCUMENT_HEADER_LENGTH
+- uid: Datatent.Core.Document.Document.DOCUMENT_ID
+  name: DOCUMENT_ID
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_ID
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_ID
+  fullName: Datatent.Core.Document.Document.DOCUMENT_ID
+  nameWithType: Document.DOCUMENT_ID
+- uid: Datatent.Core.Document.Document.DOCUMENT_IS_DELETED
+  name: DOCUMENT_IS_DELETED
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_IS_DELETED
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_IS_DELETED
+  fullName: Datatent.Core.Document.Document.DOCUMENT_IS_DELETED
+  nameWithType: Document.DOCUMENT_IS_DELETED
+- uid: Datatent.Core.Document.Document.DOCUMENT_LENGTH
+  name: DOCUMENT_LENGTH
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_LENGTH
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_LENGTH
+  fullName: Datatent.Core.Document.Document.DOCUMENT_LENGTH
+  nameWithType: Document.DOCUMENT_LENGTH
+- uid: Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH
+  name: DOCUMENT_ORG_LENGTH
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_ORG_LENGTH
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH
+  fullName: Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH
+  nameWithType: Document.DOCUMENT_ORG_LENGTH
+- uid: Datatent.Core.Document.Document.DOCUMENT_TYPE_ID
+  name: DOCUMENT_TYPE_ID
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DOCUMENT_TYPE_ID
+  commentId: F:Datatent.Core.Document.Document.DOCUMENT_TYPE_ID
+  fullName: Datatent.Core.Document.Document.DOCUMENT_TYPE_ID
+  nameWithType: Document.DOCUMENT_TYPE_ID
+- uid: Datatent.Core.Document.Document.DocumentId
+  name: DocumentId
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DocumentId
+  commentId: P:Datatent.Core.Document.Document.DocumentId
+  fullName: Datatent.Core.Document.Document.DocumentId
+  nameWithType: Document.DocumentId
+- uid: Datatent.Core.Document.Document.DocumentId*
+  name: DocumentId
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_DocumentId_
+  commentId: Overload:Datatent.Core.Document.Document.DocumentId
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.DocumentId
+  nameWithType: Document.DocumentId
+- uid: Datatent.Core.Document.Document.GetContent
+  name: GetContent()
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_GetContent
+  commentId: M:Datatent.Core.Document.Document.GetContent
+  fullName: Datatent.Core.Document.Document.GetContent()
+  nameWithType: Document.GetContent()
+- uid: Datatent.Core.Document.Document.GetContent*
+  name: GetContent
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_GetContent_
+  commentId: Overload:Datatent.Core.Document.Document.GetContent
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.GetContent
+  nameWithType: Document.GetContent
+- uid: Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(System.Memory{System.Byte}@)
+  name: GetNextDocumentSliceAndAdjustOffset(ref Memory<Byte>)
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_GetNextDocumentSliceAndAdjustOffset_System_Memory_System_Byte___
+  commentId: M:Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(System.Memory{System.Byte}@)
+  name.vb: GetNextDocumentSliceAndAdjustOffset(ByRef Memory(Of Byte))
+  fullName: Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref System.Memory<System.Byte>)
+  fullName.vb: Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ByRef System.Memory(Of System.Byte))
+  nameWithType: Document.GetNextDocumentSliceAndAdjustOffset(ref Memory<Byte>)
+  nameWithType.vb: Document.GetNextDocumentSliceAndAdjustOffset(ByRef Memory(Of Byte))
+- uid: Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset*
+  name: GetNextDocumentSliceAndAdjustOffset
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_GetNextDocumentSliceAndAdjustOffset_
+  commentId: Overload:Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset
+  nameWithType: Document.GetNextDocumentSliceAndAdjustOffset
+- uid: Datatent.Core.Document.Document.IsDeleted
+  name: IsDeleted
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_IsDeleted
+  commentId: P:Datatent.Core.Document.Document.IsDeleted
+  fullName: Datatent.Core.Document.Document.IsDeleted
+  nameWithType: Document.IsDeleted
+- uid: Datatent.Core.Document.Document.IsDeleted*
+  name: IsDeleted
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_IsDeleted_
+  commentId: Overload:Datatent.Core.Document.Document.IsDeleted
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.IsDeleted
+  nameWithType: Document.IsDeleted
+- uid: Datatent.Core.Document.Document.OriginalContentLength
+  name: OriginalContentLength
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_OriginalContentLength
+  commentId: P:Datatent.Core.Document.Document.OriginalContentLength
+  fullName: Datatent.Core.Document.Document.OriginalContentLength
+  nameWithType: Document.OriginalContentLength
+- uid: Datatent.Core.Document.Document.OriginalContentLength*
+  name: OriginalContentLength
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_OriginalContentLength_
+  commentId: Overload:Datatent.Core.Document.Document.OriginalContentLength
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.OriginalContentLength
+  nameWithType: Document.OriginalContentLength
+- uid: Datatent.Core.Document.Document.SavedContentLength
+  name: SavedContentLength
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_SavedContentLength
+  commentId: P:Datatent.Core.Document.Document.SavedContentLength
+  fullName: Datatent.Core.Document.Document.SavedContentLength
+  nameWithType: Document.SavedContentLength
+- uid: Datatent.Core.Document.Document.SavedContentLength*
+  name: SavedContentLength
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_SavedContentLength_
+  commentId: Overload:Datatent.Core.Document.Document.SavedContentLength
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.SavedContentLength
+  nameWithType: Document.SavedContentLength
+- uid: Datatent.Core.Document.Document.SetContent(System.Byte[])
+  name: SetContent(Byte[])
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_SetContent_System_Byte___
+  commentId: M:Datatent.Core.Document.Document.SetContent(System.Byte[])
+  name.vb: SetContent(Byte())
+  fullName: Datatent.Core.Document.Document.SetContent(System.Byte[])
+  fullName.vb: Datatent.Core.Document.Document.SetContent(System.Byte())
+  nameWithType: Document.SetContent(Byte[])
+  nameWithType.vb: Document.SetContent(Byte())
+- uid: Datatent.Core.Document.Document.SetContent*
+  name: SetContent
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_SetContent_
+  commentId: Overload:Datatent.Core.Document.Document.SetContent
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.SetContent
+  nameWithType: Document.SetContent
+- uid: Datatent.Core.Document.Document.TypeId
+  name: TypeId
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_TypeId
+  commentId: P:Datatent.Core.Document.Document.TypeId
+  fullName: Datatent.Core.Document.Document.TypeId
+  nameWithType: Document.TypeId
+- uid: Datatent.Core.Document.Document.TypeId*
+  name: TypeId
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_TypeId_
+  commentId: Overload:Datatent.Core.Document.Document.TypeId
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.TypeId
+  nameWithType: Document.TypeId
+- uid: Datatent.Core.Document.Document.Update(System.Byte[],System.UInt32)
+  name: Update(Byte[], UInt32)
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_Update_System_Byte___System_UInt32_
+  commentId: M:Datatent.Core.Document.Document.Update(System.Byte[],System.UInt32)
+  name.vb: Update(Byte(), UInt32)
+  fullName: Datatent.Core.Document.Document.Update(System.Byte[], System.UInt32)
+  fullName.vb: Datatent.Core.Document.Document.Update(System.Byte(), System.UInt32)
+  nameWithType: Document.Update(Byte[], UInt32)
+  nameWithType.vb: Document.Update(Byte(), UInt32)
+- uid: Datatent.Core.Document.Document.Update(System.UInt32)
+  name: Update(UInt32)
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_Update_System_UInt32_
+  commentId: M:Datatent.Core.Document.Document.Update(System.UInt32)
+  fullName: Datatent.Core.Document.Document.Update(System.UInt32)
+  nameWithType: Document.Update(UInt32)
+- uid: Datatent.Core.Document.Document.Update*
+  name: Update
+  href: api/Datatent.Core.Document.Document.html#Datatent_Core_Document_Document_Update_
+  commentId: Overload:Datatent.Core.Document.Document.Update
+  isSpec: "True"
+  fullName: Datatent.Core.Document.Document.Update
+  nameWithType: Document.Update
+- uid: Datatent.Core.IO
+  name: Datatent.Core.IO
+  href: api/Datatent.Core.IO.html
+  commentId: N:Datatent.Core.IO
+  fullName: Datatent.Core.IO
+  nameWithType: Datatent.Core.IO
+- uid: Datatent.Core.IO.FileSystemService
+  name: FileSystemService
+  href: api/Datatent.Core.IO.FileSystemService.html
+  commentId: T:Datatent.Core.IO.FileSystemService
+  fullName: Datatent.Core.IO.FileSystemService
+  nameWithType: FileSystemService
+- uid: Datatent.Core.IO.FileSystemService.#ctor(Datatent.Core.DatatentSettings,Microsoft.Extensions.Logging.ILogger{Datatent.Core.IO.FileSystemService})
+  name: FileSystemService(DatatentSettings, ILogger<FileSystemService>)
+  href: api/Datatent.Core.IO.FileSystemService.html#Datatent_Core_IO_FileSystemService__ctor_Datatent_Core_DatatentSettings_Microsoft_Extensions_Logging_ILogger_Datatent_Core_IO_FileSystemService__
+  commentId: M:Datatent.Core.IO.FileSystemService.#ctor(Datatent.Core.DatatentSettings,Microsoft.Extensions.Logging.ILogger{Datatent.Core.IO.FileSystemService})
+  name.vb: FileSystemService(DatatentSettings, ILogger(Of FileSystemService))
+  fullName: Datatent.Core.IO.FileSystemService.FileSystemService(Datatent.Core.DatatentSettings, Microsoft.Extensions.Logging.ILogger<Datatent.Core.IO.FileSystemService>)
+  fullName.vb: Datatent.Core.IO.FileSystemService.FileSystemService(Datatent.Core.DatatentSettings, Microsoft.Extensions.Logging.ILogger(Of Datatent.Core.IO.FileSystemService))
+  nameWithType: FileSystemService.FileSystemService(DatatentSettings, ILogger<FileSystemService>)
+  nameWithType.vb: FileSystemService.FileSystemService(DatatentSettings, ILogger(Of FileSystemService))
+- uid: Datatent.Core.IO.FileSystemService.#ctor*
+  name: FileSystemService
+  href: api/Datatent.Core.IO.FileSystemService.html#Datatent_Core_IO_FileSystemService__ctor_
+  commentId: Overload:Datatent.Core.IO.FileSystemService.#ctor
+  isSpec: "True"
+  fullName: Datatent.Core.IO.FileSystemService.FileSystemService
+  nameWithType: FileSystemService.FileSystemService
+- uid: Datatent.Core.IO.FileSystemService._logger
+  name: _logger
+  href: api/Datatent.Core.IO.FileSystemService.html#Datatent_Core_IO_FileSystemService__logger
+  commentId: F:Datatent.Core.IO.FileSystemService._logger
+  fullName: Datatent.Core.IO.FileSystemService._logger
+  nameWithType: FileSystemService._logger
+- uid: Datatent.Core.IO.FileSystemService._settings
+  name: _settings
+  href: api/Datatent.Core.IO.FileSystemService.html#Datatent_Core_IO_FileSystemService__settings
+  commentId: F:Datatent.Core.IO.FileSystemService._settings
+  fullName: Datatent.Core.IO.FileSystemService._settings
+  nameWithType: FileSystemService._settings
+- uid: Datatent.Core.IO.SpanExtensions
+  name: SpanExtensions
+  href: api/Datatent.Core.IO.SpanExtensions.html
+  commentId: T:Datatent.Core.IO.SpanExtensions
+  fullName: Datatent.Core.IO.SpanExtensions
+  nameWithType: SpanExtensions
+- uid: Datatent.Core.IO.SpanExtensions.ReadBool(System.Span{System.Byte},System.Int32)
+  name: ReadBool(Span<Byte>, Int32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadBool_System_Span_System_Byte__System_Int32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.ReadBool(System.Span{System.Byte},System.Int32)
+  name.vb: ReadBool(Span(Of Byte), Int32)
+  fullName: Datatent.Core.IO.SpanExtensions.ReadBool(System.Span<System.Byte>, System.Int32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.ReadBool(System.Span(Of System.Byte), System.Int32)
+  nameWithType: SpanExtensions.ReadBool(Span<Byte>, Int32)
+  nameWithType.vb: SpanExtensions.ReadBool(Span(Of Byte), Int32)
+- uid: Datatent.Core.IO.SpanExtensions.ReadBool*
+  name: ReadBool
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadBool_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.ReadBool
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.ReadBool
+  nameWithType: SpanExtensions.ReadBool
+- uid: Datatent.Core.IO.SpanExtensions.ReadByte(System.Span{System.Byte},System.Int32)
+  name: ReadByte(Span<Byte>, Int32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadByte_System_Span_System_Byte__System_Int32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.ReadByte(System.Span{System.Byte},System.Int32)
+  name.vb: ReadByte(Span(Of Byte), Int32)
+  fullName: Datatent.Core.IO.SpanExtensions.ReadByte(System.Span<System.Byte>, System.Int32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.ReadByte(System.Span(Of System.Byte), System.Int32)
+  nameWithType: SpanExtensions.ReadByte(Span<Byte>, Int32)
+  nameWithType.vb: SpanExtensions.ReadByte(Span(Of Byte), Int32)
+- uid: Datatent.Core.IO.SpanExtensions.ReadByte*
+  name: ReadByte
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadByte_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.ReadByte
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.ReadByte
+  nameWithType: SpanExtensions.ReadByte
+- uid: Datatent.Core.IO.SpanExtensions.ReadBytes(System.Span{System.Byte},System.Int32,System.Int32)
+  name: ReadBytes(Span<Byte>, Int32, Int32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadBytes_System_Span_System_Byte__System_Int32_System_Int32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.ReadBytes(System.Span{System.Byte},System.Int32,System.Int32)
+  name.vb: ReadBytes(Span(Of Byte), Int32, Int32)
+  fullName: Datatent.Core.IO.SpanExtensions.ReadBytes(System.Span<System.Byte>, System.Int32, System.Int32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.ReadBytes(System.Span(Of System.Byte), System.Int32, System.Int32)
+  nameWithType: SpanExtensions.ReadBytes(Span<Byte>, Int32, Int32)
+  nameWithType.vb: SpanExtensions.ReadBytes(Span(Of Byte), Int32, Int32)
+- uid: Datatent.Core.IO.SpanExtensions.ReadBytes*
+  name: ReadBytes
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadBytes_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.ReadBytes
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.ReadBytes
+  nameWithType: SpanExtensions.ReadBytes
+- uid: Datatent.Core.IO.SpanExtensions.ReadGuid(System.Span{System.Byte},System.Int32)
+  name: ReadGuid(Span<Byte>, Int32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadGuid_System_Span_System_Byte__System_Int32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.ReadGuid(System.Span{System.Byte},System.Int32)
+  name.vb: ReadGuid(Span(Of Byte), Int32)
+  fullName: Datatent.Core.IO.SpanExtensions.ReadGuid(System.Span<System.Byte>, System.Int32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.ReadGuid(System.Span(Of System.Byte), System.Int32)
+  nameWithType: SpanExtensions.ReadGuid(Span<Byte>, Int32)
+  nameWithType.vb: SpanExtensions.ReadGuid(Span(Of Byte), Int32)
+- uid: Datatent.Core.IO.SpanExtensions.ReadGuid*
+  name: ReadGuid
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadGuid_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.ReadGuid
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.ReadGuid
+  nameWithType: SpanExtensions.ReadGuid
+- uid: Datatent.Core.IO.SpanExtensions.ReadUInt32(System.Span{System.Byte},System.Int32)
+  name: ReadUInt32(Span<Byte>, Int32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadUInt32_System_Span_System_Byte__System_Int32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.ReadUInt32(System.Span{System.Byte},System.Int32)
+  name.vb: ReadUInt32(Span(Of Byte), Int32)
+  fullName: Datatent.Core.IO.SpanExtensions.ReadUInt32(System.Span<System.Byte>, System.Int32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.ReadUInt32(System.Span(Of System.Byte), System.Int32)
+  nameWithType: SpanExtensions.ReadUInt32(Span<Byte>, Int32)
+  nameWithType.vb: SpanExtensions.ReadUInt32(Span(Of Byte), Int32)
+- uid: Datatent.Core.IO.SpanExtensions.ReadUInt32*
+  name: ReadUInt32
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_ReadUInt32_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.ReadUInt32
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.ReadUInt32
+  nameWithType: SpanExtensions.ReadUInt32
+- uid: Datatent.Core.IO.SpanExtensions.WriteBool(System.Span{System.Byte},System.Int32,System.Boolean)
+  name: WriteBool(Span<Byte>, Int32, Boolean)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteBool_System_Span_System_Byte__System_Int32_System_Boolean_
+  commentId: M:Datatent.Core.IO.SpanExtensions.WriteBool(System.Span{System.Byte},System.Int32,System.Boolean)
+  name.vb: WriteBool(Span(Of Byte), Int32, Boolean)
+  fullName: Datatent.Core.IO.SpanExtensions.WriteBool(System.Span<System.Byte>, System.Int32, System.Boolean)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.WriteBool(System.Span(Of System.Byte), System.Int32, System.Boolean)
+  nameWithType: SpanExtensions.WriteBool(Span<Byte>, Int32, Boolean)
+  nameWithType.vb: SpanExtensions.WriteBool(Span(Of Byte), Int32, Boolean)
+- uid: Datatent.Core.IO.SpanExtensions.WriteBool*
+  name: WriteBool
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteBool_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.WriteBool
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.WriteBool
+  nameWithType: SpanExtensions.WriteBool
+- uid: Datatent.Core.IO.SpanExtensions.WriteByte(System.Span{System.Byte},System.Int32,System.Byte)
+  name: WriteByte(Span<Byte>, Int32, Byte)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteByte_System_Span_System_Byte__System_Int32_System_Byte_
+  commentId: M:Datatent.Core.IO.SpanExtensions.WriteByte(System.Span{System.Byte},System.Int32,System.Byte)
+  name.vb: WriteByte(Span(Of Byte), Int32, Byte)
+  fullName: Datatent.Core.IO.SpanExtensions.WriteByte(System.Span<System.Byte>, System.Int32, System.Byte)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.WriteByte(System.Span(Of System.Byte), System.Int32, System.Byte)
+  nameWithType: SpanExtensions.WriteByte(Span<Byte>, Int32, Byte)
+  nameWithType.vb: SpanExtensions.WriteByte(Span(Of Byte), Int32, Byte)
+- uid: Datatent.Core.IO.SpanExtensions.WriteByte*
+  name: WriteByte
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteByte_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.WriteByte
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.WriteByte
+  nameWithType: SpanExtensions.WriteByte
+- uid: Datatent.Core.IO.SpanExtensions.WriteBytes(System.Span{System.Byte},System.Int32,System.Byte[])
+  name: WriteBytes(Span<Byte>, Int32, Byte[])
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteBytes_System_Span_System_Byte__System_Int32_System_Byte___
+  commentId: M:Datatent.Core.IO.SpanExtensions.WriteBytes(System.Span{System.Byte},System.Int32,System.Byte[])
+  name.vb: WriteBytes(Span(Of Byte), Int32, Byte())
+  fullName: Datatent.Core.IO.SpanExtensions.WriteBytes(System.Span<System.Byte>, System.Int32, System.Byte[])
+  fullName.vb: Datatent.Core.IO.SpanExtensions.WriteBytes(System.Span(Of System.Byte), System.Int32, System.Byte())
+  nameWithType: SpanExtensions.WriteBytes(Span<Byte>, Int32, Byte[])
+  nameWithType.vb: SpanExtensions.WriteBytes(Span(Of Byte), Int32, Byte())
+- uid: Datatent.Core.IO.SpanExtensions.WriteBytes*
+  name: WriteBytes
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteBytes_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.WriteBytes
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.WriteBytes
+  nameWithType: SpanExtensions.WriteBytes
+- uid: Datatent.Core.IO.SpanExtensions.WriteGuid(System.Span{System.Byte},System.Int32,System.Guid)
+  name: WriteGuid(Span<Byte>, Int32, Guid)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteGuid_System_Span_System_Byte__System_Int32_System_Guid_
+  commentId: M:Datatent.Core.IO.SpanExtensions.WriteGuid(System.Span{System.Byte},System.Int32,System.Guid)
+  name.vb: WriteGuid(Span(Of Byte), Int32, Guid)
+  fullName: Datatent.Core.IO.SpanExtensions.WriteGuid(System.Span<System.Byte>, System.Int32, System.Guid)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.WriteGuid(System.Span(Of System.Byte), System.Int32, System.Guid)
+  nameWithType: SpanExtensions.WriteGuid(Span<Byte>, Int32, Guid)
+  nameWithType.vb: SpanExtensions.WriteGuid(Span(Of Byte), Int32, Guid)
+- uid: Datatent.Core.IO.SpanExtensions.WriteGuid*
+  name: WriteGuid
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteGuid_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.WriteGuid
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.WriteGuid
+  nameWithType: SpanExtensions.WriteGuid
+- uid: Datatent.Core.IO.SpanExtensions.WriteUInt32(System.Span{System.Byte},System.Int32,System.UInt32)
+  name: WriteUInt32(Span<Byte>, Int32, UInt32)
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteUInt32_System_Span_System_Byte__System_Int32_System_UInt32_
+  commentId: M:Datatent.Core.IO.SpanExtensions.WriteUInt32(System.Span{System.Byte},System.Int32,System.UInt32)
+  name.vb: WriteUInt32(Span(Of Byte), Int32, UInt32)
+  fullName: Datatent.Core.IO.SpanExtensions.WriteUInt32(System.Span<System.Byte>, System.Int32, System.UInt32)
+  fullName.vb: Datatent.Core.IO.SpanExtensions.WriteUInt32(System.Span(Of System.Byte), System.Int32, System.UInt32)
+  nameWithType: SpanExtensions.WriteUInt32(Span<Byte>, Int32, UInt32)
+  nameWithType.vb: SpanExtensions.WriteUInt32(Span(Of Byte), Int32, UInt32)
+- uid: Datatent.Core.IO.SpanExtensions.WriteUInt32*
+  name: WriteUInt32
+  href: api/Datatent.Core.IO.SpanExtensions.html#Datatent_Core_IO_SpanExtensions_WriteUInt32_
+  commentId: Overload:Datatent.Core.IO.SpanExtensions.WriteUInt32
+  isSpec: "True"
+  fullName: Datatent.Core.IO.SpanExtensions.WriteUInt32
+  nameWithType: SpanExtensions.WriteUInt32
+- uid: Datatent.Core.Pages
+  name: Datatent.Core.Pages
+  href: api/Datatent.Core.Pages.html
+  commentId: N:Datatent.Core.Pages
+  fullName: Datatent.Core.Pages
+  nameWithType: Datatent.Core.Pages
+- uid: Datatent.Core.Pages.BasePage
+  name: BasePage
+  href: api/Datatent.Core.Pages.BasePage.html
+  commentId: T:Datatent.Core.Pages.BasePage
+  fullName: Datatent.Core.Pages.BasePage
+  nameWithType: BasePage
+- uid: Datatent.Core.Pages.BasePage.#ctor
+  name: BasePage()
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage__ctor
+  commentId: M:Datatent.Core.Pages.BasePage.#ctor
+  fullName: Datatent.Core.Pages.BasePage.BasePage()
+  nameWithType: BasePage.BasePage()
+- uid: Datatent.Core.Pages.BasePage.#ctor*
+  name: BasePage
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage__ctor_
+  commentId: Overload:Datatent.Core.Pages.BasePage.#ctor
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.BasePage
+  nameWithType: BasePage.BasePage
+- uid: Datatent.Core.Pages.BasePage._arraySlice
+  name: _arraySlice
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage__arraySlice
+  commentId: F:Datatent.Core.Pages.BasePage._arraySlice
+  fullName: Datatent.Core.Pages.BasePage._arraySlice
+  nameWithType: BasePage._arraySlice
+- uid: Datatent.Core.Pages.BasePage.InitEmpty(System.Memory{System.Byte},System.UInt32,Datatent.Core.Pages.PageType)
+  name: InitEmpty(Memory<Byte>, UInt32, PageType)
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_InitEmpty_System_Memory_System_Byte__System_UInt32_Datatent_Core_Pages_PageType_
+  commentId: M:Datatent.Core.Pages.BasePage.InitEmpty(System.Memory{System.Byte},System.UInt32,Datatent.Core.Pages.PageType)
+  name.vb: InitEmpty(Memory(Of Byte), UInt32, PageType)
+  fullName: Datatent.Core.Pages.BasePage.InitEmpty(System.Memory<System.Byte>, System.UInt32, Datatent.Core.Pages.PageType)
+  fullName.vb: Datatent.Core.Pages.BasePage.InitEmpty(System.Memory(Of System.Byte), System.UInt32, Datatent.Core.Pages.PageType)
+  nameWithType: BasePage.InitEmpty(Memory<Byte>, UInt32, PageType)
+  nameWithType.vb: BasePage.InitEmpty(Memory(Of Byte), UInt32, PageType)
+- uid: Datatent.Core.Pages.BasePage.InitEmpty*
+  name: InitEmpty
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_InitEmpty_
+  commentId: Overload:Datatent.Core.Pages.BasePage.InitEmpty
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.InitEmpty
+  nameWithType: BasePage.InitEmpty
+- uid: Datatent.Core.Pages.BasePage.InitExisting(System.Memory{System.Byte})
+  name: InitExisting(Memory<Byte>)
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_InitExisting_System_Memory_System_Byte__
+  commentId: M:Datatent.Core.Pages.BasePage.InitExisting(System.Memory{System.Byte})
+  name.vb: InitExisting(Memory(Of Byte))
+  fullName: Datatent.Core.Pages.BasePage.InitExisting(System.Memory<System.Byte>)
+  fullName.vb: Datatent.Core.Pages.BasePage.InitExisting(System.Memory(Of System.Byte))
+  nameWithType: BasePage.InitExisting(Memory<Byte>)
+  nameWithType.vb: BasePage.InitExisting(Memory(Of Byte))
+- uid: Datatent.Core.Pages.BasePage.InitExisting*
+  name: InitExisting
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_InitExisting_
+  commentId: Overload:Datatent.Core.Pages.BasePage.InitExisting
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.InitExisting
+  nameWithType: BasePage.InitExisting
+- uid: Datatent.Core.Pages.BasePage.IsDirty
+  name: IsDirty
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_IsDirty
+  commentId: P:Datatent.Core.Pages.BasePage.IsDirty
+  fullName: Datatent.Core.Pages.BasePage.IsDirty
+  nameWithType: BasePage.IsDirty
+- uid: Datatent.Core.Pages.BasePage.IsDirty*
+  name: IsDirty
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_IsDirty_
+  commentId: Overload:Datatent.Core.Pages.BasePage.IsDirty
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.IsDirty
+  nameWithType: BasePage.IsDirty
+- uid: Datatent.Core.Pages.BasePage.PAGE_ID
+  name: PAGE_ID
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_ID
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_ID
+  fullName: Datatent.Core.Pages.BasePage.PAGE_ID
+  nameWithType: BasePage.PAGE_ID
+- uid: Datatent.Core.Pages.BasePage.PAGE_NEXT_ID
+  name: PAGE_NEXT_ID
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_NEXT_ID
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_NEXT_ID
+  fullName: Datatent.Core.Pages.BasePage.PAGE_NEXT_ID
+  nameWithType: BasePage.PAGE_NEXT_ID
+- uid: Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_ENTRIES
+  name: PAGE_NUMBER_OF_ENTRIES
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_NUMBER_OF_ENTRIES
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_ENTRIES
+  fullName: Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_ENTRIES
+  nameWithType: BasePage.PAGE_NUMBER_OF_ENTRIES
+- uid: Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_FREE_BYTES
+  name: PAGE_NUMBER_OF_FREE_BYTES
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_NUMBER_OF_FREE_BYTES
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_FREE_BYTES
+  fullName: Datatent.Core.Pages.BasePage.PAGE_NUMBER_OF_FREE_BYTES
+  nameWithType: BasePage.PAGE_NUMBER_OF_FREE_BYTES
+- uid: Datatent.Core.Pages.BasePage.PAGE_PREV_ID
+  name: PAGE_PREV_ID
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_PREV_ID
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_PREV_ID
+  fullName: Datatent.Core.Pages.BasePage.PAGE_PREV_ID
+  nameWithType: BasePage.PAGE_PREV_ID
+- uid: Datatent.Core.Pages.BasePage.PAGE_TYPE
+  name: PAGE_TYPE
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PAGE_TYPE
+  commentId: F:Datatent.Core.Pages.BasePage.PAGE_TYPE
+  fullName: Datatent.Core.Pages.BasePage.PAGE_TYPE
+  nameWithType: BasePage.PAGE_TYPE
+- uid: Datatent.Core.Pages.BasePage.PageId
+  name: PageId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageId
+  commentId: P:Datatent.Core.Pages.BasePage.PageId
+  fullName: Datatent.Core.Pages.BasePage.PageId
+  nameWithType: BasePage.PageId
+- uid: Datatent.Core.Pages.BasePage.PageId*
+  name: PageId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageId_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PageId
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PageId
+  nameWithType: BasePage.PageId
+- uid: Datatent.Core.Pages.BasePage.PageNextId
+  name: PageNextId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNextId
+  commentId: P:Datatent.Core.Pages.BasePage.PageNextId
+  fullName: Datatent.Core.Pages.BasePage.PageNextId
+  nameWithType: BasePage.PageNextId
+- uid: Datatent.Core.Pages.BasePage.PageNextId*
+  name: PageNextId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNextId_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PageNextId
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PageNextId
+  nameWithType: BasePage.PageNextId
+- uid: Datatent.Core.Pages.BasePage.PageNumberOfEntries
+  name: PageNumberOfEntries
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNumberOfEntries
+  commentId: P:Datatent.Core.Pages.BasePage.PageNumberOfEntries
+  fullName: Datatent.Core.Pages.BasePage.PageNumberOfEntries
+  nameWithType: BasePage.PageNumberOfEntries
+- uid: Datatent.Core.Pages.BasePage.PageNumberOfEntries*
+  name: PageNumberOfEntries
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNumberOfEntries_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PageNumberOfEntries
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PageNumberOfEntries
+  nameWithType: BasePage.PageNumberOfEntries
+- uid: Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes
+  name: PageNumberOfFreeBytes
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNumberOfFreeBytes
+  commentId: P:Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes
+  fullName: Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes
+  nameWithType: BasePage.PageNumberOfFreeBytes
+- uid: Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes*
+  name: PageNumberOfFreeBytes
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageNumberOfFreeBytes_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PageNumberOfFreeBytes
+  nameWithType: BasePage.PageNumberOfFreeBytes
+- uid: Datatent.Core.Pages.BasePage.PagePrevId
+  name: PagePrevId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PagePrevId
+  commentId: P:Datatent.Core.Pages.BasePage.PagePrevId
+  fullName: Datatent.Core.Pages.BasePage.PagePrevId
+  nameWithType: BasePage.PagePrevId
+- uid: Datatent.Core.Pages.BasePage.PagePrevId*
+  name: PagePrevId
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PagePrevId_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PagePrevId
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PagePrevId
+  nameWithType: BasePage.PagePrevId
+- uid: Datatent.Core.Pages.BasePage.PageType
+  name: PageType
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageType
+  commentId: P:Datatent.Core.Pages.BasePage.PageType
+  fullName: Datatent.Core.Pages.BasePage.PageType
+  nameWithType: BasePage.PageType
+- uid: Datatent.Core.Pages.BasePage.PageType*
+  name: PageType
+  href: api/Datatent.Core.Pages.BasePage.html#Datatent_Core_Pages_BasePage_PageType_
+  commentId: Overload:Datatent.Core.Pages.BasePage.PageType
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.BasePage.PageType
+  nameWithType: BasePage.PageType
+- uid: Datatent.Core.Pages.CompressionType
+  name: CompressionType
+  href: api/Datatent.Core.Pages.CompressionType.html
+  commentId: T:Datatent.Core.Pages.CompressionType
+  fullName: Datatent.Core.Pages.CompressionType
+  nameWithType: CompressionType
+- uid: Datatent.Core.Pages.CompressionType.Gzip
+  name: Gzip
+  href: api/Datatent.Core.Pages.CompressionType.html#Datatent_Core_Pages_CompressionType_Gzip
+  commentId: F:Datatent.Core.Pages.CompressionType.Gzip
+  fullName: Datatent.Core.Pages.CompressionType.Gzip
+  nameWithType: CompressionType.Gzip
+- uid: Datatent.Core.Pages.CompressionType.Lz4
+  name: Lz4
+  href: api/Datatent.Core.Pages.CompressionType.html#Datatent_Core_Pages_CompressionType_Lz4
+  commentId: F:Datatent.Core.Pages.CompressionType.Lz4
+  fullName: Datatent.Core.Pages.CompressionType.Lz4
+  nameWithType: CompressionType.Lz4
+- uid: Datatent.Core.Pages.CompressionType.None
+  name: None
+  href: api/Datatent.Core.Pages.CompressionType.html#Datatent_Core_Pages_CompressionType_None
+  commentId: F:Datatent.Core.Pages.CompressionType.None
+  fullName: Datatent.Core.Pages.CompressionType.None
+  nameWithType: CompressionType.None
+- uid: Datatent.Core.Pages.DataPage
+  name: DataPage
+  href: api/Datatent.Core.Pages.DataPage.html
+  commentId: T:Datatent.Core.Pages.DataPage
+  fullName: Datatent.Core.Pages.DataPage
+  nameWithType: DataPage
+- uid: Datatent.Core.Pages.DataPage.#ctor
+  name: DataPage()
+  href: api/Datatent.Core.Pages.DataPage.html#Datatent_Core_Pages_DataPage__ctor
+  commentId: M:Datatent.Core.Pages.DataPage.#ctor
+  fullName: Datatent.Core.Pages.DataPage.DataPage()
+  nameWithType: DataPage.DataPage()
+- uid: Datatent.Core.Pages.DataPage.#ctor*
+  name: DataPage
+  href: api/Datatent.Core.Pages.DataPage.html#Datatent_Core_Pages_DataPage__ctor_
+  commentId: Overload:Datatent.Core.Pages.DataPage.#ctor
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.DataPage.DataPage
+  nameWithType: DataPage.DataPage
+- uid: Datatent.Core.Pages.PageReader
+  name: PageReader
+  href: api/Datatent.Core.Pages.PageReader.html
+  commentId: T:Datatent.Core.Pages.PageReader
+  fullName: Datatent.Core.Pages.PageReader
+  nameWithType: PageReader
+- uid: Datatent.Core.Pages.PageReader.GetPage*
+  name: GetPage
+  href: api/Datatent.Core.Pages.PageReader.html#Datatent_Core_Pages_PageReader_GetPage_
+  commentId: Overload:Datatent.Core.Pages.PageReader.GetPage
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.PageReader.GetPage
+  nameWithType: PageReader.GetPage
+- uid: Datatent.Core.Pages.PageReader.GetPage``1(System.Memory{System.Byte},Datatent.Core.DatatentSettings)
+  name: GetPage<T>(Memory<Byte>, DatatentSettings)
+  href: api/Datatent.Core.Pages.PageReader.html#Datatent_Core_Pages_PageReader_GetPage__1_System_Memory_System_Byte__Datatent_Core_DatatentSettings_
+  commentId: M:Datatent.Core.Pages.PageReader.GetPage``1(System.Memory{System.Byte},Datatent.Core.DatatentSettings)
+  name.vb: GetPage(Of T)(Memory(Of Byte), DatatentSettings)
+  fullName: Datatent.Core.Pages.PageReader.GetPage<T>(System.Memory<System.Byte>, Datatent.Core.DatatentSettings)
+  fullName.vb: Datatent.Core.Pages.PageReader.GetPage(Of T)(System.Memory(Of System.Byte), Datatent.Core.DatatentSettings)
+  nameWithType: PageReader.GetPage<T>(Memory<Byte>, DatatentSettings)
+  nameWithType.vb: PageReader.GetPage(Of T)(Memory(Of Byte), DatatentSettings)
+- uid: Datatent.Core.Pages.PageType
+  name: PageType
+  href: api/Datatent.Core.Pages.PageType.html
+  commentId: T:Datatent.Core.Pages.PageType
+  fullName: Datatent.Core.Pages.PageType
+  nameWithType: PageType
+- uid: Datatent.Core.Pages.PageType.Data
+  name: Data
+  href: api/Datatent.Core.Pages.PageType.html#Datatent_Core_Pages_PageType_Data
+  commentId: F:Datatent.Core.Pages.PageType.Data
+  fullName: Datatent.Core.Pages.PageType.Data
+  nameWithType: PageType.Data
+- uid: Datatent.Core.Pages.PageType.Empty
+  name: Empty
+  href: api/Datatent.Core.Pages.PageType.html#Datatent_Core_Pages_PageType_Empty
+  commentId: F:Datatent.Core.Pages.PageType.Empty
+  fullName: Datatent.Core.Pages.PageType.Empty
+  nameWithType: PageType.Empty
+- uid: Datatent.Core.Pages.PageType.Header
+  name: Header
+  href: api/Datatent.Core.Pages.PageType.html#Datatent_Core_Pages_PageType_Header
+  commentId: F:Datatent.Core.Pages.PageType.Header
+  fullName: Datatent.Core.Pages.PageType.Header
+  nameWithType: PageType.Header
+- uid: Datatent.Core.Pages.PageType.Index
+  name: Index
+  href: api/Datatent.Core.Pages.PageType.html#Datatent_Core_Pages_PageType_Index
+  commentId: F:Datatent.Core.Pages.PageType.Index
+  fullName: Datatent.Core.Pages.PageType.Index
+  nameWithType: PageType.Index
+- uid: Datatent.Core.Pages.PageTypeHelper
+  name: PageTypeHelper
+  href: api/Datatent.Core.Pages.PageTypeHelper.html
+  commentId: T:Datatent.Core.Pages.PageTypeHelper
+  fullName: Datatent.Core.Pages.PageTypeHelper
+  nameWithType: PageTypeHelper
+- uid: Datatent.Core.Pages.PageTypeHelper.EnumMatchType(Datatent.Core.Pages.PageType,System.Type)
+  name: EnumMatchType(PageType, Type)
+  href: api/Datatent.Core.Pages.PageTypeHelper.html#Datatent_Core_Pages_PageTypeHelper_EnumMatchType_Datatent_Core_Pages_PageType_System_Type_
+  commentId: M:Datatent.Core.Pages.PageTypeHelper.EnumMatchType(Datatent.Core.Pages.PageType,System.Type)
+  fullName: Datatent.Core.Pages.PageTypeHelper.EnumMatchType(Datatent.Core.Pages.PageType, System.Type)
+  nameWithType: PageTypeHelper.EnumMatchType(PageType, Type)
+- uid: Datatent.Core.Pages.PageTypeHelper.EnumMatchType*
+  name: EnumMatchType
+  href: api/Datatent.Core.Pages.PageTypeHelper.html#Datatent_Core_Pages_PageTypeHelper_EnumMatchType_
+  commentId: Overload:Datatent.Core.Pages.PageTypeHelper.EnumMatchType
+  isSpec: "True"
+  fullName: Datatent.Core.Pages.PageTypeHelper.EnumMatchType
+  nameWithType: PageTypeHelper.EnumMatchType
+- uid: Datatent.Core.Service
+  name: Datatent.Core.Service
+  href: api/Datatent.Core.Service.html
+  commentId: N:Datatent.Core.Service
+  fullName: Datatent.Core.Service
+  nameWithType: Datatent.Core.Service
+- uid: Datatent.Core.Service.CompressionService
+  name: CompressionService
+  href: api/Datatent.Core.Service.CompressionService.html
+  commentId: T:Datatent.Core.Service.CompressionService
+  fullName: Datatent.Core.Service.CompressionService
+  nameWithType: CompressionService
+- uid: Datatent.Core.Service.CompressionService.Compress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name: Compress(Byte[], CompressionType)
+  href: api/Datatent.Core.Service.CompressionService.html#Datatent_Core_Service_CompressionService_Compress_System_Byte___Datatent_Core_Pages_CompressionType_
+  commentId: M:Datatent.Core.Service.CompressionService.Compress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name.vb: Compress(Byte(), CompressionType)
+  fullName: Datatent.Core.Service.CompressionService.Compress(System.Byte[], Datatent.Core.Pages.CompressionType)
+  fullName.vb: Datatent.Core.Service.CompressionService.Compress(System.Byte(), Datatent.Core.Pages.CompressionType)
+  nameWithType: CompressionService.Compress(Byte[], CompressionType)
+  nameWithType.vb: CompressionService.Compress(Byte(), CompressionType)
+- uid: Datatent.Core.Service.CompressionService.Compress*
+  name: Compress
+  href: api/Datatent.Core.Service.CompressionService.html#Datatent_Core_Service_CompressionService_Compress_
+  commentId: Overload:Datatent.Core.Service.CompressionService.Compress
+  isSpec: "True"
+  fullName: Datatent.Core.Service.CompressionService.Compress
+  nameWithType: CompressionService.Compress
+- uid: Datatent.Core.Service.CompressionService.Decompress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name: Decompress(Byte[], CompressionType)
+  href: api/Datatent.Core.Service.CompressionService.html#Datatent_Core_Service_CompressionService_Decompress_System_Byte___Datatent_Core_Pages_CompressionType_
+  commentId: M:Datatent.Core.Service.CompressionService.Decompress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name.vb: Decompress(Byte(), CompressionType)
+  fullName: Datatent.Core.Service.CompressionService.Decompress(System.Byte[], Datatent.Core.Pages.CompressionType)
+  fullName.vb: Datatent.Core.Service.CompressionService.Decompress(System.Byte(), Datatent.Core.Pages.CompressionType)
+  nameWithType: CompressionService.Decompress(Byte[], CompressionType)
+  nameWithType.vb: CompressionService.Decompress(Byte(), CompressionType)
+- uid: Datatent.Core.Service.CompressionService.Decompress*
+  name: Decompress
+  href: api/Datatent.Core.Service.CompressionService.html#Datatent_Core_Service_CompressionService_Decompress_
+  commentId: Overload:Datatent.Core.Service.CompressionService.Decompress
+  isSpec: "True"
+  fullName: Datatent.Core.Service.CompressionService.Decompress
+  nameWithType: CompressionService.Decompress
+- uid: Datatent.Core.Service.ICompressionService
+  name: ICompressionService
+  href: api/Datatent.Core.Service.ICompressionService.html
+  commentId: T:Datatent.Core.Service.ICompressionService
+  fullName: Datatent.Core.Service.ICompressionService
+  nameWithType: ICompressionService
+- uid: Datatent.Core.Service.ICompressionService.Compress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name: Compress(Byte[], CompressionType)
+  href: api/Datatent.Core.Service.ICompressionService.html#Datatent_Core_Service_ICompressionService_Compress_System_Byte___Datatent_Core_Pages_CompressionType_
+  commentId: M:Datatent.Core.Service.ICompressionService.Compress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name.vb: Compress(Byte(), CompressionType)
+  fullName: Datatent.Core.Service.ICompressionService.Compress(System.Byte[], Datatent.Core.Pages.CompressionType)
+  fullName.vb: Datatent.Core.Service.ICompressionService.Compress(System.Byte(), Datatent.Core.Pages.CompressionType)
+  nameWithType: ICompressionService.Compress(Byte[], CompressionType)
+  nameWithType.vb: ICompressionService.Compress(Byte(), CompressionType)
+- uid: Datatent.Core.Service.ICompressionService.Compress*
+  name: Compress
+  href: api/Datatent.Core.Service.ICompressionService.html#Datatent_Core_Service_ICompressionService_Compress_
+  commentId: Overload:Datatent.Core.Service.ICompressionService.Compress
+  isSpec: "True"
+  fullName: Datatent.Core.Service.ICompressionService.Compress
+  nameWithType: ICompressionService.Compress
+- uid: Datatent.Core.Service.ICompressionService.Decompress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name: Decompress(Byte[], CompressionType)
+  href: api/Datatent.Core.Service.ICompressionService.html#Datatent_Core_Service_ICompressionService_Decompress_System_Byte___Datatent_Core_Pages_CompressionType_
+  commentId: M:Datatent.Core.Service.ICompressionService.Decompress(System.Byte[],Datatent.Core.Pages.CompressionType)
+  name.vb: Decompress(Byte(), CompressionType)
+  fullName: Datatent.Core.Service.ICompressionService.Decompress(System.Byte[], Datatent.Core.Pages.CompressionType)
+  fullName.vb: Datatent.Core.Service.ICompressionService.Decompress(System.Byte(), Datatent.Core.Pages.CompressionType)
+  nameWithType: ICompressionService.Decompress(Byte[], CompressionType)
+  nameWithType.vb: ICompressionService.Decompress(Byte(), CompressionType)
+- uid: Datatent.Core.Service.ICompressionService.Decompress*
+  name: Decompress
+  href: api/Datatent.Core.Service.ICompressionService.html#Datatent_Core_Service_ICompressionService_Decompress_
+  commentId: Overload:Datatent.Core.Service.ICompressionService.Decompress
+  isSpec: "True"
+  fullName: Datatent.Core.Service.ICompressionService.Decompress
+  nameWithType: ICompressionService.Decompress
