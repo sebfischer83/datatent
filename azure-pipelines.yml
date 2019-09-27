@@ -16,10 +16,11 @@ variables:
 
 steps:
 
-- task: DotNetCoreInstaller@0
+- task: UseDotNet@2
   inputs:
-    version: '3.0' 
-
+    packageType: 'sdk'
+    version: '3.0.100'
+    
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
