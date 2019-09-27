@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Datatent.Core</name>
+    </assembly>
+    <members>
+        <member name="F:Datatent.Core.Block.Block.BLOCK_ID">
+            <summary>
+            Block Id, bytes 0-15
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.Block.BLOCK_TYPE">
+            <summary>
+            Block type, byte 16-16
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.Block.BLOCK_NUMBER_OF_PAGES">
+            <summary>
+            Number of pages in this block, bytes 5-8
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.Document.Document">
+            <summary>
+            Documents hold the actual data and are the smallest part of a data file.
+            </summary>
+            <remarks>
+            A page can contain multiple documents of different types. The type of the object is mapped in the header pages.
+            </remarks>
+        </member>
+        <member name="F:Datatent.Core.Document.Document._documentSlice">
+            <summary>
+            The current memory slice to operate on.
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_ID">
+            <summary>
+            Header position of the document id (byte 0-15) of type guid
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_LENGTH">
+            <summary>
+            Header position of the document length without the header (byte 16-19) of type uint32
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH">
+            <summary>
+            Header position of the uncompressed document length without the header (byte 20-23) of type uint32
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_COMPRESSION_TYPE">
+            <summary>
+            Header position of the compression type (byte 24) of type byte
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_IS_DELETED">
+            <summary>
+            Header position of the is deleted flag (byte 25) of type byte
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_TYPE_ID">
+            <summary>
+            Header position of the document type id (byte 26-29) of type uint32
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH">
+            <summary>
+            The length of the header
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.DocumentId">
+            <summary>
+            The document id
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.CompressionType">
+            <summary>
+            The compression type
+            </summary>
+            <see cref="P:Datatent.Core.Document.Document.CompressionType"/>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.OriginalContentLength">
+            <summary>
+            The uncompressed content length
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.SavedContentLength">
+            <summary>
+            The compressed and actual saved content length
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document._compressedContent">
+            <summary>
+            Holds temporary the compressed content
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.IsDeleted">
+            <summary>
+            Indicates whether the document is deleted
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Document.Document.TypeId">
+            <summary>
+            The id that map to the type informations
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(System.Memory{System.Byte}@)">
+            <summary>
+            Gets the memory slice from the beginning until the end of the document and adjust the offset of the given memory slice to the next document.
+            </summary>
+            <param name="memory">the memory slice that holds the document</param>
+            <remarks>
+            Assumes that the document starts at index 0 of the memory slice.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},Datatent.Core.Service.ICompressionService)">
+            <summary>
+            Construct the document header from the given memory slice.
+            </summary>
+            <param name="documentSlice"></param>
+            <param name="compressionService"></param>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},System.Guid,Datatent.Core.Service.ICompressionService)">
+            <summary>
+            Creates an empty document, but don't write any data to the memory.
+            </summary>
+            <param name="documentSlice"></param>
+            <param name="id"></param>
+            <param name="compressionService"></param>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.CheckNeededSpace(System.Byte[])">
+            <summary>
+            Checks how much space is needed for the given content.
+            </summary>
+            <param name="content">The content that should be saved.</param>
+            <returns>The needed space.</returns>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.SetContent(System.Byte[])">
+            <summary>
+            Set the content to the memory but don't update the header.
+            </summary>
+            <param name="content"></param>
+            <see cref="M:Datatent.Core.Document.Document.Update(System.UInt32)"/>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.GetContent">
+            <summary>
+            Retrieves the current content from the memory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.Update(System.UInt32)">
+            <summary>
+            Update the header informations of the document.
+            </summary>
+            <param name="typeId"></param>
+        </member>
+        <member name="M:Datatent.Core.Document.Document.Update(System.Byte[],System.UInt32)">
+            <summary>
+            Update the header and the content of the document.
+            </summary>
+            <param name="content"></param>
+            <param name="typeId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Datatent.Core.Pages.BasePage">
+            <summary>
+            Smallest unit of data storage.
+            A specific number of pages are belongs to a block.
+            A page has a specific size and can contain more than one data object.
+            </summary>
+            <remarks>
+            Every page starts with a header that gives the following informations:
+            
+            </remarks>
+        </member>
+        <member name="F:Datatent.Core.Pages.BasePage.PAGE_ID">
+            <summary>
+            The id of the page, goes from byte 0-3
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Pages.BasePage.PAGE_TYPE">
+            <summary>
+            The page type, goes from byte 4-4
+            </summary>
+            <see cref="P:Datatent.Core.Pages.BasePage.PageType"/>
+        </member>
+    </members>
+</doc>
