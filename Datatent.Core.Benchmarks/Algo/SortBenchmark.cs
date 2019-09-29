@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Order;
 
 namespace Datatent.Core.Benchmarks.Algo
@@ -15,6 +16,8 @@ namespace Datatent.Core.Benchmarks.Algo
         [Params(8192, 4194304)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public int ArraySize;
+
+        private readonly Consumer consumer = new Consumer();
 
         private uint[] array1;
         private uint[] array2;
@@ -37,13 +40,11 @@ namespace Datatent.Core.Benchmarks.Algo
         }
 
         [Benchmark(Baseline = true)]
-        public int Linq()
+        public void Linq()
         {
-            var a = array1.OrderBy(u => u).Count();
-            var b = array2.OrderBy(u => u).Count();
-            var c = array3.OrderBy(u => u).Count();
-
-            return (int) (a + c + b);
+            array1.OrderBy(u => u).Consume(consumer);
+            array2.OrderBy(u => u).Consume(consumer);
+            array3.OrderBy(u => u).Consume(consumer);
         }
 
         [Benchmark]
