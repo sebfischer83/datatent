@@ -1,5 +1,6 @@
 ﻿using System;
 using BenchmarkDotNet.Running;
+using Datatent.Core.Benchmarks.Algo;
 
 namespace Datatent.Core.Benchmarks
 {
@@ -8,9 +9,7 @@ namespace Datatent.Core.Benchmarks
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         static void Main(string[] args)
         {
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<SubstringSpanBenchmark>();
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<CompressionBenchmark>();
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<MemorySpanArrayBenchmark>();
+            BenchmarkDotNet.Running.BenchmarkRunner.Run<SortBenchmark>();
         }
     }
 }

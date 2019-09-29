@@ -4,6 +4,14 @@
         <name>Datatent.Core</name>
     </assembly>
     <members>
+        <member name="T:Datatent.Core.Algo.Sort.RadixLds">
+            <summary>
+            least significant digit (LSD) radix sort implementation
+            </summary>
+            <remarks>
+            https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Radix_sort
+            </remarks>
+        </member>
         <member name="F:Datatent.Core.Block.Block.BLOCK_ID">
             <summary>
             Block Id, bytes 0-15
