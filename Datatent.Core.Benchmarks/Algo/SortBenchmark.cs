@@ -11,7 +11,8 @@ namespace Datatent.Core.Benchmarks.Algo
      RankColumn(), KurtosisColumn, SkewnessColumn, StdDevColumn, MeanColumn, MedianColumn, BaselineColumn, MediumRunJob, MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class SortBenchmark
     {
-        [Params(8192, 65536, 4194304, 16000000)]
+        //[Params(8192, 65536, 4194304, 16000000)]
+        [Params(8192, 4194304)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public int ArraySize;
 
@@ -38,11 +39,11 @@ namespace Datatent.Core.Benchmarks.Algo
         [Benchmark(Baseline = true)]
         public int Linq()
         {
-            var a = array1.OrderBy(u => u);
-            var b = array2.OrderBy(u => u);
-            var c = array3.OrderBy(u => u);
+            var a = array1.OrderBy(u => u).Count();
+            var b = array2.OrderBy(u => u).Count();
+            var c = array3.OrderBy(u => u).Count();
 
-            return a.Count() + c.Count();
+            return (int) (a + c + b);
         }
 
         [Benchmark]
