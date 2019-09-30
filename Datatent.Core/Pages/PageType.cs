@@ -7,7 +7,8 @@ namespace Datatent.Core.Pages
         Header = 1,
         Data  = 2,
         Index = 3,
-        Empty = 0
+        Empty = 0,
+        Null = 9
     }
 
     internal static class PageTypeHelper
@@ -15,7 +16,7 @@ namespace Datatent.Core.Pages
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         public static bool EnumMatchType(PageType type, Type classType)
         {
-            if (type == PageType.Data)
+            if (type == PageType.Data && classType == typeof(DataPage))
                 return true;
 
             return false;

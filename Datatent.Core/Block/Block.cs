@@ -12,64 +12,65 @@ namespace Datatent.Core.Block
         General = 0
     }
 
-    internal class Block : IDisposable
+    internal abstract class Block
     {
         /// <summary>
-        /// Block Id, bytes 0-15
+        /// Header position of the block id (byte 0-15) of type guid
         /// </summary>
-        public const uint BLOCK_ID = 0;
+        public const int BLOCK_ID = 0;
 
         /// <summary>
-        /// Block type, byte 16-16
+        /// Header position of the block type (byte 0-15) of type <see cref="BlockType"/>
         /// </summary>
         public const byte BLOCK_TYPE = 4;
 
         /// <summary>
-        /// Number of pages in this block, bytes 5-8
+        /// Header position of the number of pages in this block (byte 5-8) of type uint
         /// </summary>
-        public const uint BLOCK_NUMBER_OF_PAGES = 5;
+        public const int BLOCK_NUMBER_OF_PAGES = 5;
 
         protected Memory<byte> _memory;
-        protected byte[] _buffer;
+
+        protected List<Document.Document> _documents = new List<Document.Document>();
+
+        public BlockType BlockType { get; private set; }
+        public uint NumberOfPages { get; private set; }
 
         public Guid Id { get; private set; }
 
-        public Block(byte[] buffer, Guid id)
+        protected Block(Memory<byte> buffer, Guid id, BlockType blockType)
         {
-            _buffer = buffer;
-            _memory = new Memory<byte>(buffer);
+            BlockType = blockType;
+            _memory = buffer;
+            NumberOfPages = 0;
+
             this.Id = id;
         }
 
-        public static Block CreateNew(byte[] buffer, Guid id)
+        protected Block(Memory<byte> buffer)
         {
-            var block = new Block(buffer, id);
-
-            return block;
+            _memory = buffer;
+            InitFromMemory();
         }
 
-        private void ReleaseUnmanagedResources()
+        protected void InitFromMemory()
         {
-            ArrayPool<byte>.Shared.Return(_buffer, true);
+            this.Id = _memory.Span.ReadGuid(BLOCK_ID);
+            this.BlockType = (BlockType) _memory.Span.ReadByte(BLOCK_TYPE);
+            this.NumberOfPages = _memory.Span.ReadUInt32(BLOCK_NUMBER_OF_PAGES);
         }
 
-        protected virtual void Dispose(bool disposing)
+        public static (Memory<byte>? blockSlice, Guid BlockId) GetNextBlockSliceAndAdjustOffset(ref Memory<byte> memory)
         {
-            ReleaseUnmanagedResources();
-            if (disposing)
-            {
-            }
-        }
+            if (memory.IsEmpty || memory.Length < Constants.BLOCK_HEADER_SIZE || memory.Span.ReadByte(0) == 0x00)
+                return (null, Guid.Empty);
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            var id = memory.Span.ReadGuid(BLOCK_ID);
+            var blockSlice = memory.Slice(0, (int) Constants.BLOCK_SIZE_INCL_HEADER);
 
-        ~Block()
-        {
-            Dispose(false);
+            memory = memory.Slice((int) Constants.BLOCK_SIZE_INCL_HEADER);
+
+            return (blockSlice, id);
         }
     }
 }

@@ -5,26 +5,46 @@
     </assembly>
     <members>
         <member name="T:Datatent.Core.Algo.Sort.RadixLds">
+             <summary>
+             least significant digit (LSD) radix sort implementation
+             </summary>
+             <remarks>
+             https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Radix_sort
+            
+             <list type="table">
+             <item>
+             <term>Best-Case</term>
+             <term>O(w+n)</term>
+             </item>
+             <item>
+             <term>Worst-Case</term>
+             <term>O(w*n)</term>
+             </item>
+             <item>
+             <term>Space Complexity</term>
+             <term>O(w+n)</term>
+             </item>
+             </list>
+             </remarks>
+        </member>
+        <member name="T:Datatent.Core.Algo.Sort.RadixLsdUnsafe">
             <summary>
-            least significant digit (LSD) radix sort implementation
+            TODO: source
             </summary>
-            <remarks>
-            https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Radix_sort
-            </remarks>
         </member>
         <member name="F:Datatent.Core.Block.Block.BLOCK_ID">
             <summary>
-            Block Id, bytes 0-15
+            Header position of the block id (byte 0-15) of type guid
             </summary>
         </member>
         <member name="F:Datatent.Core.Block.Block.BLOCK_TYPE">
             <summary>
-            Block type, byte 16-16
+            Header position of the block type (byte 0-15) of type <see cref="P:Datatent.Core.Block.Block.BlockType"/>
             </summary>
         </member>
         <member name="F:Datatent.Core.Block.Block.BLOCK_NUMBER_OF_PAGES">
             <summary>
-            Number of pages in this block, bytes 5-8
+            Header position of the number of pages in this block (byte 5-8) of type uint
             </summary>
         </member>
         <member name="T:Datatent.Core.Document.Document">

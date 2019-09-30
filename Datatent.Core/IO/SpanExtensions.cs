@@ -50,6 +50,19 @@ namespace Datatent.Core.IO
             }
         }
 
+        public static void Write<T>(this Span<T> span, int offset, Span<T> values)
+        {
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            int i = offset;
+            foreach (var b in values)
+            {
+                span[i] = b;
+                i++;
+            }
+        }
+
         public static void WriteByte(this Span<byte> span, int offset, byte b)
         {
             span[offset] = b;

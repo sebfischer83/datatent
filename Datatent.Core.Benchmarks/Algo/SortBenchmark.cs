@@ -5,6 +5,7 @@ using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Order;
+using Datatent.Core.Algo.Sort;
 
 namespace Datatent.Core.Benchmarks.Algo
 {
@@ -12,69 +13,129 @@ namespace Datatent.Core.Benchmarks.Algo
      RankColumn(), KurtosisColumn, SkewnessColumn, StdDevColumn, MeanColumn, MedianColumn, BaselineColumn, MediumRunJob, MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class SortBenchmark
     {
-        //[Params(8192, 65536, 4194304, 16000000)]
-        [Params(8192, 4194304)]
+        [Params(256, 8192, 65536, 4194304, 16000000)]
+        //[Params(8192, 4194304)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public int ArraySize;
 
+        private const int OpsPerInvoke = 1;
+        
         private readonly Consumer consumer = new Consumer();
 
-        private uint[] array1;
-        private uint[] array2;
-        private uint[] array3;
+        private uint[] globalArray;
+        private uint[] dummyArray;
+        private uint[] array;
 
-        [IterationSetup]
-        public void Setup()
+        [GlobalSetup]
+        public void GlobalSetup()
         {
-            array1 = new uint[ArraySize];
-            array2 = new uint[ArraySize];
-            array3 = new uint[ArraySize];
+            globalArray = new uint[ArraySize];
+            dummyArray = new uint[ArraySize];
 
             Random random = new Random();
             for (int i = 0; i < ArraySize; i++)
             {
-                array1[i] = (uint) random.Next(0, Int32.MaxValue);
-                array2[i] = (uint) random.Next(0, Int32.MaxValue);
-                array3[i] = (uint) random.Next(0, Int32.MaxValue);
+                globalArray[i] = (uint) random.Next(0, Int32.MaxValue);
+                dummyArray[i] = (uint) random.Next(0, Int32.MaxValue);
             }
         }
 
-        [Benchmark(Baseline = true)]
+        [IterationSetup]
+        public void Setup()
+        {
+            array = new uint[ArraySize];
+            Buffer.BlockCopy(globalArray, 0, array, 0, globalArray.Length);
+        }
+
+        [Benchmark(Baseline = true, OperationsPerInvoke = OpsPerInvoke)]
         public void Linq()
         {
-            array1.OrderBy(u => u).Consume(consumer);
-            array2.OrderBy(u => u).Consume(consumer);
-            array3.OrderBy(u => u).Consume(consumer);
+            array.OrderBy(u => u).Consume(consumer);
         }
 
-        [Benchmark]
+        //[Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        //public int InsertionSort()
+        //{
+        //    if (array.Length > 65536)
+        //    {
+        //        return 0;
+        //    }
+
+        //    Datatent.Core.Algo.Sort.Insertion.Sort(ref array);
+
+        //    return array.Length;
+        //}
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
         public int Array()
         {
-            System.Array.Sort(array1);
-            System.Array.Sort(array2);
-            System.Array.Sort(array3);
+            System.Array.Sort(array);
 
-            return array1.Length;
+            return array.Length;
         }
 
-        [Benchmark]
-        public int RadixLdsPool()
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsPool4Bits()
         {
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array1);
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array2);
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array3);
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array);
 
-            return array1.Length;
+            return array.Length;
         }
 
-        [Benchmark]
-        public int RadixLdsNonPool()
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsNonPool4Bits()
         {
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array1, false);
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array2, false);
-            Datatent.Core.Algo.Sort.RadixLds.Sort(array3, false);
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array, false);
 
-            return array1.Length;
+            return array.Length;
+        }
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsPool8Bits()
+        {
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array, true, 8);
+
+            return array.Length;
+        }
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsNonPool8Bits()
+        {
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array, false, 8);
+
+            return array.Length;
+        }
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsPool2Bits()
+        {
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array, true, 2);
+
+            return array.Length;
+        }
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixLdsNonPool2Bits()
+        {
+            Datatent.Core.Algo.Sort.RadixLds.Sort(array, false, 2);
+
+            return array.Length;
+        }
+        
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixUnsafe()
+        {
+            array.AsSpan().Sort(dummyArray.AsSpan(), 0, false);
+
+            return array.Length;
+        }
+
+        [Benchmark(OperationsPerInvoke = OpsPerInvoke)]
+        public int RadixMsd()
+        {
+            Datatent.Core.Algo.Sort.RadixMsd.Sort(array.AsSpan(), dummyArray.AsSpan(), 0, false);
+
+            return array.Length;
         }
     }
 }

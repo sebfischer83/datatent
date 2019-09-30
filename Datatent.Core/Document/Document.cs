@@ -164,7 +164,9 @@ namespace Datatent.Core.Document
                 _compressedContent = _compressionService.Compress(content, CompressionType);
             }
 
-            return (uint) _compressedContent.Length;
+            var length = (uint) _compressedContent.Length;
+
+            return length;
         }
 
         /// <summary>

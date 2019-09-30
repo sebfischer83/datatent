@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Datatent.Core.IO;
 
 namespace Datatent.Core.Pages
 {
-    internal class DataPage : BasePage
+    internal class NullPage : BasePage
     {
-        public DataPage() : base()
+        public NullPage()
         {
+            PageType = PageType.Null;
         }
-
-
     }
 }

@@ -41,7 +41,7 @@ namespace Datatent.Core.Pages
 
         public uint PageId { get; private set; }
 
-        public PageType PageType { get; private set; }
+        public PageType PageType { get; protected set; }
 
         public uint PageNextId { get; private set; }
 
@@ -55,7 +55,7 @@ namespace Datatent.Core.Pages
         {
         }
 
-        protected void InitEmpty(Memory<byte> arraySlice, uint pageId, PageType pageType)
+        public void InitEmpty(Memory<byte> arraySlice, uint pageId, PageType pageType)
         {
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException($"{nameof(arraySlice)} is too small to fit page");
@@ -68,18 +68,23 @@ namespace Datatent.Core.Pages
             PageNumberOfFreeBytes = Constants.BLOCK_SIZE;
         }
 
-        protected void InitExisting(Memory<byte> arraySlice)
+        public void InitExisting(Memory<byte> arraySlice)
         {
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException( $"{nameof(arraySlice)} is too small to fit page");
             _arraySlice = arraySlice;
 
+            ReadHeader(arraySlice);
+        }
+
+        private void ReadHeader(Memory<byte> arraySlice)
+        {
             this.PageId = arraySlice.Span.ReadUInt32(PAGE_ID);
             this.PageType = (PageType) arraySlice.Span.ReadByte(PAGE_TYPE);
-            PageNextId =  arraySlice.Span.ReadUInt32(PAGE_NEXT_ID);
-            PagePrevId =  arraySlice.Span.ReadUInt32(PAGE_PREV_ID);
-            PageNumberOfEntries =  arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_ENTRIES);
-            PageNumberOfFreeBytes =  arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_FREE_BYTES);
+            PageNextId = arraySlice.Span.ReadUInt32(PAGE_NEXT_ID);
+            PagePrevId = arraySlice.Span.ReadUInt32(PAGE_PREV_ID);
+            PageNumberOfEntries = arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_ENTRIES);
+            PageNumberOfFreeBytes = arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_FREE_BYTES);
         }
     }
 }
