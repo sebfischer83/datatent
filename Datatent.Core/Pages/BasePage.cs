@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using Datatent.Core.IO;
+using Datatent.Core.Service;
+using Datatent.Core.Service.Cache;
+using Datatent.Core.Service.Compression;
+using Datatent.Core.Service.Encryption;
 
 namespace Datatent.Core.Pages
 {
@@ -16,6 +21,31 @@ namespace Datatent.Core.Pages
     /// </remarks>
     internal abstract class BasePage
     {
+        [StructLayout(LayoutKind.Explicit, Size = Constants.PAGE_HEADER_SIZE)]
+        internal struct PageHeader
+        {
+            [FieldOffset(PAGE_ID)]
+            public uint PageId;
+
+            [FieldOffset(PAGE_TYPE)]
+            public PageType PageType;
+
+            [FieldOffset(PAGE_NEXT_ID)]
+            public uint PageNextId;
+
+            [FieldOffset(PAGE_PREV_ID)]
+            public uint PagePrevId;
+
+            [FieldOffset(PAGE_NUMBER_OF_ENTRIES)]
+            public uint PageNumberOfEntries;
+
+            [FieldOffset(PAGE_NUMBER_OF_FREE_BYTES)]
+            public uint PageNumberOfFreeBytes;
+        }
+
+        protected readonly IDataProcessingPipeline _processingPipeline;
+
+        public PageHeader Header { get; protected set; }
         public bool IsDirty { get; protected set; }
 
         /// <summary>
@@ -37,54 +67,47 @@ namespace Datatent.Core.Pages
 
         public const int PAGE_NUMBER_OF_FREE_BYTES = 17;
         
-        protected Memory<byte> _arraySlice;
-
-        public uint PageId { get; private set; }
-
-        public PageType PageType { get; protected set; }
-
-        public uint PageNextId { get; private set; }
-
-        public uint PagePrevId { get; private set; }
-
-        public uint PageNumberOfEntries { get; private set; }
-
-        public uint PageNumberOfFreeBytes { get; private set; }
+        protected Memory<byte> _pageMemorySlice;
         
-        protected BasePage()
+        protected BasePage(IDataProcessingPipeline processingPipeline)
         {
+            _processingPipeline = processingPipeline;
         }
 
         public void InitEmpty(Memory<byte> arraySlice, uint pageId, PageType pageType)
         {
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException($"{nameof(arraySlice)} is too small to fit page");
-            _arraySlice = arraySlice;
-            PageId = pageId;
-            PageType = pageType;
-            PageNextId = UInt32.MaxValue;
-            PagePrevId = UInt32.MaxValue;
-            PageNumberOfEntries = 0;
-            PageNumberOfFreeBytes = Constants.BLOCK_SIZE;
+            _pageMemorySlice = arraySlice;
+            PageHeader header = new PageHeader();
+            header.PageId = pageId;
+            header.PageType = pageType;
+            header.PageNextId = UInt32.MaxValue;
+            header.PagePrevId = UInt32.MaxValue;
+            header.PageNumberOfEntries = 0;
+            header.PageNumberOfFreeBytes = Constants.BLOCK_SIZE;
+            Header = header;
         }
 
         public void InitExisting(Memory<byte> arraySlice)
         {
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException( $"{nameof(arraySlice)} is too small to fit page");
-            _arraySlice = arraySlice;
+            _pageMemorySlice = arraySlice;
 
             ReadHeader(arraySlice);
         }
 
         private void ReadHeader(Memory<byte> arraySlice)
         {
-            this.PageId = arraySlice.Span.ReadUInt32(PAGE_ID);
-            this.PageType = (PageType) arraySlice.Span.ReadByte(PAGE_TYPE);
-            PageNextId = arraySlice.Span.ReadUInt32(PAGE_NEXT_ID);
-            PagePrevId = arraySlice.Span.ReadUInt32(PAGE_PREV_ID);
-            PageNumberOfEntries = arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_ENTRIES);
-            PageNumberOfFreeBytes = arraySlice.Span.ReadUInt32(PAGE_NUMBER_OF_FREE_BYTES);
+            var header = MemoryMarshal.Read<PageHeader>(arraySlice.Span);
+            Header = header;
+        }
+
+        private void WriteHeader(Memory<byte> arraySlice)
+        {
+            var pageHeader = Header;
+            MemoryMarshal.Write(arraySlice.Span, ref pageHeader);
         }
     }
 }

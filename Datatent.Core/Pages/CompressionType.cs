@@ -1,6 +1,6 @@
 ﻿namespace Datatent.Core.Pages
 {
-    internal enum CompressionType : byte
+    public enum CompressionType : byte
     {
         None = 0,
         Lz4 = 1,

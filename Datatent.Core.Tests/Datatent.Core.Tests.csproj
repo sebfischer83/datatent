@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Datatent.Core\Datatent.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IO\" />
-  </ItemGroup>
-
 </Project>

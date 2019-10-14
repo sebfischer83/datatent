@@ -8,9 +8,9 @@ namespace Datatent.Core
 {
     internal sealed class Constants
     {
-        public static readonly uint PAGE_SIZE = 8100;
+        public static readonly uint PAGE_SIZE = 64000;
 
-        public static readonly uint PAGE_HEADER_SIZE = 92;
+        public const int PAGE_HEADER_SIZE = 92;
 
         public static readonly uint PAGE_SIZE_INCL_HEADER = PAGE_HEADER_SIZE + PAGE_SIZE;
 
@@ -18,7 +18,7 @@ namespace Datatent.Core
 
         public static readonly uint BLOCK_SIZE = PAGE_PER_BLOCK * PAGE_SIZE_INCL_HEADER;
 
-        public static readonly uint BLOCK_HEADER_SIZE = 92;
+        public const int BLOCK_HEADER_SIZE = 92;
 
         public static readonly uint BLOCK_SIZE_INCL_HEADER = BLOCK_HEADER_SIZE + BLOCK_SIZE;
 

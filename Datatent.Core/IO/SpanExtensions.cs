@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Datatent.Core.IO
@@ -13,12 +14,16 @@ namespace Datatent.Core.IO
             return span[offset];
         }
 
-        public static byte[] ReadBytes(this Span<byte> span, int offset, int length)
+        public static unsafe byte[] ReadBytes(this Span<byte> span, int offset, int length)
         {
             var returnArray = new byte[length];
 
-            System.Buffer.BlockCopy(span.ToArray(), offset, returnArray, 0, length);
-
+            fixed (byte* bp = span.Slice(offset))
+            fixed (byte* rp = returnArray)
+            {
+                Unsafe.CopyBlock(rp, bp, (uint)length);
+            }
+            
             return returnArray;
         }
 
@@ -34,10 +39,24 @@ namespace Datatent.Core.IO
 
         public static Guid ReadGuid(this Span<byte> span, int offset)
         {
-            return new Guid(span.ReadBytes(offset, 16));
+            var guidSpan = span.Slice(offset, 16);
+            return MemoryMarshal.Read<Guid>(guidSpan);
         }
 
-        public static void WriteBytes(this Span<byte> span, int offset, byte[] bytes)
+        public static void WriteBytes(this Memory<byte> memory, int offset, byte[] bytes)
+        {
+            if (bytes == null)
+                throw new ArgumentNullException(nameof(bytes));
+
+            int i = offset;
+            foreach (var b in bytes)
+            {
+                memory.Span[i] = b;
+                i++;
+            }
+        }
+
+        public static void WriteBytes(this ref Span<byte> span, int offset, byte[] bytes)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));

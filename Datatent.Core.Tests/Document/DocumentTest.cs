@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Datatent.Core.IO;
 using Datatent.Core.Service;
+using Datatent.Core.Service.Compression;
+using Datatent.Core.Service.Encryption;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
@@ -13,6 +15,7 @@ namespace Datatent.Core.Tests.Document
     public class DocumentTest
     {
         private readonly ITestOutputHelper output;
+        private IDataProcessingPipeline _processingPipeline = new DataProcessingPipeline(new Lz4CompressionService(), new NullEncryptionService());
 
         public DocumentTest(ITestOutputHelper output)
         {
@@ -22,38 +25,38 @@ namespace Datatent.Core.Tests.Document
         [Fact]
         public void SetAndGetContentTest()
         {
-            var array = new byte[20000];
+            var array = new byte[Constants.PAGE_SIZE_INCL_HEADER * 2];
             UnitTestHelper.FillArray(ref array, 0x00);
             Memory<byte> documentSlice = new Memory<byte>(array, 500, (int) Constants.PAGE_SIZE);
 
-            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid(), new CompressionService());
+            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid(), _processingPipeline);
 
             string testString = "This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test!";
             byte[] testContent = Encoding.UTF8.GetBytes(testString);
             document.SetContent(testContent);
-            document.OriginalContentLength.Should().Be((uint) testContent.Length);
+            document.Header.OriginalContentLength.Should().Be((uint) testContent.Length);
             var val = document.GetContent();
             val.Should().BeEquivalentTo(testContent);
-            document.SavedContentLength.Should().NotBe((uint) testContent.Length);
+            document.Header.SavedContentLength.Should().NotBe((uint) testContent.Length);
 
-            output.WriteLine($"Content org is {testContent.Length} and saved {document.SavedContentLength}");
+            output.WriteLine($"Content org is {testContent.Length} and saved {document.Header.SavedContentLength}");
         }
 
         [Fact]
         public void WriteDocumentAndLoad()
         {
-            var array = new byte[20000];
+            var array = new byte[Constants.PAGE_SIZE_INCL_HEADER * 5];
             UnitTestHelper.FillArray(ref array, 0x00);
             Memory<byte> documentSlice = new Memory<byte>(array, 500, (int)Constants.PAGE_SIZE);
 
-            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid(), new CompressionService());
+            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid(), _processingPipeline);
 
             string testString = "This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test!";
             byte[] testContent = Encoding.UTF8.GetBytes(testString);
             document.Update(testContent, 0);
             document = null;
 
-            Core.Document.Document document2 = new Core.Document.Document(documentSlice, new CompressionService());
+            Core.Document.Document document2 = new Core.Document.Document(documentSlice, _processingPipeline);
             var content = document2.GetContent();
             content.Should().BeEquivalentTo(testContent);
         }
@@ -61,7 +64,7 @@ namespace Datatent.Core.Tests.Document
         [Fact]
         public void GetNextDocumentSliceAndAdjustOffsetTest()
         {
-            var array = new byte[20000];
+            var array = new byte[Constants.PAGE_SIZE_INCL_HEADER + 200];
             UnitTestHelper.FillArray(ref array, 0x00);
             string testString = "This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test!";
             byte[] testContent = Encoding.UTF8.GetBytes(testString);
@@ -71,9 +74,9 @@ namespace Datatent.Core.Tests.Document
             Guid id1 = Guid.NewGuid();
             Guid id2 = Guid.NewGuid();
 
-            Core.Document.Document document = new Core.Document.Document(documentSlice, id1, new CompressionService());
+            Core.Document.Document document = new Core.Document.Document(documentSlice, id1, _processingPipeline);
             var doc1Length = document.Update(testContent, 0);
-            document = new Core.Document.Document(documentSlice.Slice((int) (doc1Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH)), id2, new CompressionService());
+            document = new Core.Document.Document(documentSlice.Slice((int) (doc1Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH)), id2, _processingPipeline);
             var doc2Length = document.Update(testContent, 0);
 
             doc1Length.Should().Be(doc2Length);

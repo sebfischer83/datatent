@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
+using System.Runtime.InteropServices;
 using Datatent.Core.IO;
-using Datatent.Core.Pages;
 using Datatent.Core.Service;
-using K4os.Compression.LZ4;
 
 namespace Datatent.Core.Document
 {
@@ -17,12 +13,46 @@ namespace Datatent.Core.Document
     /// </remarks>
     internal class Document
     {
+        [StructLayout(LayoutKind.Explicit, Size = DOCUMENT_HEADER_LENGTH)]
+        internal struct DocumentHeader
+        {
+            /// <summary>
+            /// The document id
+            /// </summary>
+            [FieldOffset(DOCUMENT_ID)]
+            public Guid DocumentId;
+
+            /// <summary>
+            /// The compressed and actual saved content length
+            /// </summary>
+            [FieldOffset(DOCUMENT_LENGTH)]
+            public uint SavedContentLength;
+
+            /// <summary>
+            /// The uncompressed content length
+            /// </summary>
+            [FieldOffset(DOCUMENT_ORG_LENGTH)]
+            public uint OriginalContentLength;
+            
+            /// <summary>
+            /// Indicates whether the document is deleted
+            /// </summary>
+            [FieldOffset(DOCUMENT_IS_DELETED)]
+            public bool IsDeleted;
+
+            /// <summary>
+            /// The id that map to the type informations
+            /// </summary>
+            [FieldOffset(DOCUMENT_TYPE_ID)]
+            public uint TypeId;
+        }
+
+        private readonly IDataProcessingPipeline _processingPipeline;
+
         /// <summary>
         /// The current memory slice to operate on.
         /// </summary>
         private readonly Memory<byte> _documentSlice;
-
-        private readonly ICompressionService _compressionService;
         
         /// <summary>
         /// Header position of the document id (byte 0-15) of type guid
@@ -38,62 +68,28 @@ namespace Datatent.Core.Document
         /// Header position of the uncompressed document length without the header (byte 20-23) of type uint32
         /// </summary>
         public const int DOCUMENT_ORG_LENGTH = 20;
+        
+        /// <summary>
+        /// Header position of the is deleted flag (byte 24) of type byte
+        /// </summary>
+        public const byte DOCUMENT_IS_DELETED = 24;
 
         /// <summary>
-        /// Header position of the compression type (byte 24) of type byte
+        /// Header position of the document type id (byte 25-28) of type uint32
         /// </summary>
-        public const byte DOCUMENT_COMPRESSION_TYPE = 24;
-
-        /// <summary>
-        /// Header position of the is deleted flag (byte 25) of type byte
-        /// </summary>
-        public const byte DOCUMENT_IS_DELETED = 25;
-
-        /// <summary>
-        /// Header position of the document type id (byte 26-29) of type uint32
-        /// </summary>
-        public const int DOCUMENT_TYPE_ID = 26;
+        public const int DOCUMENT_TYPE_ID = 25;
 
         /// <summary>
         /// The length of the header
         /// </summary>
         public const int DOCUMENT_HEADER_LENGTH = 48;
-
-        /// <summary>
-        /// The document id
-        /// </summary>
-        public Guid DocumentId { get; private set; }
-
-        /// <summary>
-        /// The compression type
-        /// </summary>
-        /// <see cref="CompressionType"/>
-        public CompressionType CompressionType { get; private set; }
         
-        /// <summary>
-        /// The uncompressed content length
-        /// </summary>
-        public uint OriginalContentLength { get; private set; }
-
-        /// <summary>
-        /// The compressed and actual saved content length
-        /// </summary>
-        public uint SavedContentLength { get; private set; }
-
         /// <summary>
         /// Holds temporary the compressed content
         /// </summary>
-        protected byte[]? _compressedContent;
+        protected byte[]? _preparedContent;
 
-        /// <summary>
-        /// Indicates whether the document is deleted
-        /// </summary>
-        public bool IsDeleted { get; private set; }
-
-        /// <summary>
-        /// The id that map to the type informations
-        /// </summary>
-        public uint TypeId { get; private set; }
+        public DocumentHeader Header { get; protected set; }
 
         /// <summary>
         /// Gets the memory slice from the beginning until the end of the document and adjust the offset of the given memory slice to the next document.
@@ -105,10 +101,14 @@ namespace Datatent.Core.Document
         /// <returns></returns>
         public static (Memory<byte>? DocumentSlice, Guid DocumentId) GetNextDocumentSliceAndAdjustOffset(ref Memory<byte> memory)
         {
-            if (memory.IsEmpty || memory.Length < DOCUMENT_HEADER_LENGTH || memory.Span.ReadByte(0) == 0x00)
+            if (memory.IsEmpty || memory.Length < DOCUMENT_HEADER_LENGTH)
+                return (null, Guid.Empty);
+
+            if (memory.Span[0] == 0x00)
                 return (null, Guid.Empty);
 
             var id = memory.Span.ReadGuid(DOCUMENT_ID);
+            
             var docLength = memory.Span.ReadUInt32(DOCUMENT_LENGTH);
             var docSlice = memory.Slice(0, (int) (docLength + DOCUMENT_HEADER_LENGTH));
 
@@ -121,17 +121,16 @@ namespace Datatent.Core.Document
         /// Construct the document header from the given memory slice.
         /// </summary>
         /// <param name="documentSlice"></param>
-        /// <param name="compressionService"></param>
-        public Document(Memory<byte> documentSlice, ICompressionService compressionService)
+        /// <param name="processingPipeline"></param>
+        public Document(Memory<byte>? documentSlice, IDataProcessingPipeline processingPipeline)
         {
-            _documentSlice = documentSlice;
-            _compressionService = compressionService;
-            DocumentId = documentSlice.Span.ReadGuid(DOCUMENT_ID);
-            SavedContentLength = documentSlice.Span.ReadUInt32(DOCUMENT_LENGTH);
-            OriginalContentLength = documentSlice.Span.ReadUInt32(DOCUMENT_ORG_LENGTH);
-            CompressionType = (CompressionType) documentSlice.Span.ReadByte(DOCUMENT_COMPRESSION_TYPE);
-            IsDeleted = documentSlice.Span.ReadBool(DOCUMENT_IS_DELETED);
-            TypeId = documentSlice.Span.ReadUInt32(DOCUMENT_TYPE_ID);
+            if (documentSlice == null)
+                throw new ArgumentNullException(nameof(documentSlice));
+            _processingPipeline = processingPipeline;
+
+            _documentSlice = (Memory<byte>) documentSlice;
+
+            Header = MemoryMarshal.Read<DocumentHeader>(_documentSlice.Span);
         }
 
         /// <summary>
@@ -139,17 +138,18 @@ namespace Datatent.Core.Document
         /// </summary>
         /// <param name="documentSlice"></param>
         /// <param name="id"></param>
-        /// <param name="compressionService"></param>
-        public Document(Memory<byte> documentSlice, Guid id, ICompressionService compressionService)
+        /// <param name="processingPipeline"></param>
+        public Document(Memory<byte> documentSlice, Guid id, IDataProcessingPipeline processingPipeline)
         {
             _documentSlice = documentSlice;
-            _compressionService = compressionService;
-            DocumentId = id;
-            OriginalContentLength = 0;
-            SavedContentLength = 0;
-            CompressionType = Constants.COMPRESSION_TYPE;
-            IsDeleted = false;
-            TypeId = 0;
+            _processingPipeline = processingPipeline;
+            var header = new DocumentHeader();
+            header.DocumentId = id;
+            header.OriginalContentLength = 0;
+            header.SavedContentLength = 0;
+            header.IsDeleted = false;
+            header.TypeId = 0;
+            Header = header;
         }
 
         /// <summary>
@@ -159,34 +159,44 @@ namespace Datatent.Core.Document
         /// <returns>The needed space.</returns>
         public uint CheckNeededSpace(byte[] content)
         {
-            if (_compressedContent == null)
+            if (_preparedContent == null)
             {
-                _compressedContent = _compressionService.Compress(content, CompressionType);
+                _preparedContent = _processingPipeline.Input(content);
             }
 
-            var length = (uint) _compressedContent.Length;
+            var length = (uint) _preparedContent.Length;
 
             return length;
+        }
+
+        public static byte[] CheckNeededSpace(byte[] content, IDataProcessingPipeline processingPipeline)
+        {
+            var compressedContent = processingPipeline.Input(content);
+
+            return compressedContent;
         }
 
         /// <summary>
         /// Set the content to the memory but don't update the header.
         /// </summary>
         /// <param name="content"></param>
+        /// <param name="isPrepared"></param>
         /// <see cref="Update(uint)"/>
         /// <returns></returns>
-        public uint SetContent(byte[] content)
+        public uint SetContent(byte[] content, bool isPrepared = false)
         {
             var toSave = content;
-            OriginalContentLength = (uint) content.Length;
-            toSave = _compressedContent ?? _compressionService.Compress(toSave, CompressionType);
+            var header = Header;
+            header.OriginalContentLength = (uint) content.Length;
+            _preparedContent = isPrepared ? content : null;
+            toSave = _preparedContent ?? _processingPipeline.Input(toSave);
 
-            SavedContentLength = (uint) toSave.Length;
+            header.SavedContentLength = (uint) toSave.Length;
 
-            _documentSlice.Span.WriteBytes(DOCUMENT_HEADER_LENGTH, toSave);
-
-            _compressedContent = null;
-            return SavedContentLength;
+            _documentSlice.WriteBytes(DOCUMENT_HEADER_LENGTH, toSave);
+            Header = header;
+            _preparedContent = null;
+            return header.SavedContentLength;
         }
 
         /// <summary>
@@ -195,9 +205,9 @@ namespace Datatent.Core.Document
         /// <returns></returns>
         public byte[] GetContent()
         {
-            var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) SavedContentLength);
+            var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) Header.SavedContentLength);
 
-            return _compressionService.Decompress(compressedContent, CompressionType);
+            return _processingPipeline.Output(compressedContent);
         }
 
         /// <summary>
@@ -206,14 +216,11 @@ namespace Datatent.Core.Document
         /// <param name="typeId"></param>
         public void Update(uint typeId)
         {
-            this.TypeId = typeId;
+            var header = Header;
+            header.TypeId = typeId;
             // write header, content is already set
-            _documentSlice.Span.WriteGuid(DOCUMENT_ID, DocumentId);
-            _documentSlice.Span.WriteUInt32(DOCUMENT_LENGTH, SavedContentLength);
-            _documentSlice.Span.WriteUInt32(DOCUMENT_ORG_LENGTH, OriginalContentLength);
-            _documentSlice.Span.WriteByte(DOCUMENT_COMPRESSION_TYPE, (byte) CompressionType);
-            _documentSlice.Span.WriteBool(DOCUMENT_IS_DELETED, IsDeleted);
-            _documentSlice.Span.WriteUInt32(DOCUMENT_TYPE_ID, TypeId);
+            MemoryMarshal.Write(_documentSlice.Span, ref header);
+            Header = header;
         }
 
         /// <summary>
@@ -221,10 +228,11 @@ namespace Datatent.Core.Document
         /// </summary>
         /// <param name="content"></param>
         /// <param name="typeId"></param>
+        /// <param name="isPrepared"></param>
         /// <returns></returns>
-        public uint Update(byte[] content, uint typeId)
+        public uint Update(byte[] content, uint typeId, bool isPrepared = false)
         {
-            var length = this.SetContent(content);
+            var length = this.SetContent(content, isPrepared);
 
             Update(typeId);
             return length;

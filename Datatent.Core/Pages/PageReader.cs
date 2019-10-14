@@ -7,7 +7,7 @@ namespace Datatent.Core.Pages
 {
     internal static class PageReader
     {
-        public static T GetPage<T>(Memory<byte> arraySlice, DatatentSettings datatentSettings) where T: BasePage, new()
+        public static T GetPage<T>(Memory<byte> arraySlice) where T: BasePage, new()
         {
             if (Constants.PAGE_SIZE + Constants.PAGE_HEADER_SIZE > arraySlice.Length)
                 throw new ArgumentException($"The array is too small to contain a page");
@@ -18,9 +18,9 @@ namespace Datatent.Core.Pages
 
             if (pageType == PageType.Data)
             {
-                var page = (T) (BasePage) new DataPage();
+                //var page = (T) (BasePage) new DataPage(null);
 
-                return page;
+                //return page;
             }
 
             throw new ArgumentException(nameof(T));
