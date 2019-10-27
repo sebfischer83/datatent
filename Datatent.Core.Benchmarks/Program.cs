@@ -1,4 +1,5 @@
-﻿using Datatent.Core.Benchmarks.IO;
+﻿using BenchmarkDotNet.Running;
+using Datatent.Core.Benchmarks.IO;
 
 namespace Datatent.Core.Benchmarks
 {
@@ -8,7 +9,7 @@ namespace Datatent.Core.Benchmarks
         static void Main()
         {
 
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<ReadBytesBenchmark>();
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run();
         }
     }
 }

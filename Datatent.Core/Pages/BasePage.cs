@@ -25,16 +25,16 @@ namespace Datatent.Core.Pages
         internal struct PageHeader
         {
             [FieldOffset(PAGE_ID)]
-            public uint PageId;
+            public ushort PageId;
 
             [FieldOffset(PAGE_TYPE)]
             public PageType PageType;
 
             [FieldOffset(PAGE_NEXT_ID)]
-            public uint PageNextId;
+            public ushort PageNextId;
 
             [FieldOffset(PAGE_PREV_ID)]
-            public uint PagePrevId;
+            public ushort PagePrevId;
 
             [FieldOffset(PAGE_NUMBER_OF_ENTRIES)]
             public uint PageNumberOfEntries;
@@ -43,38 +43,35 @@ namespace Datatent.Core.Pages
             public uint PageNumberOfFreeBytes;
         }
 
-        protected readonly IDataProcessingPipeline _processingPipeline;
-
-        public PageHeader Header { get; protected set; }
+        public PageHeader Header;
         public bool IsDirty { get; protected set; }
 
         /// <summary>
-        /// The id of the page, goes from byte 0-3
+        /// The id of the page, goes from byte 0-1
         /// </summary>
         public const int PAGE_ID = 0;
 
         /// <summary>
-        /// The page type, goes from byte 4-4
+        /// The page type, goes from byte 2-2
         /// </summary>
         /// <see cref="PageType"/>
-        public const byte PAGE_TYPE = 4;
+        public const byte PAGE_TYPE = 2;
 
-        public const int PAGE_PREV_ID = 5;
+        public const int PAGE_PREV_ID = 3;
 
-        public const int PAGE_NEXT_ID = 9;
+        public const int PAGE_NEXT_ID = 5;
 
-        public const int PAGE_NUMBER_OF_ENTRIES = 13;
+        public const int PAGE_NUMBER_OF_ENTRIES = 7;
 
-        public const int PAGE_NUMBER_OF_FREE_BYTES = 17;
+        public const int PAGE_NUMBER_OF_FREE_BYTES = 11;
         
         protected Memory<byte> _pageMemorySlice;
         
-        protected BasePage(IDataProcessingPipeline processingPipeline)
+        protected BasePage()
         {
-            _processingPipeline = processingPipeline;
         }
 
-        public void InitEmpty(Memory<byte> arraySlice, uint pageId, PageType pageType)
+        public void InitEmpty(Memory<byte> arraySlice, ushort pageId, PageType pageType)
         {
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException($"{nameof(arraySlice)} is too small to fit page");
@@ -82,8 +79,8 @@ namespace Datatent.Core.Pages
             PageHeader header = new PageHeader();
             header.PageId = pageId;
             header.PageType = pageType;
-            header.PageNextId = UInt32.MaxValue;
-            header.PagePrevId = UInt32.MaxValue;
+            header.PageNextId = ushort.MaxValue;
+            header.PagePrevId = ushort.MaxValue;
             header.PageNumberOfEntries = 0;
             header.PageNumberOfFreeBytes = Constants.BLOCK_SIZE;
             Header = header;

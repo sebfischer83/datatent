@@ -16,14 +16,11 @@ namespace Datatent.Core.Pages
     internal class DataPageManager
     {
         private readonly Memory<byte> _memoryBlockSlice;
-        private readonly IDataProcessingPipeline _processingPipeline;
-
         private Memory<byte> _currentPointer;
 
-        public DataPageManager(Memory<byte> memoryBlockSlice, IDataProcessingPipeline processingPipeline)
+        public DataPageManager(Memory<byte> memoryBlockSlice)
         {
             _memoryBlockSlice = memoryBlockSlice;
-            _processingPipeline = processingPipeline;
             _currentPointer = memoryBlockSlice.Slice(0);
         }
 
@@ -46,19 +43,19 @@ namespace Datatent.Core.Pages
                 }
             }
 
-            return (BasePage) new NullPage();
+            return new NullPage();
         }
 
         private BasePage CheckPageAndInit(PageType pageType, Memory<byte> slice)
         {
             if (pageType == PageType.Data)
             {
-                var page = (BasePage) new DataPage(_processingPipeline);
+                var page = (BasePage) new DataPage();
                 ((BasePage) page).InitExisting(slice);
                 return (page);
             }
-            else
-                throw new ArgumentException($"{nameof(pageType)} {pageType} is unknown");
+
+            throw new ArgumentException($"{nameof(pageType)} {pageType} is unknown");
         }
 
         public BasePage GetPageById(uint id)

@@ -14,8 +14,6 @@ namespace Datatent.Core.Tests.Pages
 {
     public class PageManagerTest
     {
-        private readonly IDataProcessingPipeline _processingPipeline = new DataProcessingPipeline(new Lz4CompressionService(), new NullEncryptionService());
-
         private Memory<byte> GenerateTestPages()
         {
             var numberOfPages = 5;
@@ -37,10 +35,10 @@ namespace Datatent.Core.Tests.Pages
         [Fact]
         public void GetPageByIdSuccessTest()
         {
-            uint id = 3;
+            ushort id = 3;
             var memoryWithPages = GenerateTestPages();
 
-            DataPageManager pageManager = new DataPageManager(memoryWithPages, _processingPipeline);
+            DataPageManager pageManager = new DataPageManager(memoryWithPages);
 
             var page = pageManager.GetPageById(id);
 
@@ -56,7 +54,7 @@ namespace Datatent.Core.Tests.Pages
             uint id = Constants.PAGE_PER_BLOCK + 3;
             var memoryWithPages = GenerateTestPages();
 
-            DataPageManager pageManager = new DataPageManager(memoryWithPages, _processingPipeline);
+            DataPageManager pageManager = new DataPageManager(memoryWithPages);
 
             var page = pageManager.GetPageById(id);
 
@@ -72,7 +70,7 @@ namespace Datatent.Core.Tests.Pages
             uint id = Constants.PAGE_PER_BLOCK - 1;
             var memoryWithPages = GenerateTestPages();
 
-            DataPageManager pageManager = new DataPageManager(memoryWithPages, _processingPipeline);
+            DataPageManager pageManager = new DataPageManager(memoryWithPages);
 
             var page = pageManager.GetPageById(id);
 

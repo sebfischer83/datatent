@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Datatent.Core.Block
             public byte Marker;
 
             [FieldOffset(BLOCK_ID)]
-            public uint Id;
+            public ushort Id;
 
             [FieldOffset(BLOCK_TYPE)]
             public BlockType Type;
@@ -34,9 +35,9 @@ namespace Datatent.Core.Block
         /// </summary>
         public const int BLOCK_NUMBER_OF_PAGES = 6;
 
-        public DataBlock(byte[] buffer, IDataProcessingPipeline processingPipeline) : base(buffer, processingPipeline)
+        public DataBlock(IMemoryOwner<byte> buffer) : base(buffer)
         {
-            _pageManager = new DataPageManager(_memory, _processingPipeline);
+            _pageManager = new DataPageManager(_memory);
         }
 
         public void InitExisting()
@@ -49,7 +50,7 @@ namespace Datatent.Core.Block
 
         }
 
-        public void InitEmpty(uint id)
+        public void InitEmpty(ushort id)
         {
             DataBlockHeader header = new DataBlockHeader();
             header.Marker = 1;
@@ -77,7 +78,7 @@ namespace Datatent.Core.Block
                 throw new ArgumentOutOfRangeException($"This block contains {Header.NumberOfPages} the requested id {id} is larger than the maximum id");
 
             var offset = Constants.BLOCK_HEADER_SIZE + (id * Constants.PAGE_SIZE);
-            DataPage dataPage = new DataPage(_processingPipeline);
+            DataPage dataPage = new DataPage();
             dataPage.InitExisting(_memory.Slice((int) offset, (int) Constants.PAGE_SIZE_INCL_HEADER));
 
             return dataPage;

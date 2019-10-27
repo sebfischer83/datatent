@@ -44,7 +44,7 @@ namespace Datatent.Core.Benchmarks.Page
             string testContent = "Hello World!!!";
             bytesContent = Encoding.UTF8.GetBytes(testContent);
             
-            var _dataPageManager = new DataPageManager(memory, new DummyDataProcessingPipeline());
+            var _dataPageManager = new DataPageManager(memory);
             _page = (DataPage) _dataPageManager.GetPageById(0);
             _guids = new Guid[100];
             for (int i = 0; i < 100; i++)

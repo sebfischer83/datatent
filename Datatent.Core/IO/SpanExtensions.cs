@@ -37,6 +37,12 @@ namespace Datatent.Core.IO
             return BitConverter.ToUInt32(span.ToArray(), offset);
         }
 
+        public static ushort ReadUInt16(this Span<byte> span, int offset)
+        {
+            return MemoryMarshal.Read<ushort>(span.Slice(offset));
+        }
+
+
         public static Guid ReadGuid(this Span<byte> span, int offset)
         {
             var guidSpan = span.Slice(offset, 16);

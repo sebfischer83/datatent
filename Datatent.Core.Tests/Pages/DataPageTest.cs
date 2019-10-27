@@ -13,8 +13,6 @@ namespace Datatent.Core.Tests.Pages
 {
     public class DataPageTest
     {
-        private IDataProcessingPipeline _processingPipeline = new DataProcessingPipeline(new Lz4CompressionService(), new NullEncryptionService());
-
         [Fact]
         public void TryAddContentTest()
         {
@@ -34,7 +32,7 @@ namespace Datatent.Core.Tests.Pages
             string testContent = "Hello World!!!";
             var bytesContent = Encoding.UTF8.GetBytes(testContent);
             
-            var dataPageManager = new DataPageManager(memory, _processingPipeline);
+            var dataPageManager = new DataPageManager(memory);
             var page = (DataPage) dataPageManager.GetPageById(0);
 
             page.Should().NotBeNull();
@@ -64,7 +62,7 @@ namespace Datatent.Core.Tests.Pages
             string testContent = "Hello World!!!";
             var bytesContent = Encoding.UTF8.GetBytes(testContent);
             
-            var dataPageManager = new DataPageManager(memory, _processingPipeline);
+            var dataPageManager = new DataPageManager(memory);
             var page = (DataPage) dataPageManager.GetPageById(0);
 
             page.Should().NotBeNull();

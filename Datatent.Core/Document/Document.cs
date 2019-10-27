@@ -47,8 +47,6 @@ namespace Datatent.Core.Document
             public uint TypeId;
         }
 
-        private readonly IDataProcessingPipeline _processingPipeline;
-
         /// <summary>
         /// The current memory slice to operate on.
         /// </summary>
@@ -84,12 +82,7 @@ namespace Datatent.Core.Document
         /// </summary>
         public const int DOCUMENT_HEADER_LENGTH = 48;
         
-        /// <summary>
-        /// Holds temporary the compressed content
-        /// </summary>
-        protected byte[]? _preparedContent;
-
-        public DocumentHeader Header { get; protected set; }
+        public DocumentHeader Header;
 
         /// <summary>
         /// Gets the memory slice from the beginning until the end of the document and adjust the offset of the given memory slice to the next document.
@@ -121,12 +114,10 @@ namespace Datatent.Core.Document
         /// Construct the document header from the given memory slice.
         /// </summary>
         /// <param name="documentSlice"></param>
-        /// <param name="processingPipeline"></param>
-        public Document(Memory<byte>? documentSlice, IDataProcessingPipeline processingPipeline)
+        public Document(Memory<byte>? documentSlice)
         {
             if (documentSlice == null)
                 throw new ArgumentNullException(nameof(documentSlice));
-            _processingPipeline = processingPipeline;
 
             _documentSlice = (Memory<byte>) documentSlice;
 
@@ -138,11 +129,9 @@ namespace Datatent.Core.Document
         /// </summary>
         /// <param name="documentSlice"></param>
         /// <param name="id"></param>
-        /// <param name="processingPipeline"></param>
-        public Document(Memory<byte> documentSlice, Guid id, IDataProcessingPipeline processingPipeline)
+        public Document(Memory<byte> documentSlice, Guid id)
         {
             _documentSlice = documentSlice;
-            _processingPipeline = processingPipeline;
             var header = new DocumentHeader();
             header.DocumentId = id;
             header.OriginalContentLength = 0;
@@ -152,50 +141,22 @@ namespace Datatent.Core.Document
             Header = header;
         }
 
-        /// <summary>
-        /// Checks how much space is needed for the given content.
-        /// </summary>
-        /// <param name="content">The content that should be saved.</param>
-        /// <returns>The needed space.</returns>
-        public uint CheckNeededSpace(byte[] content)
-        {
-            if (_preparedContent == null)
-            {
-                _preparedContent = _processingPipeline.Input(content);
-            }
-
-            var length = (uint) _preparedContent.Length;
-
-            return length;
-        }
-
-        public static byte[] CheckNeededSpace(byte[] content, IDataProcessingPipeline processingPipeline)
-        {
-            var compressedContent = processingPipeline.Input(content);
-
-            return compressedContent;
-        }
 
         /// <summary>
         /// Set the content to the memory but don't update the header.
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="isPrepared"></param>
         /// <see cref="Update(uint)"/>
         /// <returns></returns>
-        public uint SetContent(byte[] content, bool isPrepared = false)
+        public uint SetContent(byte[] content)
         {
             var toSave = content;
-            var header = Header;
+            ref DocumentHeader header = ref Header;
             header.OriginalContentLength = (uint) content.Length;
-            _preparedContent = isPrepared ? content : null;
-            toSave = _preparedContent ?? _processingPipeline.Input(toSave);
-
+            
             header.SavedContentLength = (uint) toSave.Length;
 
             _documentSlice.WriteBytes(DOCUMENT_HEADER_LENGTH, toSave);
-            Header = header;
-            _preparedContent = null;
             return header.SavedContentLength;
         }
 
@@ -207,7 +168,7 @@ namespace Datatent.Core.Document
         {
             var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) Header.SavedContentLength);
 
-            return _processingPipeline.Output(compressedContent);
+            return compressedContent;
         }
 
         /// <summary>
@@ -216,11 +177,10 @@ namespace Datatent.Core.Document
         /// <param name="typeId"></param>
         public void Update(uint typeId)
         {
-            var header = Header;
+            ref DocumentHeader header = ref Header;
             header.TypeId = typeId;
             // write header, content is already set
             MemoryMarshal.Write(_documentSlice.Span, ref header);
-            Header = header;
         }
 
         /// <summary>
@@ -228,11 +188,10 @@ namespace Datatent.Core.Document
         /// </summary>
         /// <param name="content"></param>
         /// <param name="typeId"></param>
-        /// <param name="isPrepared"></param>
         /// <returns></returns>
-        public uint Update(byte[] content, uint typeId, bool isPrepared = false)
+        public uint Update(byte[] content, uint typeId)
         {
-            var length = this.SetContent(content, isPrepared);
+            var length = this.SetContent(content);
 
             Update(typeId);
             return length;

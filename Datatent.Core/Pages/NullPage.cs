@@ -9,7 +9,7 @@ namespace Datatent.Core.Pages
 {
     internal class NullPage : BasePage
     {
-        public NullPage() : base(new DummyDataProcessingPipeline())
+        public NullPage() : base()
         {
             PageHeader header = Header;
             header.PageType = PageType.Null;

@@ -13,13 +13,13 @@ namespace Datatent.Core.Pages
 {
     internal class DataPage : BasePage
     {
-        public DataPage(IDataProcessingPipeline processingPipeline) : base(processingPipeline)
+        public DataPage() : base()
         {
         }
 
         public Guid TryAddContent(byte[] content, uint typeId)
         {
-            var compressedContent = Document.Document.CheckNeededSpace(content, _processingPipeline);
+            var compressedContent = content;
             if (compressedContent.Length > this.Header.PageNumberOfFreeBytes)
             {
                 return Guid.Empty;
@@ -34,7 +34,7 @@ namespace Datatent.Core.Pages
                 return Guid.Empty;
             }
 
-            Document.Document document = new Document.Document(sliceIterator, Guid.NewGuid(), _processingPipeline);
+            Document.Document document = new Document.Document(sliceIterator, Guid.NewGuid());
             document.Update(content, typeId);
 
             //this._cachedDocuments.Add(document.DocumentId, document);
@@ -79,7 +79,7 @@ namespace Datatent.Core.Pages
             while (result.DocumentId != Guid.Empty)
             {
                 Debug.Assert(result.DocumentSlice != null, "result.DocumentSlice != null");
-                var doc = new Document.Document(result.DocumentSlice, _processingPipeline);
+                var doc = new Document.Document(result.DocumentSlice);
                 //if (_cachedDocuments.ContainsKey(doc.DocumentId))
                 //{
                 //    _cachedDocuments.Remove(doc.DocumentId);
