@@ -20,6 +20,7 @@ namespace Datatent.Core.Benchmarks.IO
         private string expectedString;
         private Memory<byte> toRead;
         private byte[] targetBytes;
+        private byte[] toReadBytes;
 
         [GlobalSetup]
         public void Setup()
@@ -28,6 +29,7 @@ namespace Datatent.Core.Benchmarks.IO
             toRead = x.Item1;
             expectedString = x.Item2;
             targetBytes = new byte[toRead.Length];
+            toReadBytes = x.Item1;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
@@ -47,7 +49,7 @@ namespace Datatent.Core.Benchmarks.IO
         [Benchmark]
         public int BlockCopy()
         {
-            System.Buffer.BlockCopy(toRead.Span.ToArray(), 0, targetBytes, 0, targetBytes.Length);
+            System.Buffer.BlockCopy(toReadBytes, 0, targetBytes, 0, targetBytes.Length);
             return targetBytes.Length;
         }
 
@@ -57,7 +59,7 @@ namespace Datatent.Core.Benchmarks.IO
             fixed (byte* bp = toRead.Span)
             fixed (byte* rp = targetBytes)
             {
-                Unsafe.CopyBlock(rp, bp, (uint)targetBytes.Length);
+                Unsafe.CopyBlockUnaligned(rp, bp, (uint)targetBytes.Length);
             }
 
             return targetBytes.Length;
@@ -74,7 +76,7 @@ namespace Datatent.Core.Benchmarks.IO
         [Benchmark(Baseline = true)]
         public int ArrayCopy()
         {
-            var slice = toRead.Span.ToArray();
+            var slice = toReadBytes;
             Array.Copy(slice, targetBytes, targetBytes.Length);
             return targetBytes.Length;
         }

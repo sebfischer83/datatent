@@ -37,7 +37,7 @@ namespace Datatent.Core.Tests.Pages
 
             page.Should().NotBeNull();
             var id = page.TryAddContent(bytesContent, 0);
-            id.Should().NotBe(Guid.Empty);
+            id.Should().NotBe(0);
 
             var document = page.FindById(id);
             document.Should().NotBeNull();
@@ -66,7 +66,7 @@ namespace Datatent.Core.Tests.Pages
             var page = (DataPage) dataPageManager.GetPageById(0);
 
             page.Should().NotBeNull();
-            var _guids = new Guid[100];
+            var _guids = new ushort[100];
             for (int i = 0; i < 100; i++)
             {
                 var res = page.TryAddContent(bytesContent, 0);

@@ -14,16 +14,20 @@ namespace Datatent.Core
 
         public static readonly uint PAGE_SIZE_INCL_HEADER = PAGE_HEADER_SIZE + PAGE_SIZE;
 
-        public static readonly uint PAGE_PER_BLOCK = 200;
+        public static readonly uint PAGES_PER_DATA_BLOCK = 200;
 
-        public static readonly uint BLOCK_SIZE = PAGE_PER_BLOCK * PAGE_SIZE_INCL_HEADER;
+        public static readonly uint DATA_BLOCK_SIZE = PAGES_PER_DATA_BLOCK * PAGE_SIZE_INCL_HEADER;
+
+        public static readonly uint BLOCK_SIZE = DATA_BLOCK_SIZE;
+
+        public static readonly uint DATABASE_HEADER_SIZE = 2048;
 
         public const int BLOCK_HEADER_SIZE = 92;
 
-        public static readonly uint BLOCK_SIZE_INCL_HEADER = BLOCK_HEADER_SIZE + BLOCK_SIZE;
+        public static readonly uint DATA_BLOCK_SIZE_INCL_HEADER = BLOCK_HEADER_SIZE + DATA_BLOCK_SIZE;
 
-        public static readonly CompressionType COMPRESSION_TYPE = CompressionType.Lz4;
-
+        public static readonly uint BLOCK_SIZE_INCL_HEADER = DATA_BLOCK_SIZE_INCL_HEADER;
+        
         public static readonly uint DOCUMENT_HEADER_SIZE = 32;
     }
 }

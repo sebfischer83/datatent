@@ -4,6 +4,25 @@
         <name>Datatent.Core</name>
     </assembly>
     <members>
+        <member name="M:Datatent.Core.Address.op_Implicit(Datatent.Core.Address)~System.UInt64">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Address.op_Implicit(System.UInt64)~Datatent.Core.Address">
+            <summary>
+            
+            </summary>
+            <param name="u"></param>
+        </member>
+        <member name="M:Datatent.Core.Address.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Datatent.Core.Algo.Sort.RadixLds">
              <summary>
              least significant digit (LSD) radix sort implementation
@@ -32,19 +51,24 @@
             TODO: source
             </summary>
         </member>
-        <member name="F:Datatent.Core.BaseBlock.BaseBlock.BLOCK_ID">
+        <member name="F:Datatent.Core.Block.BaseBlock.BLOCK_MARKER">
             <summary>
-            Header position of the block id (byte 0-15) of type guid
+            Header position of the block marker (byte 0) of type byte, always 1
             </summary>
         </member>
-        <member name="F:Datatent.Core.BaseBlock.BaseBlock.BLOCK_TYPE">
+        <member name="F:Datatent.Core.Block.BaseBlock.BLOCK_ID">
             <summary>
-            Header position of the block type (byte 0-15) of type <see cref="P:Datatent.Core.BaseBlock.BaseBlock.BaseBlockType"/>
+            Header position of the block id (byte 1-2) of type ushort
             </summary>
         </member>
-        <member name="F:Datatent.Core.BaseBlock.BaseBlock.BLOCK_NUMBER_OF_PAGES">
+        <member name="F:Datatent.Core.Block.BaseBlock.BLOCK_TYPE">
             <summary>
-            Header position of the number of pages in this block (byte 5-8) of type uint
+            Header position of the block type (byte 3) of type <see cref="T:Datatent.Core.Block.BlockType"/>
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.DataBlock.BLOCK_NUMBER_OF_PAGES">
+            <summary>
+            Header position of the number of pages in this block (byte 6-9) of type uint
             </summary>
         </member>
         <member name="T:Datatent.Core.Document.Document">
@@ -55,39 +79,49 @@
             A page can contain multiple documents of different types. The type of the object is mapped in the header pages.
             </remarks>
         </member>
+        <member name="F:Datatent.Core.Document.Document.DocumentHeader.DocumentId">
+            <summary>
+            The document id
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DocumentHeader.ContentLength">
+            <summary>
+            The compressed and actual saved content length
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Document.Document.DocumentHeader.IsDeleted">
+            <summary>
+            Indicates whether the document is deleted
+            </summary>
+        </member>
         <member name="F:Datatent.Core.Document.Document._documentSlice">
             <summary>
-            The current memoryBaseBlockSlice slice to operate on.
+            The current memory slice to operate on.
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_ID">
             <summary>
-            Header position of the document id (byte 0-15) of type guid
+            Header position of the document id (byte 0-1) of type ushort
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_LENGTH">
             <summary>
-            Header position of the document length without the header (byte 16-19) of type uint32
+            Header position of the document length without the header (byte 2-5) of type uint32
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH">
             <summary>
-            Header position of the uncompressed document length without the header (byte 20-23) of type uint32
-            </summary>
-        </member>
-        <member name="F:Datatent.Core.Document.Document.DOCUMENT_COMPRESSION_TYPE">
-            <summary>
-            Header position of the compression type (byte 24) of type byte
+            Header position of the uncompressed document length without the header (byte 6-10) of type uint32
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_IS_DELETED">
             <summary>
-            Header position of the is deleted flag (byte 25) of type byte
+            Header position of the is deleted flag (byte 11) of type byte
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_TYPE_ID">
             <summary>
-            Header position of the document type id (byte 26-29) of type uint32
+            Header position of the document type id (byte 12-15) of type uint32
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH">
@@ -95,100 +129,52 @@
             The length of the header
             </summary>
         </member>
-        <member name="P:Datatent.Core.Document.Document.DocumentId">
-            <summary>
-            The document id
-            </summary>
-        </member>
-        <member name="P:Datatent.Core.Document.Document.CompressionType">
-            <summary>
-            The compression type
-            </summary>
-            <see cref="P:Datatent.Core.Document.Document.CompressionType"/>
-        </member>
-        <member name="P:Datatent.Core.Document.Document.OriginalContentLength">
-            <summary>
-            The uncompressed content length
-            </summary>
-        </member>
-        <member name="P:Datatent.Core.Document.Document.SavedContentLength">
-            <summary>
-            The compressed and actual saved content length
-            </summary>
-        </member>
-        <member name="F:Datatent.Core.Document.Document._PreperedContent">
-            <summary>
-            Holds temporary the compressed content
-            </summary>
-        </member>
-        <member name="P:Datatent.Core.Document.Document.IsDeleted">
-            <summary>
-            Indicates whether the document is deleted
-            </summary>
-        </member>
-        <member name="P:Datatent.Core.Document.Document.TypeId">
-            <summary>
-            The id that map to the type informations
-            </summary>
-        </member>
         <member name="M:Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(System.Memory{System.Byte}@)">
             <summary>
-            Gets the memoryBaseBlockSlice slice from the beginning until the end of the document and adjust the offset of the given memoryBaseBlockSlice slice to the next document.
+            Gets the memory slice from the beginning until the end of the document and adjust the offset of the given memory slice to the next document.
             </summary>
-            <param name="memoryBaseBlockSlice">the memoryBaseBlockSlice slice that holds the document</param>
+            <param name="memory">the memory slice that holds the document</param>
             <remarks>
-            Assumes that the document starts at index 0 of the memoryBaseBlockSlice slice.
+            Assumes that the document starts at index 0 of the memory slice.
             </remarks>
             <returns></returns>
         </member>
-        <member name="M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},Datatent.Core.Service.ICompressionService)">
+        <member name="M:Datatent.Core.Document.Document.#ctor(System.Nullable{System.Memory{System.Byte}})">
             <summary>
-            Construct the document header from the given memoryBaseBlockSlice slice.
+            Construct the document header from the given memory slice.
             </summary>
             <param name="documentSlice"></param>
-            <param name="compressionService"></param>
         </member>
-        <member name="M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},System.Guid,Datatent.Core.Service.ICompressionService)">
+        <member name="M:Datatent.Core.Document.Document.#ctor(System.Memory{System.Byte},System.UInt16)">
             <summary>
-            Creates an empty document, but don't write any data to the memoryBaseBlockSlice.
+            Creates an empty document, but don't write any data to the memory.
             </summary>
             <param name="documentSlice"></param>
             <param name="id"></param>
-            <param name="compressionService"></param>
-        </member>
-        <member name="M:Datatent.Core.Document.Document.CheckNeededSpace(System.Byte[])">
-            <summary>
-            Checks how much space is needed for the given content.
-            </summary>
-            <param name="content">The content that should be saved.</param>
-            <returns>The needed space.</returns>
         </member>
         <member name="M:Datatent.Core.Document.Document.SetContent(System.Byte[])">
             <summary>
-            Set the content to the memoryBaseBlockSlice but don't update the header.
+            Set the content to the memory but don't update the header.
             </summary>
             <param name="content"></param>
-            <see cref="M:Datatent.Core.Document.Document.Update(System.UInt32)"/>
             <returns></returns>
         </member>
         <member name="M:Datatent.Core.Document.Document.GetContent">
             <summary>
-            Retrieves the current content from the memoryBaseBlockSlice.
+            Retrieves the current content from the memory.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Datatent.Core.Document.Document.Update(System.UInt32)">
+        <member name="M:Datatent.Core.Document.Document.UpdateHeader">
             <summary>
             Update the header informations of the document.
             </summary>
-            <param name="typeId"></param>
         </member>
-        <member name="M:Datatent.Core.Document.Document.Update(System.Byte[],System.UInt32)">
+        <member name="M:Datatent.Core.Document.Document.Update(System.Byte[])">
             <summary>
             Update the header and the content of the document.
             </summary>
             <param name="content"></param>
-            <param name="typeId"></param>
             <returns></returns>
         </member>
         <member name="T:Datatent.Core.Pages.BasePage">
@@ -204,14 +190,71 @@
         </member>
         <member name="F:Datatent.Core.Pages.BasePage.PAGE_ID">
             <summary>
-            The id of the page, goes from byte 0-3
+            The id of the page, goes from byte 0-1
             </summary>
         </member>
         <member name="F:Datatent.Core.Pages.BasePage.PAGE_TYPE">
             <summary>
-            The page type, goes from byte 4-4
+            The page type, goes from byte 2-2
             </summary>
-            <see cref="P:Datatent.Core.Pages.BasePage.PageType"/>
+            <see cref="T:Datatent.Core.Pages.PageType"/>
+        </member>
+        <member name="T:Datatent.Core.Scheduler.IORequest">
+            <summary>
+            A request to the underlying file system
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.#ctor(Datatent.Core.Scheduler.IORequestDirection,Datatent.Core.Address)">
+            <summary>
+            ctor
+            </summary>
+            <param name="requestDirection"></param>
+            <param name="address"></param>
+        </member>
+        <member name="P:Datatent.Core.Scheduler.IORequest.Id">
+            <summary>
+            The request id
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Scheduler.IORequest.Address">
+            <summary>
+            The address which should be loaded / written
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Scheduler.IORequest.RequestDirection">
+            <summary>
+            Read or write?
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Scheduler.IORequest.Payload">
+            <summary>
+            The payload
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateReadRequest(Datatent.Core.Address)">
+            <summary>
+            Creates a new read request
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateWriteIoRequest(Datatent.Core.Address,Datatent.Core.Memory.ByteMemoryPool.Rental)">
+            <summary>
+            Creates a new write request
+            </summary>
+            <param name="address"></param>
+            <param name="payload"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Datatent.Core.Service.DataProcessingPipeline">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.Service.Encryption.IEncryptionService">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

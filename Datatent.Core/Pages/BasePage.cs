@@ -37,7 +37,10 @@ namespace Datatent.Core.Pages
             public ushort PagePrevId;
 
             [FieldOffset(PAGE_NUMBER_OF_ENTRIES)]
-            public uint PageNumberOfEntries;
+            public ushort PageNumberOfEntries;
+
+            [FieldOffset(PAGE_NEXT_DOCUMENT_ID)]
+            public ushort PageNextDocumentId;
 
             [FieldOffset(PAGE_NUMBER_OF_FREE_BYTES)]
             public uint PageNumberOfFreeBytes;
@@ -63,6 +66,8 @@ namespace Datatent.Core.Pages
 
         public const int PAGE_NUMBER_OF_ENTRIES = 7;
 
+        public const int PAGE_NEXT_DOCUMENT_ID = 9;
+
         public const int PAGE_NUMBER_OF_FREE_BYTES = 11;
         
         protected Memory<byte> _pageMemorySlice;
@@ -76,13 +81,16 @@ namespace Datatent.Core.Pages
             if (arraySlice.Length < Constants.PAGE_SIZE_INCL_HEADER)
                 throw new ArgumentException($"{nameof(arraySlice)} is too small to fit page");
             _pageMemorySlice = arraySlice;
-            PageHeader header = new PageHeader();
-            header.PageId = pageId;
-            header.PageType = pageType;
-            header.PageNextId = ushort.MaxValue;
-            header.PagePrevId = ushort.MaxValue;
-            header.PageNumberOfEntries = 0;
-            header.PageNumberOfFreeBytes = Constants.BLOCK_SIZE;
+            PageHeader header = new PageHeader
+            {
+                PageId = pageId,
+                PageType = pageType,
+                PageNextId = ushort.MaxValue,
+                PagePrevId = ushort.MaxValue,
+                PageNumberOfEntries = 0,
+                PageNextDocumentId = 1,
+                PageNumberOfFreeBytes = Constants.DATA_BLOCK_SIZE
+            };
             Header = header;
         }
 

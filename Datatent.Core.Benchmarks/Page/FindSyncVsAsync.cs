@@ -19,7 +19,7 @@ namespace Datatent.Core.Benchmarks.Page
     public class FindSyncVsAsync
     {
         private List<int> _indexes = new List<int>();
-        private Guid[] _guids;
+        private ushort[] _guids;
         
         private DataPage _page;
 
@@ -46,7 +46,7 @@ namespace Datatent.Core.Benchmarks.Page
             
             var _dataPageManager = new DataPageManager(memory);
             _page = (DataPage) _dataPageManager.GetPageById(0);
-            _guids = new Guid[100];
+            _guids = new ushort[100];
             for (int i = 0; i < 100; i++)
             {
                 var res = _page.TryAddContent(bytesContent, 0);

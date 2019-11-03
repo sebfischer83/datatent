@@ -20,31 +20,19 @@ namespace Datatent.Core.Document
             /// The document id
             /// </summary>
             [FieldOffset(DOCUMENT_ID)]
-            public Guid DocumentId;
+            public ushort DocumentId;
 
             /// <summary>
             /// The compressed and actual saved content length
             /// </summary>
             [FieldOffset(DOCUMENT_LENGTH)]
-            public uint SavedContentLength;
-
-            /// <summary>
-            /// The uncompressed content length
-            /// </summary>
-            [FieldOffset(DOCUMENT_ORG_LENGTH)]
-            public uint OriginalContentLength;
+            public uint ContentLength;
             
             /// <summary>
             /// Indicates whether the document is deleted
             /// </summary>
             [FieldOffset(DOCUMENT_IS_DELETED)]
             public bool IsDeleted;
-
-            /// <summary>
-            /// The id that map to the type informations
-            /// </summary>
-            [FieldOffset(DOCUMENT_TYPE_ID)]
-            public uint TypeId;
         }
 
         /// <summary>
@@ -53,29 +41,29 @@ namespace Datatent.Core.Document
         private readonly Memory<byte> _documentSlice;
         
         /// <summary>
-        /// Header position of the document id (byte 0-15) of type guid
+        /// Header position of the document id (byte 0-1) of type ushort
         /// </summary>
         public const int DOCUMENT_ID = 0;
 
         /// <summary>
-        /// Header position of the document length without the header (byte 16-19) of type uint32
+        /// Header position of the document length without the header (byte 2-5) of type uint32
         /// </summary>
-        public const int DOCUMENT_LENGTH = 16;
+        public const int DOCUMENT_LENGTH = 2;
 
         /// <summary>
-        /// Header position of the uncompressed document length without the header (byte 20-23) of type uint32
+        /// Header position of the uncompressed document length without the header (byte 6-10) of type uint32
         /// </summary>
-        public const int DOCUMENT_ORG_LENGTH = 20;
+        public const int DOCUMENT_ORG_LENGTH = 6;
         
         /// <summary>
-        /// Header position of the is deleted flag (byte 24) of type byte
+        /// Header position of the is deleted flag (byte 11) of type byte
         /// </summary>
-        public const byte DOCUMENT_IS_DELETED = 24;
+        public const byte DOCUMENT_IS_DELETED = 11;
 
         /// <summary>
-        /// Header position of the document type id (byte 25-28) of type uint32
+        /// Header position of the document type id (byte 12-15) of type uint32
         /// </summary>
-        public const int DOCUMENT_TYPE_ID = 25;
+        public const int DOCUMENT_TYPE_ID = 12;
 
         /// <summary>
         /// The length of the header
@@ -92,15 +80,15 @@ namespace Datatent.Core.Document
         /// Assumes that the document starts at index 0 of the memory slice.
         /// </remarks>
         /// <returns></returns>
-        public static (Memory<byte>? DocumentSlice, Guid DocumentId) GetNextDocumentSliceAndAdjustOffset(ref Memory<byte> memory)
+        public static (Memory<byte>? DocumentSlice, ushort DocumentId) GetNextDocumentSliceAndAdjustOffset(ref Memory<byte> memory)
         {
             if (memory.IsEmpty || memory.Length < DOCUMENT_HEADER_LENGTH)
-                return (null, Guid.Empty);
+                return (null, 0);
 
             if (memory.Span[0] == 0x00)
-                return (null, Guid.Empty);
+                return (null, 0);
 
-            var id = memory.Span.ReadGuid(DOCUMENT_ID);
+            var id = memory.Span.ReadUInt16(DOCUMENT_ID);
             
             var docLength = memory.Span.ReadUInt32(DOCUMENT_LENGTH);
             var docSlice = memory.Slice(0, (int) (docLength + DOCUMENT_HEADER_LENGTH));
@@ -129,15 +117,13 @@ namespace Datatent.Core.Document
         /// </summary>
         /// <param name="documentSlice"></param>
         /// <param name="id"></param>
-        public Document(Memory<byte> documentSlice, Guid id)
+        public Document(Memory<byte> documentSlice, ushort id)
         {
             _documentSlice = documentSlice;
             var header = new DocumentHeader();
             header.DocumentId = id;
-            header.OriginalContentLength = 0;
-            header.SavedContentLength = 0;
+            header.ContentLength = 0;
             header.IsDeleted = false;
-            header.TypeId = 0;
             Header = header;
         }
 
@@ -146,18 +132,15 @@ namespace Datatent.Core.Document
         /// Set the content to the memory but don't update the header.
         /// </summary>
         /// <param name="content"></param>
-        /// <see cref="Update(uint)"/>
         /// <returns></returns>
-        public uint SetContent(byte[] content)
+        public void SetContent(byte[] content)
         {
             var toSave = content;
             ref DocumentHeader header = ref Header;
-            header.OriginalContentLength = (uint) content.Length;
             
-            header.SavedContentLength = (uint) toSave.Length;
+            header.ContentLength = (uint) toSave.Length;
 
             _documentSlice.WriteBytes(DOCUMENT_HEADER_LENGTH, toSave);
-            return header.SavedContentLength;
         }
 
         /// <summary>
@@ -166,7 +149,7 @@ namespace Datatent.Core.Document
         /// <returns></returns>
         public byte[] GetContent()
         {
-            var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) Header.SavedContentLength);
+            var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) Header.ContentLength);
 
             return compressedContent;
         }
@@ -174,11 +157,9 @@ namespace Datatent.Core.Document
         /// <summary>
         /// Update the header informations of the document.
         /// </summary>
-        /// <param name="typeId"></param>
-        public void Update(uint typeId)
+        public void UpdateHeader()
         {
             ref DocumentHeader header = ref Header;
-            header.TypeId = typeId;
             // write header, content is already set
             MemoryMarshal.Write(_documentSlice.Span, ref header);
         }
@@ -187,14 +168,11 @@ namespace Datatent.Core.Document
         /// Update the header and the content of the document.
         /// </summary>
         /// <param name="content"></param>
-        /// <param name="typeId"></param>
         /// <returns></returns>
-        public uint Update(byte[] content, uint typeId)
+        public void Update(byte[] content)
         {
-            var length = this.SetContent(content);
-
-            Update(typeId);
-            return length;
+            this.SetContent(content);
+            this.UpdateHeader();
         }
     }
 }

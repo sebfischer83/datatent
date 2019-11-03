@@ -21,7 +21,7 @@ namespace Datatent.Core.IO
             fixed (byte* bp = span.Slice(offset))
             fixed (byte* rp = returnArray)
             {
-                Unsafe.CopyBlock(rp, bp, (uint)length);
+                Unsafe.CopyBlockUnaligned(rp, bp, (uint)length);
             }
             
             return returnArray;
@@ -34,12 +34,17 @@ namespace Datatent.Core.IO
 
         public static uint ReadUInt32(this Span<byte> span, int offset)
         {
-            return BitConverter.ToUInt32(span.ToArray(), offset);
+            return BitConverter.ToUInt32(span.Slice(offset));
+        }
+
+        public static uint ReadUInt32(this Span<byte> span, uint offset)
+        {
+            return BitConverter.ToUInt32(span.Slice((int) offset));
         }
 
         public static ushort ReadUInt16(this Span<byte> span, int offset)
         {
-            return MemoryMarshal.Read<ushort>(span.Slice(offset));
+            return BitConverter.ToUInt16(span.Slice(offset));
         }
 
 
@@ -49,29 +54,28 @@ namespace Datatent.Core.IO
             return MemoryMarshal.Read<Guid>(guidSpan);
         }
 
-        public static void WriteBytes(this Memory<byte> memory, int offset, byte[] bytes)
+        public static unsafe void WriteBytes(this Memory<byte> memory, int offset, byte[] bytes)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
 
-            int i = offset;
-            foreach (var b in bytes)
+            fixed (byte* bp = bytes)
+            fixed (byte* rp = memory.Span.Slice(offset))
             {
-                memory.Span[i] = b;
-                i++;
+                Unsafe.CopyBlockUnaligned(rp, bp, (uint)bytes.Length);
             }
+
         }
 
-        public static void WriteBytes(this ref Span<byte> span, int offset, byte[] bytes)
+        public static unsafe void WriteBytes(this ref Span<byte> span, int offset, byte[] bytes)
         {
             if (bytes == null)
                 throw new ArgumentNullException(nameof(bytes));
 
-            int i = offset;
-            foreach (var b in bytes)
+            fixed (byte* bp = bytes)
+            fixed (byte* rp = span.Slice(offset))
             {
-                span[i] = b;
-                i++;
+                Unsafe.CopyBlockUnaligned(rp, bp, (uint)bytes.Length);
             }
         }
 

@@ -60,7 +60,7 @@ namespace Datatent.Core.Pages
 
         public BasePage GetPageById(uint id)
         {
-            if (id > Constants.PAGE_PER_BLOCK)
+            if (id > Constants.PAGES_PER_DATA_BLOCK)
             {
                 return (BasePage) new NullPage();
             }

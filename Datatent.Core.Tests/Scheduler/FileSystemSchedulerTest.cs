@@ -10,23 +10,58 @@ namespace Datatent.Core.Tests.Scheduler
 {
     public class FileSystemSchedulerTest
     {
+        //[Fact]
+        //public async Task AddAndWaitForResult()
+        //{
+
+        //    //using DefaultScheduler fileSystemScheduler = new DefaultScheduler(null);
+        //    //WriteRequest writeRequest = new WriteRequest();
+        //    //writeRequest.BlockId = 1;
+        //    //var task = fileSystemScheduler.ScheduleFileSystemRequest(writeRequest);
+
+        //    //WriteRequest writeRequest2 = new WriteRequest();
+        //    //writeRequest2.BlockId = 1; 
+        //    //var x2 = await fileSystemScheduler.ScheduleFileSystemRequest(writeRequest2).ConfigureAwait(false);
+        //    //var x1 = await task.ConfigureAwait(false);
+
+        //    //x1.Should().NotBeNull();
+        //    //x2.Should().NotBeNull();
+        //    //x2.Id.Should().Be(writeRequest2.Id);
+        //    //x1.Id.Should().Be(writeRequest.Id);
+        //}
+
         [Fact]
-        public async Task AddAndWaitForResult()
+        public void TestAddressCreation()
         {
-            using FileSystemScheduler fileSystemScheduler = new FileSystemScheduler(null);
-            WriteRequest writeRequest = new WriteRequest();
-            writeRequest.BlockId = 1;
-            var task = fileSystemScheduler.ScheduleFileSystemRequest(writeRequest);
+            Address address = new Address(AddressScope.Document, 20, 5, 11);
 
-            WriteRequest writeRequest2 = new WriteRequest();
-            writeRequest2.BlockId = 1; 
-            var x2 = await fileSystemScheduler.ScheduleFileSystemRequest(writeRequest2).ConfigureAwait(false);
-            var x1 = await task.ConfigureAwait(false);
+            address.Block.Should().Be(20);
+            address.Page.Should().Be(5);
+            address.Document.Should().Be(11);
+            address.Scope.Should().Be(AddressScope.Document);
 
-            x1.Should().NotBeNull();
-            x2.Should().NotBeNull();
-            x2.Id.Should().Be(writeRequest2.Id);
-            x1.Id.Should().Be(writeRequest.Id);
+
+            address = new Address(AddressScope.Block, ushort.MaxValue, ushort.MaxValue, 0);
+
+            address.Block.Should().Be(ushort.MaxValue);
+            address.Page.Should().Be(ushort.MaxValue);
+            address.Document.Should().Be(0);
+            address.Scope.Should().Be(AddressScope.Block);
+
+            var l = address.FullAddress;
+            address = new Address(AddressScope.Page, l);
+            
+            address.Block.Should().Be(ushort.MaxValue);
+            address.Page.Should().Be(ushort.MaxValue);
+            address.Document.Should().Be(0);
+            address.Scope.Should().Be(AddressScope.Page);
+
+            address = new Address(AddressScope.Block, l);
+            
+            address.Block.Should().Be(ushort.MaxValue);
+            address.Page.Should().Be(ushort.MaxValue);
+            address.Document.Should().Be(0);
+            address.Scope.Should().Be(AddressScope.Block);
         }
     }
 }

@@ -72,8 +72,8 @@ namespace Datatent.Core.Block
 
         protected DataPage FindById(uint id)
         {
-            if (id > Constants.PAGE_PER_BLOCK)
-                throw new ArgumentOutOfRangeException($"A block can't contain a maximum number of {Constants.PAGE_PER_BLOCK} {nameof(id)} {id} is out of range");
+            if (id > Constants.PAGES_PER_DATA_BLOCK)
+                throw new ArgumentOutOfRangeException($"A block can't contain a maximum number of {Constants.PAGES_PER_DATA_BLOCK} {nameof(id)} {id} is out of range");
             if (id > Header.NumberOfPages)
                 throw new ArgumentOutOfRangeException($"This block contains {Header.NumberOfPages} the requested id {id} is larger than the maximum id");
 

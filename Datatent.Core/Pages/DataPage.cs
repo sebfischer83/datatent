@@ -17,12 +17,12 @@ namespace Datatent.Core.Pages
         {
         }
 
-        public Guid TryAddContent(byte[] content, uint typeId)
+        public ushort TryAddContent(byte[] content, uint typeId)
         {
             var compressedContent = content;
             if (compressedContent.Length > this.Header.PageNumberOfFreeBytes)
             {
-                return Guid.Empty;
+                return 0;
             }
 
             // its enough space in this page
@@ -31,30 +31,30 @@ namespace Datatent.Core.Pages
             var foundEmptySlot = FindEmptySlot(ref sliceIterator);
             if (!foundEmptySlot)
             {
-                return Guid.Empty;
+                return 0;
             }
 
-            Document.Document document = new Document.Document(sliceIterator, Guid.NewGuid());
-            document.Update(content, typeId);
+            Document.Document document = new Document.Document(sliceIterator, this.Header.PageNextDocumentId);
+            document.Update(content);
 
             //this._cachedDocuments.Add(document.DocumentId, document);
             this.IsDirty = true;
-            PageHeader header = Header;
+            ref PageHeader header = ref Header;
             header.PageNumberOfEntries++;
+            header.PageNextDocumentId++;
             header.PageNumberOfFreeBytes = header.PageNumberOfFreeBytes -
-                                         (document.Header.SavedContentLength + Document.Document.DOCUMENT_HEADER_LENGTH);
-            Header = header;
+                                         (document.Header.ContentLength + Document.Document.DOCUMENT_HEADER_LENGTH);
             return document.Header.DocumentId;
         }
 
-        public async ValueTask<byte[]?> FindByIdAsync(Guid id)
+        public async ValueTask<byte[]?> FindByIdAsync(ushort id)
         {
             var result = await Task.Run(() => FindById(id)).ConfigureAwait(false);
 
             return result;
         }
 
-        public byte[]? FindById(Guid id)
+        public byte[]? FindById(ushort id)
         {
             //if (_cachedDocuments.ContainsKey(id))
             //{
@@ -76,7 +76,7 @@ namespace Datatent.Core.Pages
         {
             var sliceIterator = _pageMemorySlice.Slice(0);
             var result = Document.Document.GetNextDocumentSliceAndAdjustOffset(ref sliceIterator);
-            while (result.DocumentId != Guid.Empty)
+            while (result.DocumentSlice != null)
             {
                 Debug.Assert(result.DocumentSlice != null, "result.DocumentSlice != null");
                 var doc = new Document.Document(result.DocumentSlice);
@@ -95,7 +95,7 @@ namespace Datatent.Core.Pages
         private bool FindEmptySlot(ref Memory<byte> sliceIterator)
         {
             var result = Document.Document.GetNextDocumentSliceAndAdjustOffset(ref sliceIterator);
-            while (result.DocumentId != Guid.Empty)
+            while (result.DocumentSlice != null)
             {
                 result = Document.Document.GetNextDocumentSliceAndAdjustOffset(ref sliceIterator);
             }

@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Buffers;
+using System.Buffers.Text;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Threading.Tasks;
+using Datatent.Core.Scheduler;
 using Microsoft.Extensions.Logging;
 
 namespace Datatent.Core.IO
 {
-    internal abstract class FileSystemService : IDisposable
+    internal sealed class FileSystemService : FileSystemServiceBase
     {
-        private readonly DatatentSettings _settings;
-        private readonly ILogger<FileSystemService> _logger;
-
-
-        protected FileSystemService(DatatentSettings settings, ILogger<FileSystemService> logger)
+        public FileSystemService(DatatentSettings settings, ILogger<FileSystemServiceBase> logger) : base(settings, logger)
         {
-            _settings = settings;
-            _logger = logger;
+            _dataFileStream = new FileStream(settings.DataFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read, 4096, FileOptions.RandomAccess);
         }
 
-        public abstract void Dispose();
+
+        public override void Dispose()
+        {
+            _dataFileStream.Dispose();
+        }
     }
 }

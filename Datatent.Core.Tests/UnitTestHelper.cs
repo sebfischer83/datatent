@@ -40,6 +40,7 @@ namespace Datatent.Core.Tests
             arraySlice.Span.WriteUInt32(BasePage.PAGE_NEXT_ID, uint.MaxValue);
             arraySlice.Span.WriteUInt32(BasePage.PAGE_PREV_ID, uint.MaxValue);
             arraySlice.Span.WriteUInt32(BasePage.PAGE_NUMBER_OF_ENTRIES, 0);
+            arraySlice.Span.WriteUInt32(BasePage.PAGE_NEXT_DOCUMENT_ID, id + 1);
             arraySlice.Span.WriteUInt32(BasePage.PAGE_NUMBER_OF_FREE_BYTES, Constants.PAGE_SIZE);
 
             return headerBytes;

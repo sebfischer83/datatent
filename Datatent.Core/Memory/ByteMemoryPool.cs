@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Datatent.Core.Memory
 {
-    internal abstract class ByteMemoryPool : MemoryPool<byte>
+    public abstract class ByteMemoryPool : MemoryPool<byte>
     {
         private const int POOL_USAGE_BORDER_BYTES = 85000;
 

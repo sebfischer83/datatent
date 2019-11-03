@@ -28,16 +28,16 @@ namespace Datatent.Core.Tests.Document
             UnitTestHelper.FillArray(ref array, 0x00);
             Memory<byte> documentSlice = new Memory<byte>(array, 500, (int) Constants.PAGE_SIZE);
 
-            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid());
+            Core.Document.Document document = new Core.Document.Document(documentSlice, 0);
 
             string testString = "This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test!";
             byte[] testContent = Encoding.UTF8.GetBytes(testString);
             document.SetContent(testContent);
-            document.Header.OriginalContentLength.Should().Be((uint) testContent.Length);
+            document.Header.ContentLength.Should().Be((uint) testContent.Length);
             var val = document.GetContent();
             val.Should().BeEquivalentTo(testContent);
 
-            output.WriteLine($"Content org is {testContent.Length} and saved {document.Header.SavedContentLength}");
+            output.WriteLine($"Content org is {testContent.Length} and saved {document.Header.ContentLength}");
         }
 
         [Fact]
@@ -47,11 +47,11 @@ namespace Datatent.Core.Tests.Document
             UnitTestHelper.FillArray(ref array, 0x00);
             Memory<byte> documentSlice = new Memory<byte>(array, 500, (int)Constants.PAGE_SIZE);
 
-            Core.Document.Document document = new Core.Document.Document(documentSlice, new Guid());
+            Core.Document.Document document = new Core.Document.Document(documentSlice, 1);
 
             string testString = "This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test! This is a test!";
             byte[] testContent = Encoding.UTF8.GetBytes(testString);
-            document.Update(testContent, 0);
+            document.Update(testContent);
             document = null;
 
             Core.Document.Document document2 = new Core.Document.Document(documentSlice);
@@ -69,15 +69,14 @@ namespace Datatent.Core.Tests.Document
 
             Memory<byte> documentSlice = new Memory<byte>(array, 0, (int)Constants.PAGE_SIZE);
 
-            Guid id1 = Guid.NewGuid();
-            Guid id2 = Guid.NewGuid();
+            ushort id1 = 1;
+            ushort id2 = 2;
 
             Core.Document.Document document = new Core.Document.Document(documentSlice, id1);
-            var doc1Length = document.Update(testContent, 0);
-            document = new Core.Document.Document(documentSlice.Slice((int) (doc1Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH)), id2);
-            var doc2Length = document.Update(testContent, 0);
+            document.Update(testContent);
+            document = new Core.Document.Document(documentSlice.Slice((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH)), id2);
+            document.Update(testContent);
 
-            doc1Length.Should().Be(doc2Length);
             
             documentSlice = new Memory<byte>(array, 0, (int)Constants.PAGE_SIZE);
             var tuple = Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref documentSlice);
@@ -85,14 +84,14 @@ namespace Datatent.Core.Tests.Document
             tuple.DocumentId.Should().Be(id1);
             tuple.DocumentSlice.HasValue.Should().BeTrue();
             tuple.DocumentSlice.Value.Length.Should()
-                .Be((int) (doc1Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
+                .Be((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
             tuple = Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref documentSlice);
             tuple.DocumentId.Should().Be(id2);
             tuple.DocumentSlice.HasValue.Should().BeTrue();
             tuple.DocumentSlice.Value.Length.Should()
-                .Be((int) (doc2Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
+                .Be((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
             tuple = Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref documentSlice);
-            tuple.DocumentId.Should().Be(Guid.Empty);
+            tuple.DocumentId.Should().Be(0);
             tuple.DocumentSlice.HasValue.Should().BeFalse();
         }
     }

@@ -60,9 +60,9 @@ namespace Datatent.Core.Block
                 return (null, 0);
 
             var id = memory.Span.ReadUInt16(BLOCK_ID);
-            var blockSlice = memory.Slice(0, (int) Constants.BLOCK_SIZE_INCL_HEADER);
+            var blockSlice = memory.Slice(0, (int) Constants.DATA_BLOCK_SIZE_INCL_HEADER);
 
-            memory = memory.Slice((int) Constants.BLOCK_SIZE_INCL_HEADER);
+            memory = memory.Slice((int) Constants.DATA_BLOCK_SIZE_INCL_HEADER);
 
             return (blockSlice, id);
         }

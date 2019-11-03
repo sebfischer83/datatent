@@ -51,7 +51,7 @@ namespace Datatent.Core.Tests.Pages
         [Fact]
         public void GetPageByIdFailIdGreaterThanPossibleTest()
         {
-            uint id = Constants.PAGE_PER_BLOCK + 3;
+            uint id = Constants.PAGES_PER_DATA_BLOCK + 3;
             var memoryWithPages = GenerateTestPages();
 
             DataPageManager pageManager = new DataPageManager(memoryWithPages);
@@ -67,7 +67,7 @@ namespace Datatent.Core.Tests.Pages
         [Fact]
         public void GetPageByIdFailIdNotExistingTest()
         {
-            uint id = Constants.PAGE_PER_BLOCK - 1;
+            uint id = Constants.PAGES_PER_DATA_BLOCK - 1;
             var memoryWithPages = GenerateTestPages();
 
             DataPageManager pageManager = new DataPageManager(memoryWithPages);
