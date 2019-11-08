@@ -15,7 +15,7 @@
     <PackageReference Include="DynamicData" Version="6.13.19" />
     <PackageReference Include="K4os.Compression.LZ4" Version="1.1.11" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0-rc1.19456.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0" />
     <PackageReference Include="MsgPack.Cli" Version="1.0.1" />
     <PackageReference Include="System.Reactive" Version="4.2.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.6.0" />
