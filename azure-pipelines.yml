@@ -20,14 +20,6 @@ steps:
     packageType: 'sdk'
     version: '3.0.100'
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'Datatent Sonarcloud'
-    organization: 'sebfischer8343tgsest5w4zw54qe'
-    scannerMode: 'MSBuild'
-    projectKey: 'sebfischer83_datatent'
-    projectName: 'Datatent'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
@@ -43,9 +35,3 @@ steps:
   inputs:
     command: 'test'
     arguments: '-c $(BuildConfiguration) --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-
-- task: SonarCloudAnalyze@1
-
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
