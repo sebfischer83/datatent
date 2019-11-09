@@ -37,9 +37,9 @@ namespace Datatent.Core.Tests.Pages
 
             page.Should().NotBeNull();
             var id = page.TryAddContent(bytesContent, 0);
-            id.Should().NotBe(0);
+            id.Id.Should().NotBe(0);
 
-            var document = page.FindById(id);
+            var document = page.FindById(id.Id);
             document.Should().NotBeNull();
         }
 
@@ -70,7 +70,7 @@ namespace Datatent.Core.Tests.Pages
             for (int i = 0; i < 100; i++)
             {
                 var res = page.TryAddContent(bytesContent, 0);
-                _guids[i] = res;
+                _guids[i] = res.Id;
             }
 
             _guids.Should().NotBeEmpty();

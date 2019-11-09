@@ -89,7 +89,7 @@ namespace Datatent.Core.Pages
             return ((bool HasPage, PageType PageType, uint Id)) (true, pageTypeByte, id);
         }
 
-        public (bool Saved, uint Id) SaveContent(byte[] content)
+        public (bool Saved, ushort PageId, ushort DocumentId) SaveContent(byte[] content, uint typeId)
         {
             // set pointer on start
             _currentPointer = _memoryBlockSlice.Slice(0);
@@ -98,9 +98,14 @@ namespace Datatent.Core.Pages
             while (basePage.Header.PageType == PageType.Data)
             {
                 var dataPage = (DataPage) basePage;
+                var result = dataPage.TryAddContent(content, typeId);
+                if (result.Saved)
+                {
+                    return (true, dataPage.Header.PageId, result.Id);
+                }
             }
 
-            return (false, 0);
+            return (false, 0, 0);
         }
     }
 }

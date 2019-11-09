@@ -40,7 +40,7 @@ namespace Datatent.Core
 
         }
 
-        public Address(AddressScope scope, ushort block, ushort page) : this(scope, block, 0, 0)
+        public Address(AddressScope scope, ushort block, ushort page) : this(scope, block, page, 0)
         {
 
         }

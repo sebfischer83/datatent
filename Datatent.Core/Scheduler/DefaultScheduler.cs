@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using Datatent.Core.Block;
 using Datatent.Core.IO;
@@ -19,85 +20,138 @@ namespace Datatent.Core.Scheduler
     internal class DefaultScheduler : IDisposable
     {
         private readonly FileSystemServiceBase _fileSystemService;
-        private readonly SourceList<IORequest> _fileSystemRequests;
-        private readonly SourceList<IORequest> _fileSystemResponses;
-
-        public int WaitingRequests => _fileSystemRequests.Count;
-        public int WaitingResponses => _fileSystemResponses.Count;
+        private readonly Channel<ValueTuple<IORequest, TaskCompletionSource<IOResponse>>> _responseChannel;
 
         public DefaultScheduler(FileSystemServiceBase fileSystemService)
         {
             _fileSystemService = fileSystemService;
-            _fileSystemRequests = new SourceList<IORequest>();
-            _fileSystemResponses = new SourceList<IORequest>();
-
-            _fileSystemRequests.Connect().Subscribe(async set =>
-            {
-                if (set.Adds == 0)
-                    return;
-
-                foreach (var change in set)
-                {
-                    if (change.Reason == ListChangeReason.Add)
+            _responseChannel =
+                Channel.CreateBounded<ValueTuple<IORequest, TaskCompletionSource<IOResponse>>>(
+                    new BoundedChannelOptions(100)
                     {
-                        var item = change.Item.Current;
-                        if (item.RequestDirection == IORequestDirection.Read)
-                        {
-                            var result = await _fileSystemService.Read(item).ConfigureAwait(false);
-                            item.Payload = result;
-                        }
-
-                        _fileSystemRequests.Remove(item);
-                        _fileSystemResponses.Add(item);
-                    }
-                }
-            });
+                        AllowSynchronousContinuations = false,
+                        FullMode = BoundedChannelFullMode.Wait,
+                        SingleReader = true,
+                        SingleWriter = false
+                    });
+            
+            var reader = _responseChannel.Reader;
+            Task.Run(Reader);
         }
 
-        public Task<IORequest> ScheduleFileSystemRequest(IORequest request)
+        private async void Reader()
         {
-
-            var task = Task.Run(async () =>
+            var reader = _responseChannel.Reader;
+            while (await reader.WaitToReadAsync())
             {
-                var myChangeSet = _fileSystemResponses.Connect();
-                var x = myChangeSet.Filter(systemRequest => systemRequest.Id == request.Id);
-                _fileSystemRequests.Add(request);
+                while (reader.TryRead(out ValueTuple<IORequest, TaskCompletionSource<IOResponse>> tuple))
+                {
+                    var item = tuple.Item1;
+                    IOResponse ioResponse;
+                    if (item.RequestDirection == IORequestDirection.Read)
+                    {
+                        ioResponse = await _fileSystemService.Read(item).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        await _fileSystemService.Write(item).ConfigureAwait(false);
+                        ioResponse = new IOResponse(item.Id, item.Address, Array.Empty<byte>());
+                    }
+                    tuple.Item2.SetResult(ioResponse);
+                }
+            }
+        }
 
-                var set = await x.FirstAsync();
 
-                var el = set.First().Range.First();
-                _fileSystemResponses.Remove(el);
+        public async Task<IOResponse> ScheduleFileSystemRequest(IORequest request)
+        {
+            var writer = _responseChannel.Writer;
+            while (await writer.WaitToWriteAsync())
+            {
+                TaskCompletionSource<IOResponse> source = new TaskCompletionSource<IOResponse>();
+                ValueTuple<IORequest, TaskCompletionSource<IOResponse>> tuple = (request, source);
+                await writer.WriteAsync(tuple);
+                var response = await source.Task.ConfigureAwait(false);
+                return response;
+            }
 
-                return el;
-            });
-            
-            return task;
+            return default;
         }
 
         public void Dispose()
         {
-            _fileSystemRequests.Dispose();
-            _fileSystemResponses.Dispose();
+        }
+    }
+
+    public readonly struct IOResponse : IDisposable
+    {
+        /// <summary>
+        /// The request id
+        /// </summary>
+        public Guid Id { get; }
+
+        /// <summary>
+        /// The address which should be loaded / written
+        /// </summary>
+        public Address Address { get; }
+
+        public byte[] Payload { get; }
+
+        public IOResponse(Guid id, Address address, byte[] payload)
+        {
+            Id = id;
+            Address = address;
+            Payload = payload;
+        }
+
+        public void Dispose()
+        {
+            if (Payload != null && Payload.Length > 0)
+            {
+                ArrayPool<byte>.Shared.Return(this.Payload);
+            }
         }
     }
 
     /// <summary>
     /// A request to the underlying file system
     /// </summary>
-    public struct IORequest
+    public readonly struct IORequest
     {
         /// <summary>
         /// ctor
         /// </summary>
         /// <param name="requestDirection"></param>
         /// <param name="address"></param>
-        public IORequest(IORequestDirection requestDirection, Address address)
+        public IORequest(IORequestDirection requestDirection, Address address, IoRequestProperties properties = 0)
         {
             Id = Guid.NewGuid();
             RequestDirection = requestDirection;
             Address = address;
-            Payload = null;
+            Payload = Array.Empty<byte>();
+            IoRequestProperties = properties;
         }
+
+        public IORequest(IORequestDirection requestDirection, Address address, Memory<byte> payload, IoRequestProperties properties = 0)
+        {
+            Id = Guid.NewGuid();
+            RequestDirection = requestDirection;
+            Address = address;
+            Payload = payload;
+            IoRequestProperties = properties;
+        }
+
+        public IORequest(IORequest request, byte[] payload, IoRequestProperties properties = 0)
+        {
+            Id = request.Id;
+            RequestDirection = request.RequestDirection;
+            Address = request.Address;
+            Payload = payload;
+            IoRequestProperties = properties;
+        }
+
+        public readonly IoRequestProperties IoRequestProperties { get; }
+
 
         /// <summary>
         /// The request id
@@ -117,16 +171,16 @@ namespace Datatent.Core.Scheduler
         /// <summary>
         /// The payload
         /// </summary>
-        public ByteMemoryPool.Rental? Payload { get; set; }
+        public Memory<byte> Payload { get; }
 
         /// <summary>
         /// Creates a new read request
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public static IORequest CreateReadRequest(Address address)
+        public static IORequest CreateReadRequest(Address address, IoRequestProperties properties = 0)
         {
-            return new IORequest(IORequestDirection.Read, address);
+            return new IORequest(IORequestDirection.Read, address, properties);
         }
 
         /// <summary>
@@ -135,9 +189,9 @@ namespace Datatent.Core.Scheduler
         /// <param name="address"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public static IORequest CreateWriteIoRequest(Address address, ByteMemoryPool.Rental payload)
+        public static IORequest CreateWriteIoRequest(Address address, Memory<byte> payload,  IoRequestProperties properties = 0)
         {
-            return new IORequest(IORequestDirection.Write, address) { Payload = payload };
+            return new IORequest(IORequestDirection.Write, address, payload, properties);
         }
 
         /// <summary>
@@ -212,5 +266,14 @@ namespace Datatent.Core.Scheduler
         Block = 1,
         Page = 2,
         Document = 3
+    }
+
+    [Flags]
+    public enum IoRequestProperties : short
+    {
+        None = 0,
+        Flush = 1,
+        OnlyHeader = 2,
+        NoCache = 4
     }
 }

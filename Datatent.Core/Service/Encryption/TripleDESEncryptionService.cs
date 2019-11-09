@@ -9,6 +9,10 @@ namespace Datatent.Core.Service.Encryption
 {
     public class TripleDESEncryptionService : IEncryptionService
     {
+        private static readonly Guid IDENTIFIER = Guid.Parse("839FAA41-B34A-4829-8005-1FAEAE60E489");
+        
+        public Guid Identifier => IDENTIFIER;
+
         private readonly string _password;
         private readonly int _iterations = 25;
         private readonly int _keySize = 192;

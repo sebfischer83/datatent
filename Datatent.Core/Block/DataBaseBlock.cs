@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using Datatent.Core.Pages;
+using Datatent.Core.Scheduler;
 using Datatent.Core.Service;
 
 namespace Datatent.Core.Block
@@ -35,7 +36,7 @@ namespace Datatent.Core.Block
         /// </summary>
         public const int BLOCK_NUMBER_OF_PAGES = 6;
 
-        public DataBlock(IMemoryOwner<byte> buffer) : base(buffer)
+        public DataBlock(IOResponse response) : base(response)
         {
             _pageManager = new DataPageManager(_memory);
         }
@@ -45,9 +46,17 @@ namespace Datatent.Core.Block
             Header = this.ReadHeader<DataBlockHeader>();
         }
 
-        public void SaveData(byte[] data)
+        public (bool Saved, Address Address) SaveData(byte[] data, uint typeId)
         {
+            var result = _pageManager.SaveContent(data, typeId);
 
+            if (result.Saved)
+            {
+                Address address = new Address(AddressScope.Document, this.Header.Id, result.PageId, result.DocumentId);
+                return (true, address);
+            }
+
+            return (false, default);
         }
 
         public void InitEmpty(ushort id)
@@ -66,22 +75,8 @@ namespace Datatent.Core.Block
             var iterator = _memory.Slice(0);
             for (int i = 0; i < Header.NumberOfPages - 1; i++)
             {
-                yield return FindById((uint) i);
+                yield return (DataPage) _pageManager.GetPageById((uint) i);
             }
-        }
-
-        protected DataPage FindById(uint id)
-        {
-            if (id > Constants.PAGES_PER_DATA_BLOCK)
-                throw new ArgumentOutOfRangeException($"A block can't contain a maximum number of {Constants.PAGES_PER_DATA_BLOCK} {nameof(id)} {id} is out of range");
-            if (id > Header.NumberOfPages)
-                throw new ArgumentOutOfRangeException($"This block contains {Header.NumberOfPages} the requested id {id} is larger than the maximum id");
-
-            var offset = Constants.BLOCK_HEADER_SIZE + (id * Constants.PAGE_SIZE);
-            DataPage dataPage = new DataPage();
-            dataPage.InitExisting(_memory.Slice((int) offset, (int) Constants.PAGE_SIZE_INCL_HEADER));
-
-            return dataPage;
         }
     }
 }

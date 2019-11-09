@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Datatent.Core.Algo.Sort;
 using FluentAssertions;
 using Xunit;
 

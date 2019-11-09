@@ -20,6 +20,11 @@ namespace Datatent.Core.Service
             _encryptionService = encryptionService;
         }
 
+        public DataProcessingInformations GetInformations()
+        {
+            return new DataProcessingInformations(_compressionService.Identifier, _encryptionService.Identifier);
+        }
+
         public byte[] Input(byte[] bytes)
         {
             var encrypted = _encryptionService.Encrypt(bytes);

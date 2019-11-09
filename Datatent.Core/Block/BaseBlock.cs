@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Datatent.Core.IO;
 using Datatent.Core.Memory;
+using Datatent.Core.Scheduler;
 using Datatent.Core.Service;
 
 namespace Datatent.Core.Block
@@ -34,13 +35,13 @@ namespace Datatent.Core.Block
         public const byte BLOCK_TYPE = 3;
 
         protected Memory<byte> _memory;
+        
+        private readonly IOResponse _ioResponse;
 
-        private readonly IMemoryOwner<byte> _buffer;
-
-        protected BaseBlock(IMemoryOwner<byte> memory)
+        protected BaseBlock(IOResponse ioResponse)
         {
-            _buffer = memory;
-            _memory = memory.Memory;
+            _ioResponse = ioResponse;
+            _memory = ioResponse.Payload;
         }
 
 
@@ -69,7 +70,7 @@ namespace Datatent.Core.Block
         
         public void Dispose()
         {
-            this._buffer?.Dispose();
+           _ioResponse.Dispose();
         }
     }
 }

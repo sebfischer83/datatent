@@ -50,7 +50,7 @@ namespace Datatent.Core.Benchmarks.Page
             for (int i = 0; i < 100; i++)
             {
                 var res = _page.TryAddContent(bytesContent, 0);
-                _guids[i] = res;
+                _guids[i] = res.Id;
             }
 
             Random random = new Random();

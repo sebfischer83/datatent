@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Datatent.Core.IO;
@@ -17,12 +18,18 @@ namespace Datatent.Core.Pages
         {
         }
 
-        public ushort TryAddContent(byte[] content, uint typeId)
+        public (bool Saved, ushort Id) TryAddContent(byte[] content, uint typeId)
         {
+            // data are specific to one data type
+            if (typeId != Header.PageTypeId)
+            {
+                return (false, 0);
+            }
+
             var compressedContent = content;
             if (compressedContent.Length > this.Header.PageNumberOfFreeBytes)
             {
-                return 0;
+                return (false, 0);
             }
 
             // its enough space in this page
@@ -31,9 +38,8 @@ namespace Datatent.Core.Pages
             var foundEmptySlot = FindEmptySlot(ref sliceIterator);
             if (!foundEmptySlot)
             {
-                return 0;
+                return (false, 0);
             }
-
             Document.Document document = new Document.Document(sliceIterator, this.Header.PageNextDocumentId);
             document.Update(content);
 
@@ -43,8 +49,8 @@ namespace Datatent.Core.Pages
             header.PageNumberOfEntries++;
             header.PageNextDocumentId++;
             header.PageNumberOfFreeBytes = header.PageNumberOfFreeBytes -
-                                         (document.Header.ContentLength + Document.Document.DOCUMENT_HEADER_LENGTH);
-            return document.Header.DocumentId;
+                                         (document.Header.ContentLength + Constants.DOCUMENT_HEADER_SIZE);
+            return (true, document.Header.DocumentId);
         }
 
         public async ValueTask<byte[]?> FindByIdAsync(ushort id)

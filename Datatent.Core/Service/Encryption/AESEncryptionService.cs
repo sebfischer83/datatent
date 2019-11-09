@@ -30,6 +30,10 @@ namespace Datatent.Core.Service.Encryption
            _aesManaged.Mode = CipherMode.CBC;
         }
 
+        private static readonly Guid IDENTIFIER = Guid.Parse("39D10C1F-32A7-474D-B428-DFB00119210E");
+        
+        public Guid Identifier => IDENTIFIER;
+
         public Span<byte> Encrypt(byte[] data)
         {
             if (data == null)

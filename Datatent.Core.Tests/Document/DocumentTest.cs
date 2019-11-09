@@ -74,7 +74,7 @@ namespace Datatent.Core.Tests.Document
 
             Core.Document.Document document = new Core.Document.Document(documentSlice, id1);
             document.Update(testContent);
-            document = new Core.Document.Document(documentSlice.Slice((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH)), id2);
+            document = new Core.Document.Document(documentSlice.Slice((int) (testContent.Length + Constants.DOCUMENT_HEADER_SIZE)), id2);
             document.Update(testContent);
 
             
@@ -84,12 +84,12 @@ namespace Datatent.Core.Tests.Document
             tuple.DocumentId.Should().Be(id1);
             tuple.DocumentSlice.HasValue.Should().BeTrue();
             tuple.DocumentSlice.Value.Length.Should()
-                .Be((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
+                .Be((int) (testContent.Length + Constants.DOCUMENT_HEADER_SIZE));
             tuple = Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref documentSlice);
             tuple.DocumentId.Should().Be(id2);
             tuple.DocumentSlice.HasValue.Should().BeTrue();
             tuple.DocumentSlice.Value.Length.Should()
-                .Be((int) (testContent.Length + Core.Document.Document.DOCUMENT_HEADER_LENGTH));
+                .Be((int) (testContent.Length + Constants.DOCUMENT_HEADER_SIZE));
             tuple = Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(ref documentSlice);
             tuple.DocumentId.Should().Be(0);
             tuple.DocumentSlice.HasValue.Should().BeFalse();

@@ -13,7 +13,7 @@ namespace Datatent.Core.Document
     /// </remarks>
     internal class Document
     {
-        [StructLayout(LayoutKind.Explicit, Size = DOCUMENT_HEADER_LENGTH)]
+        [StructLayout(LayoutKind.Explicit, Size = Constants.DOCUMENT_HEADER_SIZE)]
         internal struct DocumentHeader
         {
             /// <summary>
@@ -64,11 +64,6 @@ namespace Datatent.Core.Document
         /// Header position of the document type id (byte 12-15) of type uint32
         /// </summary>
         public const int DOCUMENT_TYPE_ID = 12;
-
-        /// <summary>
-        /// The length of the header
-        /// </summary>
-        public const int DOCUMENT_HEADER_LENGTH = 48;
         
         public DocumentHeader Header;
 
@@ -82,7 +77,7 @@ namespace Datatent.Core.Document
         /// <returns></returns>
         public static (Memory<byte>? DocumentSlice, ushort DocumentId) GetNextDocumentSliceAndAdjustOffset(ref Memory<byte> memory)
         {
-            if (memory.IsEmpty || memory.Length < DOCUMENT_HEADER_LENGTH)
+            if (memory.IsEmpty || memory.Length < Constants.DOCUMENT_HEADER_SIZE)
                 return (null, 0);
 
             if (memory.Span[0] == 0x00)
@@ -91,9 +86,9 @@ namespace Datatent.Core.Document
             var id = memory.Span.ReadUInt16(DOCUMENT_ID);
             
             var docLength = memory.Span.ReadUInt32(DOCUMENT_LENGTH);
-            var docSlice = memory.Slice(0, (int) (docLength + DOCUMENT_HEADER_LENGTH));
+            var docSlice = memory.Slice(0, (int) (docLength + Constants.DOCUMENT_HEADER_SIZE));
 
-            memory = memory.Slice((int) (docLength + DOCUMENT_HEADER_LENGTH));
+            memory = memory.Slice((int) (docLength + Constants.DOCUMENT_HEADER_SIZE));
 
             return (docSlice, id);
         }
@@ -140,7 +135,7 @@ namespace Datatent.Core.Document
             
             header.ContentLength = (uint) toSave.Length;
 
-            _documentSlice.WriteBytes(DOCUMENT_HEADER_LENGTH, toSave);
+            _documentSlice.WriteBytes(Constants.DOCUMENT_HEADER_SIZE, toSave);
         }
 
         /// <summary>
@@ -149,7 +144,7 @@ namespace Datatent.Core.Document
         /// <returns></returns>
         public byte[] GetContent()
         {
-            var compressedContent = _documentSlice.Span.ReadBytes(DOCUMENT_HEADER_LENGTH, (int) Header.ContentLength);
+            var compressedContent = _documentSlice.Span.ReadBytes(Constants.DOCUMENT_HEADER_SIZE, (int) Header.ContentLength);
 
             return compressedContent;
         }

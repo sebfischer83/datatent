@@ -17,8 +17,7 @@ namespace Datatent.Core.IO
         {
             _dataFileStream = new FileStream(settings.DataFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read, 4096, FileOptions.RandomAccess);
         }
-
-
+        
         public override void Dispose()
         {
             _dataFileStream.Dispose();

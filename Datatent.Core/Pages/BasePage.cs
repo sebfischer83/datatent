@@ -44,6 +44,9 @@ namespace Datatent.Core.Pages
 
             [FieldOffset(PAGE_NUMBER_OF_FREE_BYTES)]
             public uint PageNumberOfFreeBytes;
+
+            [FieldOffset(PAGE_TYPE_ID)]
+            public uint PageTypeId;
         }
 
         public PageHeader Header;
@@ -69,6 +72,8 @@ namespace Datatent.Core.Pages
         public const int PAGE_NEXT_DOCUMENT_ID = 9;
 
         public const int PAGE_NUMBER_OF_FREE_BYTES = 11;
+
+        public const int PAGE_TYPE_ID = 14;
         
         protected Memory<byte> _pageMemorySlice;
         
