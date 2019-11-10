@@ -18,7 +18,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
-[AzurePipelines(AzurePipelinesImage.WindowsLatest,  InvokedTargets = new []{ nameof(PublishCoverage) })]
+[AzurePipelines(AzurePipelinesImage.WindowsLatest,  InvokedTargets = new []{ nameof(Compile), nameof(Test), nameof(PublishCoverage) })]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
