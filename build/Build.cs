@@ -18,7 +18,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
-[AzurePipelines(AzurePipelinesImage.MacOsLatest, AzurePipelinesImage.WindowsLatest, AzurePipelinesImage.UbuntuLatest, InvokedTargets = new []{ nameof(PublishCoverage) })]
+[AzurePipelines(AzurePipelinesImage.WindowsLatest,  InvokedTargets = new []{ nameof(PublishCoverage) })]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -32,6 +32,7 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
+    [Parameter("Explicit framework to build")] readonly string Framework = null;
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
     [GitVersion] readonly GitVersion GitVersion;
@@ -62,6 +63,7 @@ class Build : NukeBuild
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
                 .SetInformationalVersion(GitVersion.InformationalVersion)
+                .SetFramework(Framework)
                 .EnableNoRestore());
         });
 
