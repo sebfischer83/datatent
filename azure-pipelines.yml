@@ -12,19 +12,6 @@ stages:
           - task: PowerShell@2
             inputs:
               filePath: 'build.ps1'
-  - stage: macOS_latest
-    displayName: 'macOS-latest'
-    dependsOn: [  ]
-    pool:
-      vmImage: 'macOS-latest'
-    jobs:
-      - job: Restore
-        displayName: 'Restore'
-        dependsOn: [  ]
-        steps:
-          - task: PowerShell@2
-            inputs:
-              filePath: 'build.ps1'
   - stage: ubuntu_latest
     displayName: 'ubuntu-latest'
     dependsOn: [  ]

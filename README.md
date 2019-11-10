@@ -3,7 +3,7 @@
 </p>
 
 [![Build Status](https://dev.azure.com/sebfischer83/datatent/_apis/build/status/sebfischer83.datatent?branchName=master)](https://dev.azure.com/sebfischer83/datatent/_build/latest?definitionId=1&branchName=master)
-
+[![codecov](https://codecov.io/gh/sebfischer83/datatent/branch/master/graph/badge.svg)](https://codecov.io/gh/sebfischer83/datatent)
 [![Maintainability](https://api.codeclimate.com/v1/badges/603bafa2eb4a69b9af00/maintainability)](https://codeclimate.com/github/sebfischer83/datatent/maintainability)
 
 ## Todo
