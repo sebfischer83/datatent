@@ -12,7 +12,7 @@ stages:
           - task: PowerShell@2
             inputs:
               filePath: 'build.ps1'
-  - stage: windows_latest
+  - stage: macOS_latest
     displayName: 'macOS-latest'
     dependsOn: [  ]
     pool:
@@ -25,7 +25,7 @@ stages:
           - task: PowerShell@2
             inputs:
               filePath: 'build.ps1'
-  - stage: windows_latest
+  - stage: ubuntu_latest
     displayName: 'ubuntu-latest'
     dependsOn: [  ]
     pool:
