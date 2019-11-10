@@ -5,35 +5,10 @@ stages:
     pool:
       vmImage: 'windows-latest'
     jobs:
-      - job: Restore
-        displayName: 'Restore'
+      - job: Nuke
+        displayName: 'Nuke'
         dependsOn: [  ]
         steps:
           - task: PowerShell@2
             inputs:
               filePath: 'build.ps1'
-              arguments: 'Restore --skip'
-      - job: Compile
-        displayName: 'Compile'
-        dependsOn: [ Restore ]
-        steps:
-          - task: PowerShell@2
-            inputs:
-              filePath: 'build.ps1'
-              arguments: 'Compile --skip'
-      - job: Test
-        displayName: 'Test'
-        dependsOn: [ Compile ]
-        steps:
-          - task: PowerShell@2
-            inputs:
-              filePath: 'build.ps1'
-              arguments: 'Test --skip'
-      - job: PublishCoverage
-        displayName: 'PublishCoverage'
-        dependsOn: [ Test ]
-        steps:
-          - task: PowerShell@2
-            inputs:
-              filePath: 'build.ps1'
-              arguments: 'PublishCoverage --skip'
