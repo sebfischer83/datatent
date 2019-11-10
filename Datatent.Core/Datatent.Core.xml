@@ -124,11 +124,6 @@
             Header position of the document type id (byte 12-15) of type uint32
             </summary>
         </member>
-        <member name="F:Datatent.Core.Document.Document.DOCUMENT_HEADER_LENGTH">
-            <summary>
-            The length of the header
-            </summary>
-        </member>
         <member name="M:Datatent.Core.Document.Document.GetNextDocumentSliceAndAdjustOffset(System.Memory{System.Byte}@)">
             <summary>
             Gets the memory slice from the beginning until the end of the document and adjust the offset of the given memory slice to the next document.
@@ -199,12 +194,22 @@
             </summary>
             <see cref="T:Datatent.Core.Pages.PageType"/>
         </member>
+        <member name="P:Datatent.Core.Scheduler.IOResponse.Id">
+            <summary>
+            The request id
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Scheduler.IOResponse.Address">
+            <summary>
+            The address which should be loaded / written
+            </summary>
+        </member>
         <member name="T:Datatent.Core.Scheduler.IORequest">
             <summary>
             A request to the underlying file system
             </summary>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.#ctor(Datatent.Core.Scheduler.IORequestDirection,Datatent.Core.Address)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.#ctor(Datatent.Core.Scheduler.IORequestDirection,Datatent.Core.Address,Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             ctor
             </summary>
@@ -231,20 +236,53 @@
             The payload
             </summary>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.CreateReadRequest(Datatent.Core.Address)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateReadRequest(Datatent.Core.Address,Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             Creates a new read request
             </summary>
             <param name="address"></param>
             <returns></returns>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.CreateWriteIoRequest(Datatent.Core.Address,Datatent.Core.Memory.ByteMemoryPool.Rental)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateWriteIoRequest(Datatent.Core.Address,System.Memory{System.Byte},Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             Creates a new write request
             </summary>
             <param name="address"></param>
             <param name="payload"></param>
             <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.op_Equality(Datatent.Core.Scheduler.IORequest,Datatent.Core.Scheduler.IORequest)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="request1">The request1.</param>
+            <param name="request2">The request2.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.op_Inequality(Datatent.Core.Scheduler.IORequest,Datatent.Core.Scheduler.IORequest)">
+            <summary>Implements the operator !=.</summary>
+            <param name="request1">The request1.</param>
+            <param name="request2">The request2.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Datatent.Core.Scheduler.IORequest.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
         </member>
         <member name="T:Datatent.Core.Service.DataProcessingPipeline">
             <summary>

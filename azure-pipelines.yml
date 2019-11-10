@@ -1,51 +1,115 @@
-trigger:
-  branches:
-    include: ["master"]
-  paths:
-    exclude: [".github", "documentation", "doc", "*.md"]
-
-pool:
-  vmImage: 'windows-latest'
-
-variables:
-  solution: '**/*.sln'
-  project: "**/*.csproj"
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-
-steps:
-
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '3.0.100'
-
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'Datatent Sonarcloud'
-    organization: 'sebfischer8343tgsest5w4zw54qe'
-    scannerMode: 'MSBuild'
-    projectKey: 'sebfischer83_datatent'
-    projectName: 'Datatent'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '$(solution)'
-    feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '$(project)'
-    arguments: '--configuration Release'
-  
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    arguments: '-c $(BuildConfiguration) --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover'
-
-- task: SonarCloudAnalyze@1
-
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
+stages:
+  - stage: macOS_latest
+    displayName: 'macOS-latest'
+    dependsOn: [  ]
+    pool:
+      vmImage: 'macOS-latest'
+    jobs:
+      - job: Restore
+        displayName: 'Restore'
+        dependsOn: [  ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Restore --skip'
+      - job: Compile
+        displayName: 'Compile'
+        dependsOn: [ Restore ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Compile --skip'
+      - job: Test
+        displayName: 'Test'
+        dependsOn: [ Compile ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Test --skip'
+      - job: PublishCoverage
+        displayName: 'PublishCoverage'
+        dependsOn: [ Test ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'PublishCoverage --skip'
+  - stage: windows_latest
+    displayName: 'windows-latest'
+    dependsOn: [  ]
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+      - job: Restore
+        displayName: 'Restore'
+        dependsOn: [  ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Restore --skip'
+      - job: Compile
+        displayName: 'Compile'
+        dependsOn: [ Restore ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Compile --skip'
+      - job: Test
+        displayName: 'Test'
+        dependsOn: [ Compile ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Test --skip'
+      - job: PublishCoverage
+        displayName: 'PublishCoverage'
+        dependsOn: [ Test ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'PublishCoverage --skip'
+  - stage: ubuntu_latest
+    displayName: 'ubuntu-latest'
+    dependsOn: [  ]
+    pool:
+      vmImage: 'ubuntu-latest'
+    jobs:
+      - job: Restore
+        displayName: 'Restore'
+        dependsOn: [  ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Restore --skip'
+      - job: Compile
+        displayName: 'Compile'
+        dependsOn: [ Restore ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Compile --skip'
+      - job: Test
+        displayName: 'Test'
+        dependsOn: [ Compile ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'Test --skip'
+      - job: PublishCoverage
+        displayName: 'PublishCoverage'
+        dependsOn: [ Test ]
+        steps:
+          - task: PowerShell@2
+            inputs:
+              filePath: 'build.ps1'
+              arguments: 'PublishCoverage --skip'

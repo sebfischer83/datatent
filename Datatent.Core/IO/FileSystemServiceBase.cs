@@ -35,7 +35,7 @@ namespace Datatent.Core.IO
                 length = (uint) GetHeaderLengthForScope(writeRequest.Address.Scope);
             }
 
-            await _dataFileStream.WriteAsync(writeRequest.Payload.Slice(0, (int) length));
+            await _dataFileStream.WriteAsync(writeRequest.Payload.Slice(0, (int) length)).ConfigureAwait(false);
 
             if ((writeRequest.IoRequestProperties & IoRequestProperties.Flush) == IoRequestProperties.Flush)
             {
