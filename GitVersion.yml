@@ -1,7 +1,26 @@
-assembly-versioning-scheme: MajorMinorPatchTag
-mode: ContinuousDelivery
-next-version: 0.0.2
-branches: {}
+major-version-bump-message: '(breaking|major)\(.*\)\s*\:'
+minor-version-bump-message: '(feat|minor)\(.*\)\s*\:'
+patch-version-bump-message: '(fix|patch)\(.*\)\s*\:'
+commit-message-incrementing: Disabled
+mode: Mainline
+branches:
+  feature:
+    regex: feat?[/-]
+    mode: ContinuousDeployment
+    tag: 'feat-{BranchName}'
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: false
+  pull-request:
+    regex: (pull|pull\-requests|pr)[/-]
+    mode: ContinuousDeployment
+    tag: feat-{BranchName}
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: false
 ignore:
   sha: []
-merge-message-formats: {}
