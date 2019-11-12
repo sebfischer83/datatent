@@ -81,6 +81,7 @@ class Build : NukeBuild
                 .SetArgumentConfigurator(arguments => arguments.Add("/p:CollectCoverage={0}", true)
                     .Add("/p:CoverletOutput={0}/", ArtifactsDirectory / "coverage")
                     .Add("/p:UseSourceLink={0}", "true")
+                    .Add("/p:CoverletOutputFormat={0}", "cobertura")
                     .Add("/p:CoverletOutputFormat={0}", "opencover"))
                 .SetResultsDirectory(ArtifactsDirectory / "tests"));
         });
