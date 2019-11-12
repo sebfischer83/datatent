@@ -46,7 +46,7 @@ class Build : NukeBuild
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
     AbsolutePath OutputDirectory => RootDirectory / "output";
 
-    string ChangeLogFile => RootDirectory / "changelog.md";
+    string ChangeLogFile => RootDirectory / "CHANGELOG.md";
 
     IEnumerable<string> ChangeLogSectionNotes => ExtractChangelogSectionNotes(ChangeLogFile);
 
