@@ -8,6 +8,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/603bafa2eb4a69b9af00/maintainability)](https://codeclimate.com/github/sebfischer83/datatent/maintainability)
 [![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=sebfischer83/datatent)](https://api.dependabot.com/badges/status?host=github&repo=sebfischer83/datatent)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsebfischer83%2Fdatatent.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsebfischer83%2Fdatatent?ref=badge_shield)
+![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/sebfischer83/datatent/1)
 
 ## Todo
 
