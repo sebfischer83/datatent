@@ -12,6 +12,11 @@ stages:
           - task: PowerShell@2
             inputs:
               filePath: 'build.ps1'
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/artifacts/coverage/coverage.cobertura.xml'
+              reportDirectory: '$(System.DefaultWorkingDirectory)/artifacts/coverage/coverage.cobertura.xml'
   - stage: ubuntu_latest
     displayName: 'ubuntu-latest'
     dependsOn: [  ]
