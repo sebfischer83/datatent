@@ -13,6 +13,15 @@ branches:
     track-merge-target: false
     tracks-release-branches: false
     is-release-branch: false
+  bugfix:
+    regex: fix?[/-]
+    mode: ContinuousDeployment
+    tag: 'fix-{BranchName}'
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: false
   pull-request:
     regex: (pull|pull\-requests|pr)[/-]
     mode: ContinuousDeployment
