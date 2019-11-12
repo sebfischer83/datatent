@@ -15,8 +15,8 @@ stages:
           - task: PublishCodeCoverageResults@1
             inputs:
               codeCoverageTool: 'Cobertura'
-              summaryFileLocation: '$(System.DefaultWorkingDirectory)/artifacts/coverage/coverage.cobertura.xml'
-              reportDirectory: '$(System.DefaultWorkingDirectory)/artifacts/coverage/coverage.cobertura.xml'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)\artifacts\coverage\coverage.cobertura.xml'
+              reportDirectory: '$(System.DefaultWorkingDirectory)\artifacts\coverage\coverage.cobertura.xml'
   - stage: ubuntu_latest
     displayName: 'ubuntu-latest'
     dependsOn: [  ]
