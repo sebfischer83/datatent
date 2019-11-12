@@ -81,8 +81,7 @@ class Build : NukeBuild
                 .SetArgumentConfigurator(arguments => arguments.Add("/p:CollectCoverage={0}", true)
                     .Add("/p:CoverletOutput={0}/", ArtifactsDirectory / "coverage")
                     .Add("/p:UseSourceLink={0}", "true")
-                    .Add("/p:CoverletOutputFormat={0}", "cobertura")
-                    .Add("/p:CoverletOutputFormat={0}", "opencover"))
+                    .Add("/p:CoverletOutputFormat={0}", "cobertura"))
                 .SetResultsDirectory(ArtifactsDirectory / "tests"));
         });
 
@@ -99,7 +98,7 @@ class Build : NukeBuild
                     .SetGlobal(true)
                     .SetPackageName("Codecov.Tool"));
                 ProcessTasks.StartProcess("codecov.exe", 
-                    arguments: $"-f \"{ArtifactsDirectory / "coverage/coverage.opencover.xml"}\" -t 8532ee50-6d63-4a1a-a36f-ad2741eb3e40");
+                    arguments: $"-f \"{ArtifactsDirectory / "coverage/coverage.cobertura.xml"}\" -t 8532ee50-6d63-4a1a-a36f-ad2741eb3e40");
             }
         });
 }
