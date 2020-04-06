@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Datatent.Core.Algo.Sort
 {
@@ -65,6 +63,15 @@ namespace Datatent.Core.Algo.Sort
             while (bucketCount-- != 0)
                 *buckets++ = *localBuckets++;
         }
+        /// <summary>
+        /// Sorts the specified workspace.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keys">The keys.</param>
+        /// <param name="workspace">The workspace.</param>
+        /// <param name="r">The r.</param>
+        /// <param name="descending">if set to <c>true</c> [descending].</param>
+        /// <exception cref="NotSupportedException">Sort type '{typeof(T).Name}' is {Unsafe.SizeOf()} bytes, which is not supported</exception>
         public static void Sort<T>(this Span<T> keys, Span<T> workspace, int r = default, bool descending = false) where T : struct
         {
             if (keys.Length <= 1) return;
@@ -84,9 +91,26 @@ namespace Datatent.Core.Algo.Sort
                 throw new NotSupportedException($"Sort type '{typeof(T).Name}' is {Unsafe.SizeOf<T>()} bytes, which is not supported");
             }
         }
+        /// <summary>
+        /// Sorts the specified keys.
+        /// </summary>
+        /// <param name="keys">The keys.</param>
+        /// <param name="workspace">The workspace.</param>
+        /// <param name="length">The length.</param>
+        /// <param name="r">The r.</param>
+        /// <param name="descending">if set to <c>true</c> [descending].</param>
+        /// <param name="mask">The mask.</param>
         public static void Sort(uint* keys, uint* workspace, int length, int r = default, bool descending = false, uint mask = uint.MaxValue)
             => Sort32(keys, workspace, length, r, mask, !descending, NumberSystem.Unsigned);
 
+        /// <summary>
+        /// Sorts the specified workspace.
+        /// </summary>
+        /// <param name="keys">The keys.</param>
+        /// <param name="workspace">The workspace.</param>
+        /// <param name="r">The r.</param>
+        /// <param name="descending">if set to <c>true</c> [descending].</param>
+        /// <param name="mask">The mask.</param>
         public static void Sort(this Span<uint> keys, Span<uint> workspace, int r = default, bool descending = false, uint mask = uint.MaxValue)
         {
             if (keys.Length <= 1) return;
@@ -115,6 +139,12 @@ namespace Datatent.Core.Algo.Sort
             return ((bits - 1) / r) + 1;
         }
 
+        /// <summary>
+        /// Gets or sets the default r.
+        /// </summary>
+        /// <value>
+        /// The default r.
+        /// </value>
         public static int DefaultR { get; set; }
 
         private static void Sort32(uint* keys, uint* workspace, int len, int r, uint keyMask, bool ascending, NumberSystem numberSystem)

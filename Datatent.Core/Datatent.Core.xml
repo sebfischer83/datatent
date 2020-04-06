@@ -4,24 +4,69 @@
         <name>Datatent.Core</name>
     </assembly>
     <members>
-        <member name="M:Datatent.Core.Address.op_Implicit(Datatent.Core.Address)~System.UInt64">
+        <member name="T:Datatent.Core.Algo.Sort.Insertion">
             <summary>
-            
+            Simple insertion sort implementation
             </summary>
-            <param name="a"></param>
-            <returns></returns>
         </member>
-        <member name="M:Datatent.Core.Address.op_Implicit(System.UInt64)~Datatent.Core.Address">
+        <member name="M:Datatent.Core.Algo.Sort.Insertion.Sort``1(``0[]@)">
             <summary>
-            
+            Sorts the specified array.
             </summary>
-            <param name="u"></param>
+            <typeparam name="T"></typeparam>
+            <param name="array">The array.</param>
         </member>
-        <member name="M:Datatent.Core.Address.ToString">
+        <member name="T:Datatent.Core.Algo.Sort.NumberSystem">
             <summary>
-            
+            The number system that is used
             </summary>
-            <returns></returns>
+        </member>
+        <member name="F:Datatent.Core.Algo.Sort.NumberSystem.Unsigned">
+            <summary>
+            uint/ulong
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Algo.Sort.NumberSystem.OnesComplement">
+            <summary>
+            not common, but can be treated the same as twos-complement for the purposes of sorting
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Algo.Sort.NumberSystem.TwosComplement">
+            <summary>
+            int/long
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Algo.Sort.NumberSystem.SignBit">
+            <summary>
+            float/double
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.Algo.Sort.NumberSystem`1">
+            <summary>
+            Number system
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Datatent.Core.Algo.Sort.NumberSystem`1.Length">
+            <summary>
+            Gets the length.
+            </summary>
+            <value>
+            The length.
+            </value>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.NumberSystem`1.#cctor">
+            <summary>
+            Initializes the <see cref="T:Datatent.Core.Algo.Sort.NumberSystem`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.NumberSystem`1.Set(Datatent.Core.Algo.Sort.NumberSystem)">
+            <summary>
+            Sets the specified number system.
+            </summary>
+            <param name="numberSystem">The number system.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">numberSystem</exception>
+            <exception cref="T:System.InvalidOperationException">The number-system for '{typeof(T).Name}' has already been set and cannot be changed</exception>
         </member>
         <member name="T:Datatent.Core.Algo.Sort.RadixLds">
              <summary>
@@ -46,10 +91,77 @@
              </list>
              </remarks>
         </member>
+        <member name="M:Datatent.Core.Algo.Sort.RadixLds.Sort(System.Span{System.UInt32},System.Boolean,System.Int32)">
+            <summary>
+            Sorts the specified array.
+            </summary>
+            <param name="a">a.</param>
+            <param name="usePool">if set to <c>true</c> [use pool].</param>
+            <param name="groupingBits">The grouping bits.</param>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.RadixLds.Sort(System.UInt32[],System.Boolean,System.Int32)">
+            <summary>
+            Sorts the specified array.
+            </summary>
+            <param name="a">a.</param>
+            <param name="usePool">if set to <c>true</c> [use pool].</param>
+            <param name="groupingBits">The grouping bits.</param>
+        </member>
         <member name="T:Datatent.Core.Algo.Sort.RadixLsdUnsafe">
             <summary>
             TODO: source
             </summary>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.RadixLsdUnsafe.Sort``1(System.Span{``0},System.Span{``0},System.Int32,System.Boolean)">
+            <summary>
+            Sorts the specified workspace.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="keys">The keys.</param>
+            <param name="workspace">The workspace.</param>
+            <param name="r">The r.</param>
+            <param name="descending">if set to <c>true</c> [descending].</param>
+            <exception cref="T:System.NotSupportedException">Sort type '{typeof(T).Name}' is {Unsafe.SizeOf()} bytes, which is not supported</exception>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.RadixLsdUnsafe.Sort(System.UInt32*,System.UInt32*,System.Int32,System.Int32,System.Boolean,System.UInt32)">
+            <summary>
+            Sorts the specified keys.
+            </summary>
+            <param name="keys">The keys.</param>
+            <param name="workspace">The workspace.</param>
+            <param name="length">The length.</param>
+            <param name="r">The r.</param>
+            <param name="descending">if set to <c>true</c> [descending].</param>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Datatent.Core.Algo.Sort.RadixLsdUnsafe.Sort(System.Span{System.UInt32},System.Span{System.UInt32},System.Int32,System.Boolean,System.UInt32)">
+            <summary>
+            Sorts the specified workspace.
+            </summary>
+            <param name="keys">The keys.</param>
+            <param name="workspace">The workspace.</param>
+            <param name="r">The r.</param>
+            <param name="descending">if set to <c>true</c> [descending].</param>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="P:Datatent.Core.Algo.Sort.RadixLsdUnsafe.DefaultR">
+            <summary>
+            Gets or sets the default r.
+            </summary>
+            <value>
+            The default r.
+            </value>
+        </member>
+        <member name="T:Datatent.Core.Block.BlockType">
+            <summary>
+            The block type
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.Block.BaseBlock">
+            <summary>
+            Base class for blocks
+            </summary>
+            <seealso cref="T:System.IDisposable" />
         </member>
         <member name="F:Datatent.Core.Block.BaseBlock.BLOCK_MARKER">
             <summary>
@@ -66,9 +178,297 @@
             Header position of the block type (byte 3) of type <see cref="T:Datatent.Core.Block.BlockType"/>
             </summary>
         </member>
+        <member name="M:Datatent.Core.Block.BaseBlock.ReadHeader``1">
+            <summary>
+            Reads the header.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Block.BaseBlock.WriteHeader``1(``0)">
+            <summary>
+            Writes the header.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="header">The header.</param>
+        </member>
+        <member name="M:Datatent.Core.Block.BaseBlock.GetNextBlockSliceAndAdjustOffset(System.Memory{System.Byte}@)">
+            <summary>
+            Gets the next block slice and adjust offset.
+            </summary>
+            <param name="memory">The memory.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Datatent.Core.Block.DataBlock">
+            <summary>
+            A data block
+            </summary>
+            <seealso cref="T:Datatent.Core.Block.BaseBlock" />
+        </member>
+        <member name="T:Datatent.Core.Block.DataBlock.DataBlockHeader">
+            <summary>
+            The header of a data block
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.DataBlock.DataBlockHeader.Marker">
+            <summary>
+            Indicates the start of the block
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.DataBlock.DataBlockHeader.Id">
+            <summary>
+            The block id
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.DataBlock.DataBlockHeader.Type">
+            <summary>
+            The block type
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Block.DataBlock.DataBlockHeader.NumberOfPages">
+            <summary>
+            The number of pages in the block
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Block.DataBlock.Header">
+            <summary>
+            Gets or sets the header.
+            </summary>
+            <value>
+            The header.
+            </value>
+        </member>
         <member name="F:Datatent.Core.Block.DataBlock.BLOCK_NUMBER_OF_PAGES">
             <summary>
             Header position of the number of pages in this block (byte 6-9) of type uint
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Block.DataBlock.InitExisting">
+            <summary>
+            Initializes an existing block.
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.Block.DataBlock.SaveData(System.Byte[],System.UInt32)">
+            <summary>
+            Saves the data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="typeId">The type identifier.</param>
+            <returns>True if save is successful and the address of the Document</returns>
+        </member>
+        <member name="M:Datatent.Core.Block.DataBlock.InitEmpty(System.UInt16)">
+            <summary>
+            Initializes an empty block.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Datatent.Core.Block.DataBlock.GetAllPages">
+            <summary>
+            Gets all pages in this block.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Datatent.Core.Common.Address">
+            <summary>
+            Describes a position of data in the database.
+            </summary>
+            <remarks>
+            Each address has a scope that shows which granularity the address had.
+            </remarks>
+        </member>
+        <member name="F:Datatent.Core.Common.Address.FullAddress">
+            <summary>
+            The full address. Can only be compared if the scope is taken into account.
+            </summary>
+        </member>
+        <member name="P:Datatent.Core.Common.Address.Document">
+            <summary>
+            Gets the document number part of the address.
+            </summary>
+            <value>
+            The document number.
+            </value>
+        </member>
+        <member name="P:Datatent.Core.Common.Address.Page">
+            <summary>
+            Gets the page number part of the address.
+            </summary>
+            <value>
+            The page number.
+            </value> 
+        </member>
+        <member name="P:Datatent.Core.Common.Address.Block">
+            <summary>
+            Gets the block number part of the address.
+            </summary>
+            <value>
+            The block number.
+            </value>
+        </member>
+        <member name="P:Datatent.Core.Common.Address.Scope">
+            <summary>
+            Gets the scope of the address.
+            </summary>
+            <value>
+            The scope.
+            </value>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.#ctor(System.UInt64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.Address"/> struct.
+            </summary>
+            <param name="fullAddress">The full address.</param>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.#ctor(Datatent.Core.Scheduler.AddressScope,System.UInt64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.Address"/> struct.
+            </summary>
+            <param name="scope">The scope.</param>
+            <param name="fullAddress">The full address.</param>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.#ctor(Datatent.Core.Scheduler.AddressScope,System.UInt16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.Address"/> struct.
+            </summary>
+            <param name="scope">The scope.</param>
+            <param name="block">The block.</param>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.#ctor(Datatent.Core.Scheduler.AddressScope,System.UInt16,System.UInt16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.Address"/> struct.
+            </summary>
+            <param name="scope">The scope.</param>
+            <param name="block">The block.</param>
+            <param name="page">The page.</param>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.#ctor(Datatent.Core.Scheduler.AddressScope,System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.Address"/> struct.
+            </summary>
+            <param name="scope">The scope.</param>
+            <param name="block">The block.</param>
+            <param name="page">The page.</param>
+            <param name="document">The document.</param>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.ToPosition">
+            <summary>
+            Converts to position in the file.
+            Scope Document and Page are equal and only return the start of the Page.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotSupportedException">Scope</exception>
+            <exception cref="T:System.InvalidOperationException">Scope</exception>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.op_Implicit(Datatent.Core.Common.Address)~System.UInt64">
+            <summary>
+            Performs an implicit conversion from <see cref="T:Datatent.Core.Common.Address"/> to <see cref="T:System.UInt64"/>.
+            </summary>
+            <param name="a">a.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.op_Implicit(System.UInt64)~Datatent.Core.Common.Address">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.UInt64"/> to <see cref="T:Datatent.Core.Common.Address"/>.
+            </summary>
+            <param name="u">The u.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.FromUInt64(System.UInt64)">
+            <summary>
+            From int64 to Address.
+            </summary>
+            <param name="u">The u.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.ToUInt64">
+            <summary>
+            Converts to uint64.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.ToString">
+            <summary>
+            Print the address in a human readable form.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.AreTheSame(Datatent.Core.Common.Address,System.Boolean)">
+            <summary>
+            Compare this address with the given one. Scope can be ignored.
+            </summary>
+            <param name="a">a.</param>
+            <param name="ignoreScope">if set to <c>true</c> [ignore scope].</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Invalid scope {this.Scope} {a.Scope}</exception>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.AreTheSame(Datatent.Core.Common.Address,Datatent.Core.Common.Address,System.Boolean)">
+            <summary>
+            Compare 2 address. Scope can be ignored.
+            </summary>
+            <param name="a1">The a1.</param>
+            <param name="a2">The a2.</param>
+            <param name="ignoreScope">if set to <c>true</c> [ignore scope].</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.op_Equality(Datatent.Core.Common.Address,Datatent.Core.Common.Address)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="address1">The address1.</param>
+            <param name="address2">The address2.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.op_Inequality(Datatent.Core.Common.Address,Datatent.Core.Common.Address)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="address1">The address1.</param>
+            <param name="address2">The address2.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Datatent.Core.Common.Address.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Datatent.Core.Common.DatabaseHeader">
+            <summary>
+            The database header
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Common.DatabaseHeader.Identifier">
+            <summary>
+            The identifier
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Common.DatabaseHeader.Version">
+            <summary>
+            The version
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Common.DatabaseHeader.DataProcessingInformations">
+            <summary>
+            Which pipelines are included to create the database
             </summary>
         </member>
         <member name="T:Datatent.Core.Document.Document">
@@ -78,6 +478,11 @@
             <remarks>
             A page can contain multiple documents of different types. The type of the object is mapped in the header pages.
             </remarks>
+        </member>
+        <member name="T:Datatent.Core.Document.Document.DocumentHeader">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DocumentHeader.DocumentId">
             <summary>
@@ -107,11 +512,6 @@
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_LENGTH">
             <summary>
             Header position of the document length without the header (byte 2-5) of type uint32
-            </summary>
-        </member>
-        <member name="F:Datatent.Core.Document.Document.DOCUMENT_ORG_LENGTH">
-            <summary>
-            Header position of the uncompressed document length without the header (byte 6-10) of type uint32
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DOCUMENT_IS_DELETED">
@@ -209,7 +609,7 @@
             A request to the underlying file system
             </summary>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.#ctor(Datatent.Core.Scheduler.IORequestDirection,Datatent.Core.Address,Datatent.Core.Scheduler.IoRequestProperties)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.#ctor(Datatent.Core.Scheduler.IORequestDirection,Datatent.Core.Common.Address,Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             ctor
             </summary>
@@ -236,14 +636,14 @@
             The payload
             </summary>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.CreateReadRequest(Datatent.Core.Address,Datatent.Core.Scheduler.IoRequestProperties)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateReadRequest(Datatent.Core.Common.Address,Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             Creates a new read request
             </summary>
             <param name="address"></param>
             <returns></returns>
         </member>
-        <member name="M:Datatent.Core.Scheduler.IORequest.CreateWriteIoRequest(Datatent.Core.Address,System.Memory{System.Byte},Datatent.Core.Scheduler.IoRequestProperties)">
+        <member name="M:Datatent.Core.Scheduler.IORequest.CreateWriteIoRequest(Datatent.Core.Common.Address,System.Memory{System.Byte},Datatent.Core.Scheduler.IoRequestProperties)">
             <summary>
             Creates a new write request
             </summary>

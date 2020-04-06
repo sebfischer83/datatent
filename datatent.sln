@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datatent.Core", "Datatent.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{BB147EEC-73CB-4843-BFEB-0A9AFBD8CBC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatent.DummyApplication", "Datatent.DummyApplication\Datatent.DummyApplication.csproj", "{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{CA648B3B-8981-47E0-B78E-77132AEFEAA0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB147EEC-73CB-4843-BFEB-0A9AFBD8CBC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB147EEC-73CB-4843-BFEB-0A9AFBD8CBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

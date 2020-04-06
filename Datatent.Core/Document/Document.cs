@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Datatent.Core.IO;
-using Datatent.Core.Service;
 
 namespace Datatent.Core.Document
 {
@@ -13,6 +12,9 @@ namespace Datatent.Core.Document
     /// </remarks>
     internal class Document
     {
+        /// <summary>
+        /// The document header
+        /// </summary>
         [StructLayout(LayoutKind.Explicit, Size = Constants.DOCUMENT_HEADER_SIZE)]
         internal struct DocumentHeader
         {
@@ -51,14 +53,9 @@ namespace Datatent.Core.Document
         public const int DOCUMENT_LENGTH = 2;
 
         /// <summary>
-        /// Header position of the uncompressed document length without the header (byte 6-10) of type uint32
-        /// </summary>
-        public const int DOCUMENT_ORG_LENGTH = 6;
-        
-        /// <summary>
         /// Header position of the is deleted flag (byte 11) of type byte
         /// </summary>
-        public const byte DOCUMENT_IS_DELETED = 11;
+        public const byte DOCUMENT_IS_DELETED = 6;
 
         /// <summary>
         /// Header position of the document type id (byte 12-15) of type uint32

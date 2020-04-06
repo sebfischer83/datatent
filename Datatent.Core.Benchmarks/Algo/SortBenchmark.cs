@@ -9,7 +9,7 @@ using Datatent.Core.Algo.Sort;
 
 namespace Datatent.Core.Benchmarks.Algo
 {
-    [HtmlExporter, RPlotExporter, CsvExporter(), CsvMeasurementsExporter(),
+    [HtmlExporter, CsvExporter(), CsvMeasurementsExporter(),
      RankColumn(), KurtosisColumn, SkewnessColumn, StdDevColumn, MeanColumn, MedianColumn, BaselineColumn, MediumRunJob, MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class SortBenchmark
     {

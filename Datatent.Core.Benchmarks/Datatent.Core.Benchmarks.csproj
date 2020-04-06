@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Datatent.Core\Datatent.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>

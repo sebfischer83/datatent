@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
+using Datatent.Core.Common;
 using Datatent.Core.Scheduler;
 
 namespace Datatent.Core.Benchmarks

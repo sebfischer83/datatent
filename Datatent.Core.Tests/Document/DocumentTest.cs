@@ -21,12 +21,14 @@ namespace Datatent.Core.Tests.Document
             this.output = output;
         }
 
-        [Fact]
+        [Fact(DisplayName = "Test set and get content")]
         public void SetAndGetContentTest()
         {
+            // prepare data, documents starts not at 0 position of the array
+            var documentStartPos = 500;
             var array = new byte[Constants.PAGE_SIZE_INCL_HEADER * 2];
             UnitTestHelper.FillArray(ref array, 0x00);
-            Memory<byte> documentSlice = new Memory<byte>(array, 500, (int) Constants.PAGE_SIZE);
+            Memory<byte> documentSlice = new Memory<byte>(array, documentStartPos, (int) Constants.PAGE_SIZE);
 
             Core.Document.Document document = new Core.Document.Document(documentSlice, 0);
 

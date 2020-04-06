@@ -7,7 +7,7 @@ namespace Datatent.Core.Algo.Sort
 {
     internal static class SortUtils
     {
-               internal const sbyte MSB8 = unchecked((sbyte)(1 << 7));
+        internal const sbyte MSB8 = unchecked((sbyte)(1 << 7));
         internal const byte MSB8U = 1 << 7;
         internal const short MSB16 = unchecked((short)(1 << 15));
         internal const ushort MSB16U = 1 << 15;

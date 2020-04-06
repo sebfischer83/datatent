@@ -31,6 +31,13 @@ namespace Datatent.Core.Algo.Sort
     {
         private const int BitsPerInt = 32;
 
+        /// <summary>
+        /// Sorts the specified array.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="usePool">if set to <c>true</c> [use pool].</param>
+        /// <param name="groupingBits">The grouping bits.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "EPS06:Hidden struct copy operation", Justification = "<Ausstehend>")]
         public static void Sort(Span<uint> a, bool usePool = true,  int groupingBits = 4)
         {
             // our helper array 
@@ -86,6 +93,12 @@ namespace Datatent.Core.Algo.Sort
             }
         }
 
+        /// <summary>
+        /// Sorts the specified array.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="usePool">if set to <c>true</c> [use pool].</param>
+        /// <param name="groupingBits">The grouping bits.</param>
         public static void Sort(uint[] a, bool usePool = true,  int groupingBits = 4)
         {
             // our helper array 

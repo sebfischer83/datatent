@@ -11,12 +11,19 @@ using Datatent.Core.Service;
 
 namespace Datatent.Core.Block
 {
+    /// <summary>
+    /// The block type
+    /// </summary>
     internal enum BlockType : byte
     {
         None = 0,
         Data = 1
     }
 
+    /// <summary>
+    /// Base class for blocks
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     internal abstract class BaseBlock : IDisposable
     {
         /// <summary>
@@ -45,16 +52,31 @@ namespace Datatent.Core.Block
         }
 
 
+        /// <summary>
+        /// Reads the header.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public T ReadHeader<T>() where T : struct
         {
             return MemoryMarshal.Read<T>(_memory.Span);
         }
 
+        /// <summary>
+        /// Writes the header.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="header">The header.</param>
         public void WriteHeader<T>(T header) where T : struct
         {
             MemoryMarshal.Write(_memory.Span, ref header);
         }
-        
+
+        /// <summary>
+        /// Gets the next block slice and adjust offset.
+        /// </summary>
+        /// <param name="memory">The memory.</param>
+        /// <returns></returns>
         public static (Memory<byte>? blockSlice, ushort BlockId) GetNextBlockSliceAndAdjustOffset(ref Memory<byte> memory)
         {
             if (memory.IsEmpty || memory.Length < Constants.BLOCK_HEADER_SIZE || memory.Span.ReadByte(0) == 0x00)

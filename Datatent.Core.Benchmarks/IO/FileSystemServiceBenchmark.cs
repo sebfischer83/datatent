@@ -8,6 +8,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
+using Datatent.Core.Common;
 using Datatent.Core.IO;
 using Datatent.Core.Scheduler;
 using Datatent.Core.Tests;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Datatent.Core.Common;
 using Datatent.Core.IO;
 using Datatent.Core.Scheduler;
 using FluentAssertions;

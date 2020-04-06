@@ -1,11 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Datatent.Core.Algo.Sort
 {
+    /// <summary>
+    /// Simple insertion sort implementation
+    /// </summary>
     internal static class Insertion
     {
+        /// <summary>
+        /// Sorts the specified array.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array">The array.</param>
         public static void Sort<T>(ref T[] array) where T : IComparable<T>
         {
             for (int i = 0; i < array.Length - 1; i++)
@@ -15,7 +21,7 @@ namespace Datatent.Core.Algo.Sort
                 {
                     if (array[j - 1].CompareTo(array[j]) > 1)
                     {
-                        T temp = array[j - 1];
+                        var temp = array[j - 1];
                         array[j - 1] = array[j];
                         array[j] = temp;
                     }

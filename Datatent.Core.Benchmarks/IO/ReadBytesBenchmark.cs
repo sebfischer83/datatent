@@ -9,7 +9,7 @@ using Datatent.Core.Service.Encryption;
 namespace Datatent.Core.Benchmarks.IO
 {
     [GcForce(false)]
-    [HtmlExporter, RPlotExporter, CsvExporter(), CsvMeasurementsExporter(), 
+    [HtmlExporter, CsvExporter(), CsvMeasurementsExporter(), 
      RankColumn(), KurtosisColumn, SkewnessColumn, StdDevColumn, MeanColumn, MedianColumn, BaselineColumn, MediumRunJob, MemoryDiagnoser, Orderer(SummaryOrderPolicy.Method)]
     public class ReadBytesBenchmark
     {
