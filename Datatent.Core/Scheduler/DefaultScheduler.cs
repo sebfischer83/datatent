@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Buffers;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Datatent.Core.Block;
 using Datatent.Core.Common;
 using Datatent.Core.IO;
-using Datatent.Core.Memory;
-using DynamicData;
-using DynamicData.Alias;
 
 namespace Datatent.Core.Scheduler
 {
@@ -22,6 +12,7 @@ namespace Datatent.Core.Scheduler
     {
         private readonly FileSystemServiceBase _fileSystemService;
         private readonly Channel<ValueTuple<IORequest, TaskCompletionSource<IOResponse>>> _responseChannel;
+        private readonly Task _readerTask;
 
         public DefaultScheduler(FileSystemServiceBase fileSystemService)
         {
@@ -35,9 +26,9 @@ namespace Datatent.Core.Scheduler
                         SingleReader = true,
                         SingleWriter = false
                     });
-            
-            var reader = _responseChannel.Reader;
-            Task.Run(Reader);
+
+            _readerTask = new Task(Reader, CancellationToken.None, TaskCreationOptions.LongRunning);
+            _readerTask.Start();
         }
 
         private async void Reader()

@@ -471,6 +471,13 @@
             Which pipelines are included to create the database
             </summary>
         </member>
+        <member name="M:Datatent.Core.Common.DatabaseHeader.#ctor(System.UInt16,Datatent.Core.Service.DataProcessingInformations)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.Common.DatabaseHeader"/> struct.
+            </summary>
+            <param name="version">The version.</param>
+            <param name="dataProcessingInformations">The data processing informations.</param>
+        </member>
         <member name="T:Datatent.Core.Document.Document">
             <summary>
             Documents hold the actual data and are the smallest part of a data file.
@@ -481,7 +488,7 @@
         </member>
         <member name="T:Datatent.Core.Document.Document.DocumentHeader">
             <summary>
-            
+            The document header
             </summary>
         </member>
         <member name="F:Datatent.Core.Document.Document.DocumentHeader.DocumentId">
@@ -572,6 +579,192 @@
             <param name="content"></param>
             <returns></returns>
         </member>
+        <member name="T:Datatent.Core.IO.DiskFileSystemService">
+            <summary>
+            Uses a file for the data.
+            </summary>
+            <seealso cref="T:Datatent.Core.IO.FileSystemServiceBase" />
+        </member>
+        <member name="M:Datatent.Core.IO.DiskFileSystemService.#ctor(Datatent.Core.DatatentSettings,Microsoft.Extensions.Logging.ILogger{Datatent.Core.IO.FileSystemServiceBase})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.IO.DiskFileSystemService"/> class.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.DiskFileSystemService.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.IO.FileSystemServiceBase">
+            <summary>
+            Base class for the file system services
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.#ctor(Datatent.Core.DatatentSettings,Microsoft.Extensions.Logging.ILogger{Datatent.Core.IO.FileSystemServiceBase})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Datatent.Core.IO.FileSystemServiceBase"/> class.
+            </summary>
+            <param name="settings">The settings.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.Write(Datatent.Core.Scheduler.IORequest)">
+            <summary>
+            Writes the data to the underlying stream
+            </summary>
+            <param name="writeRequest">The write request.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.GetHeaderLengthForScope(Datatent.Core.Scheduler.AddressScope)">
+            <summary>
+            Gets the header length for scope.
+            </summary>
+            <param name="scope">The scope.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.WriteDatabaseHeader(Datatent.Core.Common.DatabaseHeader@)">
+            <summary>
+            Writes the database header.
+            </summary>
+            <param name="databaseHeader">The database header.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.ReadDatabaseHeader">
+            <summary>
+            Reads the database header.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.Read(Datatent.Core.Scheduler.IORequest)">
+            <summary>
+            Reads the data from the underlying stream
+            </summary>
+            <param name="readRequest">The read request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.FileSystemServiceBase.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:Datatent.Core.IO.MemoryFileSystemService">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:Datatent.Core.IO.FileSystemServiceBase" />
+        </member>
+        <member name="T:Datatent.Core.IO.SpanExtensions">
+            <summary>
+            Extensions and Helper methods for Span and Memory
+            </summary>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadByte(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Reads a byte.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadBytes(System.Span{System.Byte},System.Int32,System.Int32)">
+            <summary>
+            Reads bytes.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="length">The length.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadBool(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Reads a bool.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadUInt32(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Reads the a uint32.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadUInt16(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Reads a uint16.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.ReadGuid(System.Span{System.Byte},System.Int32)">
+            <summary>
+            Reads a unique identifier.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteBytes(System.Memory{System.Byte},System.Int32,System.Byte[])">
+            <summary>
+            Write bytes.
+            </summary>
+            <param name="memory">The memory.</param>
+            <param name="offset">The offset.</param>
+            <param name="bytes">The bytes.</param>
+            <exception cref="T:System.ArgumentNullException">bytes</exception>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteBytes(System.Span{System.Byte}@,System.Int32,System.Byte[])">
+            <summary>
+            Write bytes.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="bytes">The bytes.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.Write``1(System.Span{``0},System.Int32,System.Span{``0})">
+            <summary>
+            Writes the values to the span.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="values">The values.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteByte(System.Span{System.Byte},System.Int32,System.Byte)">
+            <summary>
+            Writes a byte.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="b">The b.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteBool(System.Span{System.Byte},System.Int32,System.Boolean)">
+            <summary>
+            Writes a bool.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="b">if set to <c>true</c> [b].</param>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteGuid(System.Span{System.Byte},System.Int32,System.Guid)">
+            <summary>
+            Writes a unique identifier.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Datatent.Core.IO.SpanExtensions.WriteUInt32(System.Span{System.Byte},System.Int32,System.UInt32)">
+            <summary>
+            Writes a uint32.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="offset">The offset.</param>
+            <param name="val">The value.</param>
+        </member>
         <member name="T:Datatent.Core.Pages.BasePage">
             <summary>
             Smallest unit of data storage.
@@ -580,8 +773,19 @@
             </summary>
             <remarks>
             Every page starts with a header that gives the following informations:
-            
+            <see cref="T:Datatent.Core.Pages.BasePage.PageHeader"/>
             </remarks>
+        </member>
+        <member name="T:Datatent.Core.Pages.BasePage.PageHeader">
+            <summary>
+            The header of every page, the header start until the PageTypeId is the same for every type
+            but the following can be different.
+            </summary>
+        </member>
+        <member name="F:Datatent.Core.Pages.BasePage.PageHeader.PageId">
+            <summary>
+            The page identifier
+            </summary>
         </member>
         <member name="F:Datatent.Core.Pages.BasePage.PAGE_ID">
             <summary>
@@ -685,11 +889,6 @@
             </returns>
         </member>
         <member name="T:Datatent.Core.Service.DataProcessingPipeline">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Datatent.Core.Service.Encryption.IEncryptionService">
             <summary>
             
             </summary>

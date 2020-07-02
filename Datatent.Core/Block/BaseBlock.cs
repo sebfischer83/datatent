@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using Datatent.Core.IO;
-using Datatent.Core.Memory;
 using Datatent.Core.Scheduler;
 using Datatent.Core.Service;
 
@@ -17,7 +16,9 @@ namespace Datatent.Core.Block
     internal enum BlockType : byte
     {
         None = 0,
-        Data = 1
+        Data = 1,
+        Index = 2,
+        Meta = 3
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Datatent.Shared.Services;
 
 namespace Datatent.Core.Service.Encryption
 {
@@ -36,7 +37,7 @@ namespace Datatent.Core.Service.Encryption
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5350:Do Not Use Weak Cryptographic Algorithms", Justification = "<Pending>")]
-        public Span<byte> Encrypt(byte[] data)
+        public Span<byte> Encrypt(Span<byte> data)
         {
             if (data == null)
             {
@@ -49,7 +50,7 @@ namespace Datatent.Core.Service.Encryption
             using ICryptoTransform encryptor = _tripleDES.CreateEncryptor(_keyBytes, iv.ToArray());
             using MemoryStream toMemoryStream = new MemoryStream();
             using CryptoStream writer = new CryptoStream(toMemoryStream, encryptor, CryptoStreamMode.Write);
-            var valueBytes = data;
+            var valueBytes = data.ToArray();
 
             writer.Write(valueBytes, 0, valueBytes.Length);
             writer.FlushFinalBlock();
@@ -62,14 +63,14 @@ namespace Datatent.Core.Service.Encryption
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5350:Do Not Use Weak Cryptographic Algorithms", Justification = "<Pending>")]
-        public Span<byte> Decrypt(byte[] encryptedData)
+        public Span<byte> Decrypt(Span<byte> encryptedData)
         {
             if (encryptedData == null)
             {
                 throw new ArgumentNullException(nameof(encryptedData));
             }
 
-            byte[] rawBytes = encryptedData;
+            byte[] rawBytes = encryptedData.ToArray();
             byte[] valueBytes = new byte[rawBytes.Length - 16];
             byte[] ivBytes = new byte[16];
 

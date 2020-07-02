@@ -6,6 +6,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Datatent.Core.IO
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Datatent.Core.IO.FileSystemServiceBase" />
     internal class MemoryFileSystemService : FileSystemServiceBase
     {
         public MemoryFileSystemService(DatatentSettings settings, long size, ILogger<FileSystemServiceBase> logger) : base(settings, logger)

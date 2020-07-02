@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Datatent.Shared.Services;
 
 namespace Datatent.Core.Service.Encryption
 {
@@ -12,13 +13,13 @@ namespace Datatent.Core.Service.Encryption
         public Guid Identifier => IDENTIFIER;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Span<byte> Encrypt(byte[] data)
+        public Span<byte> Encrypt(Span<byte> data)
         {
             return data;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Span<byte> Decrypt(byte[] encryptedData)
+        public Span<byte> Decrypt(Span<byte> encryptedData)
         {
             return encryptedData;
         }

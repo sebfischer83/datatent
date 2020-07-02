@@ -11,6 +11,6 @@ namespace Datatent.Core
 {
     public class DatatentSettings
     {
-        public string DataFile { get; set; }
+        public string? DataFile { get; set; }
     }
 }

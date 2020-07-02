@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datatent.Core", "Datatent.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{BB147EEC-73CB-4843-BFEB-0A9AFBD8CBC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatent.DummyApplication", "Datatent.DummyApplication\Datatent.DummyApplication.csproj", "{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datatent.DummyApplication", "Datatent.DummyApplication\Datatent.DummyApplication.csproj", "{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatent.Shared", "Datatent.Shared\Datatent.Shared.csproj", "{5B8A2813-0EB4-4C31-98EF-685201F7A20A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{7E8EF227-679F-4BCD-8CDF-DFC68AD2C0AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatent.Plugins.Audit", "Datatent.Plugins.Audit\Datatent.Plugins.Audit.csproj", "{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,9 +43,20 @@ Global
 		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE81FF0B-87B8-4A51-B45F-FC5DD3193495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B8A2813-0EB4-4C31-98EF-685201F7A20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8A2813-0EB4-4C31-98EF-685201F7A20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B8A2813-0EB4-4C31-98EF-685201F7A20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8A2813-0EB4-4C31-98EF-685201F7A20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C9FD5C8-B714-48D4-BC68-D6CEEABB2D2D} = {7E8EF227-679F-4BCD-8CDF-DFC68AD2C0AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C08B78B4-0EDF-4AF0-8F09-F68899ABEAAA}

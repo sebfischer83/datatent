@@ -3,24 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using Datatent.Core.Service.Compression;
 using Datatent.Core.Service.Encryption;
+using Datatent.Core.Service.Serialization;
+using Datatent.Shared.Pipeline;
+using Datatent.Shared.Services;
 
 namespace Datatent.Core.Service
 {
-    public class DummyDataProcessingPipeline : IDataProcessingPipeline
+    public class DummyDataProcessingPipeline : DataProcessingPipelineBase
     {
-        public DataProcessingInformations GetInformations()
+        protected DummyDataProcessingPipeline(IItemSerializerService serializerService, IEncryptionService encryptionService, ICompressionService compressionService) : base(serializerService, encryptionService, compressionService)
         {
-            return new DataProcessingInformations(Guid.Empty, Guid.Empty);
         }
 
-        public byte[] Input(byte[] bytes)
-        {
-            return bytes;
-        }
-
-        public byte[] Output(byte[] bytes)
-        {
-            return bytes;
-        }
+        public static DummyDataProcessingPipeline Instance => new DummyDataProcessingPipeline(new UTF8JSonSerializer(), new NullEncryptionService(), new UncompressedCompressionService());
     }
 }

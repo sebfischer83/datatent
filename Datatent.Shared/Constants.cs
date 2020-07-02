@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Datatent.Core.Pages;
-#pragma warning disable CA1802 // Use literals where appropriate
+﻿#pragma warning disable CA1802 // Use literals where appropriate
 
-namespace Datatent.Core
+namespace Datatent.Shared
 {
-    internal sealed class Constants
+    public sealed class Constants
     {
         public static readonly uint PAGE_SIZE = 64000;
 

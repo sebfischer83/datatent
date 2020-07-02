@@ -10,6 +10,7 @@ namespace Datatent.Core.Document
     /// <remarks>
     /// A page can contain multiple documents of different types. The type of the object is mapped in the header pages.
     /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "EPS06:Hidden struct copy operation", Justification = "<Ausstehend>")]
     internal class Document
     {
         /// <summary>
@@ -90,6 +91,7 @@ namespace Datatent.Core.Document
             return (docSlice, id);
         }
 
+
         /// <summary>
         /// Construct the document header from the given memory slice.
         /// </summary>
@@ -112,10 +114,7 @@ namespace Datatent.Core.Document
         public Document(Memory<byte> documentSlice, ushort id)
         {
             _documentSlice = documentSlice;
-            var header = new DocumentHeader();
-            header.DocumentId = id;
-            header.ContentLength = 0;
-            header.IsDeleted = false;
+            var header = new DocumentHeader {DocumentId = id, ContentLength = 0, IsDeleted = false};
             Header = header;
         }
 
@@ -132,7 +131,7 @@ namespace Datatent.Core.Document
             
             header.ContentLength = (uint) toSave.Length;
 
-            _documentSlice.WriteBytes(Constants.DOCUMENT_HEADER_SIZE, toSave);
+            SpanExtensions.WriteBytes(_documentSlice, Constants.DOCUMENT_HEADER_SIZE, toSave);
         }
 
         /// <summary>

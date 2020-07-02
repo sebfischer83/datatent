@@ -17,13 +17,20 @@ namespace Datatent.Core.Pages
     /// </summary>
     /// <remarks>
     /// Every page starts with a header that gives the following informations:
-    /// 
+    /// <see cref="BasePage.PageHeader"/>
     /// </remarks>
     internal abstract class BasePage
     {
+        /// <summary>
+        /// The header of every page, the header start until the PageTypeId is the same for every type
+        /// but the following can be different.
+        /// </summary>
         [StructLayout(LayoutKind.Explicit, Size = Constants.PAGE_HEADER_SIZE)]
         internal struct PageHeader
         {
+            /// <summary>
+            /// The page identifier
+            /// </summary>
             [FieldOffset(PAGE_ID)]
             public ushort PageId;
 

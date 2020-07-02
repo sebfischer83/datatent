@@ -38,7 +38,7 @@ namespace Datatent.Core.Benchmarks.Page
             for (uint i = 0; i < numberOfPages; i++)
             {
                 var slice = memory.Slice((int) (Constants.PAGE_SIZE_INCL_HEADER * i ));
-                slice.WriteBytes(0,UnitTestHelper.GetPageHeader(i, PageType.Data));
+                SpanExtensions.WriteBytes(slice, 0,UnitTestHelper.GetPageHeader(i, PageType.Data));
             }
 
             string testContent = "Hello World!!!";

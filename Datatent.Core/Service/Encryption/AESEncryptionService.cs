@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Datatent.Shared.Services;
 
 namespace Datatent.Core.Service.Encryption
 {
@@ -34,7 +35,7 @@ namespace Datatent.Core.Service.Encryption
         
         public Guid Identifier => IDENTIFIER;
 
-        public Span<byte> Encrypt(byte[] data)
+        public Span<byte> Encrypt(Span<byte> data)
         {
             if (data == null)
             {
@@ -49,7 +50,7 @@ namespace Datatent.Core.Service.Encryption
             using CryptoStream writer = new CryptoStream(toMemoryStream, encryptor, CryptoStreamMode.Write);
             var valueBytes = data;
 
-            writer.Write(valueBytes, 0, valueBytes.Length);
+            writer.Write(valueBytes.ToArray(), 0, valueBytes.Length);
             writer.FlushFinalBlock();
             var encrypted = new byte[16 + toMemoryStream.Length];
             iv.ToArray().CopyTo(encrypted, 0);
@@ -59,14 +60,14 @@ namespace Datatent.Core.Service.Encryption
             return new Span<byte>(encrypted);
         }
 
-        public Span<byte> Decrypt(byte[] encryptedData)
+        public Span<byte> Decrypt(Span<byte> encryptedData)
         {
             if (encryptedData == null)
             {
                 throw new ArgumentNullException(nameof(encryptedData));
             }
 
-            byte[] rawBytes = encryptedData;
+            byte[] rawBytes = encryptedData.ToArray();
             byte[] valueBytes = new byte[rawBytes.Length - 16];
             byte[] ivBytes = new byte[16];
 

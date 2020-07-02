@@ -27,9 +27,10 @@ namespace Datatent.Core.Tests.IO
             byte[] testArray = Encoding.UTF8.GetBytes(s);
 
             Memory<byte> target = new byte[500];
-            target.WriteBytes(0, testArray);
+            SpanExtensions.WriteBytes(target, 0, testArray);
 
-            var bytes = target.Span.ReadBytes(0, testArray.Length);
+            var span = target.Span;
+            var bytes = span.ReadBytes(0, testArray.Length);
             var result = Encoding.UTF8.GetString(bytes);
 
             result.Should().Be(s);
